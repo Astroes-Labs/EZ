@@ -1,0 +1,8 @@
+ <svg xmlns="http://www.w3.org/2000/svg" 
+        class="mx-auto mb-6 h-16 w-16 text-blue-500 hover:scale-110 transition-transform" 
+        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+            d="M12 11c0-1.104-.896-2-2-2s-2 .896-2 2 .896 2 2 2 2-.896 2-2z" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+            d="M12 5v6m0 0h6m-6 0H6" />
+</svg>
