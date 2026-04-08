@@ -20,28 +20,28 @@
 
         <div class="container max-w-screen-2xl mx-auto px-6 relative z-20 pt-16 pb-32">
             <div class="max-w-4xl mx-auto text-center space-y-10">
-                <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-none">
+                <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-tight">
                     INVEST IN <span class="text-[#eac46e]">CRYPTO</span><br>
-                    WITH <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#eac46e] via-white to-[#eac46e]">{{ strtoupper(config('app.name')) }}</span>
+                    WITH 
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#eac46e] via-white to-[#eac46e]">
+                        {{ strtoupper(config('app.name')) }}
+                    </span>
                 </h1>
 
-                <p class="text-xl sm:text-2xl text-gray-300 max-w-2xl mx-auto font-light">
+                <p class="text-base sm:text-lg md:text-xl text-gray-300 max-w-xl mx-auto font-light">
                     Smart, secure, and simple cryptocurrency investments. 
-                    Weekly &amp; monthly returns regardless of market conditions.
+                    Weekly & monthly returns regardless of market conditions.
                 </p>
 
-                <div class="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+               <div class="flex flex-col sm:flex-row gap-4 justify-center pt-6">
                     <a href="{{ route('register') }}" wire:navigate
-                       class="group relative px-10 py-5 text-lg font-bold bg-[#222f53] hover:bg-[#2a3a6b] border border-[#eac46e] rounded-3xl overflow-hidden transition-all hover:scale-105 active:scale-95">
-                        <span class="relative z-10 flex items-center gap-3">
-                            Start Investing Now
-                            <span class="text-[#eac46e]">→</span>
-                        </span>
+                    class="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold bg-[#222f53] hover:bg-[#2a3a6b] border border-[#eac46e] rounded-2xl transition-all hover:scale-105">
+                        Start Investing →
                     </a>
 
-                    <a href="#how-it-works" wire:navigate
-                       class="px-10 py-5 text-lg font-semibold border-2 border-[#eac46e]/60 hover:border-[#eac46e] rounded-3xl transition-all hover:bg-white/5">
-                        Learn How It Works
+                    <a href="#how-it-works"
+                    class="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold border border-[#eac46e]/60 hover:border-[#eac46e] rounded-2xl transition-all">
+                        How It Works
                     </a>
                 </div>
 
@@ -199,32 +199,48 @@
         </div>
     </section>
 
-        <!-- MISSION SECTION -->
-    <section class="py-28 bg-gradient-to-br from-[#111827] to-[#0a0f1c]">
-        <div class="max-w-screen-2xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="order-2 lg:order-1 space-y-8">
-                    <h2 class="text-5xl font-bold tracking-tight">OUR <span class="text-[#eac46e]">MISSION</span></h2>
-                    <h3 class="text-3xl font-semibold text-white">Invest the way you want — without restrictions</h3>
-                    <p class="text-lg text-gray-300 leading-relaxed">
-                        We have built a platform that provides the best possible financial investment services to everyone.
-                        Our team of legal consultants, financial experts, and Wall Street traders work tirelessly to meet 
-                        and exceed our investors' expectations.
+
+
+    <!-- MISSION SECTION -->
+    <section class="py-16 sm:py-20 lg:py-28 bg-gradient-to-br from-[#111827] to-[#0a0f1c]">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+                
+                <!-- TEXT -->
+                <div class="order-2 md:order-1 space-y-5 sm:space-y-6">
+                    
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
+                        OUR <span class="text-[#eac46e]">MISSION</span>
+                    </h2>
+
+                    <h3 class="text-xl sm:text-2xl lg:text-3xl font-semibold text-white leading-snug">
+                        Invest your way, no limits
+                    </h3>
+
+                    <p class="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed max-w-xl">
+                        We built a platform that makes investing simple, secure, and accessible. 
+                        Our team combines financial expertise with real market experience to deliver 
+                        consistent performance and a smooth user experience.
                     </p>
+
                     <a href="{{ route('register') }}" wire:navigate
-                       class="inline-block px-10 py-5 bg-[#eac46e] text-[#111827] font-bold rounded-2xl hover:bg-amber-300 transition-all">
-                        Join {{ config('app.name') }} Today
+                    class="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-[#eac46e] text-[#111827] text-sm sm:text-base font-bold rounded-2xl hover:bg-amber-300 transition-all">
+                        Get Started
                     </a>
                 </div>
 
-                <div class="order-1 lg:order-2 text-center">
+                <!-- IMAGE -->
+                <div class="order-1 md:order-2 text-center">
                     <img src="{{ url('assets/images/mission.png') }}"
-                         alt="Our Mission"
-                         class="max-w-lg mx-auto rounded-3xl drop-shadow-2xl hover:scale-105 transition-transform duration-700">
+                        alt="Our Mission"
+                        class="w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto rounded-3xl drop-shadow-2xl hover:scale-105 transition-transform duration-700">
                 </div>
+
             </div>
         </div>
     </section>
+
 
         <!-- WHY CHOOSE US -->
     <section id="why-us" class="py-28 bg-[#111827]">
