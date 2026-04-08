@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Livewire\Dashboard\Index;
+// use App\Livewire\Dashboard\Index;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -12,9 +12,7 @@ use App\Http\Controllers\FinancialDataController;
 use App\Http\Controllers\TraderController;
 use App\Http\Controllers\TradeController;
 use App\Http\Controllers\ForgotPasswordController;
-
-
-
+// use App\Livewire\Home\Index;
 
 Route::middleware(['auth'])->group(function () {});
 
@@ -151,9 +149,14 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::get('/', function () {
-    return view('home.index');
-})->name('home');
+// Route::get('/', function () {
+//     return view('home.index');
+// })->name('home');
+
+
+// Route::get('/', Index::class)->name('home');
+
+Route::get('/', \App\Livewire\Home\Index::class)->name('home');
 
 Route::get('/about', function () {
     return view('home.about');

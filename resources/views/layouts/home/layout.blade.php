@@ -23,7 +23,7 @@
         <a href="#banner" class="scrollTo"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
     </div>
 
-    <livewire:header-nav />
+    {{-- <livewire:header-nav /> --}}
 
     @yield('content')
 
