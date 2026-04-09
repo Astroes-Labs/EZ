@@ -35,9 +35,8 @@
 
                 <!-- Right Text -->
                 <div class="space-y-8">
-                    <h3 class="text-4xl lg:text-5xl font-bold tracking-tight">
-                        ABOUT <span class="text-[#eac46e]">{{ config('app.name') }}</span>
-                    </h3>
+                    <livewire:shared.section-heading title="ABOUT <span class='text-[#eac46e]'>{{ config('app.name') }}</span>" />
+
                     <p class="text-lg text-gray-300 leading-relaxed">
                         {{ config('app.name') }} is an algorithmic trading &amp; online investment company 
                         established, licensed and headquartered in the United States. 
@@ -61,10 +60,7 @@
                 
                 <!-- Left Text -->
                 <div class="space-y-8 order-2 lg:order-1">
-                    <h3 class="text-4xl lg:text-5xl font-bold tracking-tight">
-                        We’re <span class="text-[#eac46e]">Revolutionizing</span> the World of 
-                        <span class="text-white">Crypto Investments</span>
-                    </h3>
+                        <livewire:shared.section-heading title="We’re <span class='text-[#eac46e]'>Revolutionizing</span> the World of Crypto Investments" />
                     <p class="text-lg text-gray-300 leading-relaxed">
                         At {{ config('app.name') }}, we don't just pride ourselves as an investment company, but as a
                         provider of an exclusive financial service to empower investors to earn without being engaged with 
@@ -146,14 +142,7 @@
     <!-- Why Choose Us -->
     <section class="py-20 lg:py-28 bg-[#111827]">
         <div class="max-w-screen-2xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h3 class="text-5xl font-bold tracking-tight">
-                    WHY <span class="text-[#eac46e]">CHOOSE US</span>
-                </h3>
-                <p class="mt-6 text-xl text-gray-400 max-w-3xl mx-auto">
-                    With our client-first approach, we put your needs first and help secure your financial future.
-                </p>
-            </div>
+           <livewire:shared.section-heading title="100% Commitment" />
 
             <div class="grid md:grid-cols-3 gap-8 mb-20">
                 @foreach([
