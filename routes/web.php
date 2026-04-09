@@ -158,13 +158,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/', \App\Livewire\Home\Index::class)->name('home');
 
-Route::get('/about', function () {
-    return view('home.about');
-})->name('about');
+Route::get('/about', \App\Livewire\Home\About::class)->name('about');
 
-Route::get('/testimonials', function () {
-    return view('home.testimonials');
-})->name('testimonials');
+Route::get('/testimonials', \App\Livewire\Home\Testimonials::class)->name('testimonials');
 
 Route::get('/pricing', function () {
     return view('home.pricing');

@@ -17,7 +17,7 @@
                     <a href="{{ route('home') }}" wire:navigate class="inline-block mb-8 group">
                         <img src="{{ url('assets/images/icon.png') }}"
                              alt="{{ config('app.name') }}"
-                             class="h-12 w-auto brightness-110 group-hover:scale-105 transition-transform duration-300">
+                             class="h-40 w-auto brightness-110 group-hover:scale-105 transition-transform duration-300">
                     </a>
 
                     <div class="text-[#eac46e] text-sm font-medium mb-3 tracking-wider">SELECT LANGUAGE</div>

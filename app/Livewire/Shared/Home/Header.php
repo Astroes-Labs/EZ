@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Shared;
+namespace App\Livewire\Shared\Home;
 use Livewire\Component;
 
 class Header extends Component
@@ -20,6 +20,6 @@ class Header extends Component
 
     public function render()
     {
-        return view('livewire.shared.header');
+        return view('livewire.shared.home.header');
     }
 }

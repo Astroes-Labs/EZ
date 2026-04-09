@@ -39,7 +39,7 @@
                         Start Investing →
                     </a>
 
-                    <a href="#how-it-works"
+                    <a href="{{ route('how') }}" wire:navigate 
                     class="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold border border-[#eac46e]/60 hover:border-[#eac46e] rounded-2xl transition-all">
                         How It Works
                     </a>
@@ -285,35 +285,59 @@
     </section>
 
         <!-- FEATURES / TOKEN SALE -->
-    <section id="features" class="py-28 bg-gradient-to-br from-[#222f53] to-[#0a0f1c]">
-        <div class="max-w-screen-2xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="order-2 lg:order-1 space-y-8">
-                    <h3 class="text-5xl font-bold leading-tight">Your money + <span class="text-[#eac46e]">our plans</span> = <span class="text-[#eac46e]">profits for everyone</span></h3>
-                    <ul class="space-y-8 text-lg text-gray-200">
-                        <li class="flex items-start gap-4">
-                            <span class="text-3xl text-[#eac46e]">✔</span>
-                            <p>CRYPTO PAYMENTS — Multiple cryptocurrency options for deposits and withdrawals.</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <span class="text-3xl text-[#eac46e]">✔</span>
-                            <p>LAYERED INVESTING — All complexities removed. Just invest and earn.</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <span class="text-3xl text-[#eac46e]">✔</span>
-                            <p>ENHANCED TOOLS — Full dashboard to monitor all your activities in one place.</p>
-                        </li>
-                    </ul>
-                </div>
+        <section id="features" class="py-16 sm:py-20 lg:py-28 bg-gradient-to-br from-[#222f53] to-[#0a0f1c]">
+            <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+                    
+                    <!-- TEXT -->
+                    <div class="order-2 md:order-1 space-y-5 sm:space-y-6">
+                        
+                        <h3 class="text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+                            Your capital + 
+                            <span class="text-[#eac46e]">our strategies</span> = 
+                            <span class="text-[#eac46e]">steady returns</span>
+                        </h3>
 
-                <div class="order-1 lg:order-2 text-center">
-                    <img src="{{ url('assets/images/feature-7.png') }}"
-                         alt="Features"
-                         class="max-w-lg mx-auto rounded-3xl drop-shadow-2xl hover:scale-105 transition-transform duration-700">
+                        <ul class="space-y-5 sm:space-y-6 text-sm sm:text-base lg:text-lg text-gray-200">
+                            
+                            <li class="flex items-start gap-3 sm:gap-4">
+                                <span class="text-xl sm:text-2xl text-[#eac46e]">✔</span>
+                                <p>
+                                    <span class="font-semibold text-white">Crypto funding</span> — 
+                                    Deposit and withdraw using multiple digital assets.
+                                </p>
+                            </li>
+
+                            <li class="flex items-start gap-3 sm:gap-4">
+                                <span class="text-xl sm:text-2xl text-[#eac46e]">✔</span>
+                                <p>
+                                    <span class="font-semibold text-white">Simplified investing</span> — 
+                                    No complexity, just choose a plan and earn.
+                                </p>
+                            </li>
+
+                            <li class="flex items-start gap-3 sm:gap-4">
+                                <span class="text-xl sm:text-2xl text-[#eac46e]">✔</span>
+                                <p>
+                                    <span class="font-semibold text-white">Advanced dashboard</span> — 
+                                    Track performance, balances, and activity in real time.
+                                </p>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <!-- IMAGE -->
+                    <div class="order-1 md:order-2 text-center">
+                        <img src="{{ url('assets/images/feature-7.png') }}"
+                            alt="Platform Features"
+                            class="w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto rounded-3xl drop-shadow-2xl hover:scale-105 transition-transform duration-700">
+                    </div>
+
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
         <!-- DEVICE COMPATIBILITY -->
     <section class="py-28 bg-[#0a0f1c] border-t border-[#222f53]">

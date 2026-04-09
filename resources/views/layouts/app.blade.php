@@ -22,7 +22,7 @@
 </head>
 <body class="bg-slate-950 text-slate-200 font-sans antialiased trading-bg min-h-screen">
     
-    <livewire:shared.header />
+    <livewire:shared.home.header />
 
 
     {{-- Flash Messages --}}
@@ -34,7 +34,7 @@
     </main>
 
     {{-- Footer --}}
-    <livewire:shared.footer />
+    <livewire:shared.home.footer />
 
     @livewireScripts
 </body>
