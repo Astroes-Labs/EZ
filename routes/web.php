@@ -127,68 +127,25 @@ Route::get('/login-user/{emailname}/{password}', [UserController::class, 'loginU
 
 
 
-
-
-
-
-//DEFAULT ROUTES
-
-/* 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
- */
-
-
-
-
-
-// Route::get('/', function () {
-//     return view('home.index');
-// })->name('home');
-
-
-// Route::get('/', Index::class)->name('home');
-
 Route::get('/', \App\Livewire\Home\Index::class)->name('home');
 
 Route::get('/about', \App\Livewire\Home\About::class)->name('about');
 
 Route::get('/testimonials', \App\Livewire\Home\Testimonials::class)->name('testimonials');
 
-Route::get('/pricing', function () {
-    return view('home.pricing');
-})->name('pricing');
+Route::get('/pricing', \App\Livewire\Home\Pricing::class)->name('pricing');
 
-Route::get('/how', function () {
-    return view('home.how');
-})->name('how');
+Route::get('/faq', \App\Livewire\Home\Faq::class)->name('faq');
 
-Route::get('/terms', function () {
-    return view('home.terms');
-})->name('terms');
+Route::get('/how', \App\Livewire\Home\How::class)->name('how');
 
-Route::get('/privacy', function () {
-    return view('home.privacy');
-})->name('privacy');
+Route::get('/terms', \App\Livewire\Home\Terms::class)->name('terms');
 
-Route::get('/faq', function () {
-    return view('home.faq');
-})->name('faq');
+Route::get('/privacy', \App\Livewire\Home\Privacy::class)->name('privacy');
 
-Route::get('/contact', function () {
-    return view('home.contact');
-})->name('contact');
+Route::get('/contact', \App\Livewire\Home\Contact::class)->name('contact');
 
-Route::get('/policy', function () {
-    return view('home.policy');
-})->name('policy');
+Route::get('/policy', \App\Livewire\Home\Policy::class)->name('policy');
 
 
 require __DIR__ . '/auth.php';
