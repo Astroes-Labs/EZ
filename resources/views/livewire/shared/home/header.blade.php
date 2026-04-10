@@ -41,7 +41,7 @@
                         </a>
                         <a href="{{ route('faq') }}" wire:navigate 
                            class="block px-6 py-3 hover:bg-[#222f53] hover:text-[#eac46e] transition-colors">
-                           Help Center
+                           FAQs
                         </a>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                         </a>
                         <a href="{{ route('how') }}" wire:navigate 
                            class="block px-6 py-3 hover:bg-[#222f53] hover:text-[#eac46e] transition-colors">
-                           Execution Flow
+                           How it Works
                         </a>
                     </div>
                 </div>

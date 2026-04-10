@@ -46,7 +46,7 @@
                     <h6 class="text-[#eac46e] font-semibold uppercase tracking-[1px] text-sm mb-6">Support Center</h6>
                     <ul class="space-y-4 text-gray-200 mb-6">
                         <li><a href="{{ route('how') }}" wire:navigate class="hover:text-white transition-colors">Getting Started</a></li>
-                        <li><a href="{{ route('faq') }}" wire:navigate class="hover:text-white transition-colors">Common Questions</a></li>
+                        <li><a href="{{ route('faq') }}" wire:navigate class="hover:text-white transition-colors">Frequently Asked Questions</a></li>
                         
                     </ul>
                     <h6 class="text-[#eac46e] font-semibold uppercase tracking-[1px] text-sm mb-6 mt-6">Contact Us</h6>

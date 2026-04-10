@@ -22,12 +22,10 @@
     <!-- Testimonials Grid -->
     <section class="py-20 lg:py-28 bg-[#111827]">
         <div class="max-w-screen-2xl mx-auto px-6">
-            <div class="text-center mb-16 max-w-3xl mx-auto">
-                <p class="text-lg lg:text-xl text-gray-400 leading-relaxed">
-                    Here are a few words from our most trusted investors. 
-                    These words guide us and help weave our deep legal and technical experience into our financial services.
-                </p>
-            </div>
+            <livewire:shared.section-heading 
+                title="What Our Investors Say" 
+                subtitle="Here are a few words from our most trusted investors..." 
+            />
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                 @foreach([

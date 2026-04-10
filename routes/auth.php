@@ -21,15 +21,17 @@ use Inertia\Inertia;
 // Route::get('/login', LoginForm::class)->name('login');
 
 Route::middleware('guest')->group(function () {
-    Route::get('register', [RegisteredUserController::class, 'create'])
-        ->name('register');
+    // In routes/web.php
+
+
+
+    Route::get('register', \App\Livewire\Auth\Register::class)->name('register');
     Route::post('register', [RegisteredUserController::class, 'store']);
 
 
     // Route::get('/register', RegisterForm::class)->name('register');
 
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])
-        ->name('login');
+    Route::get('login', \App\Livewire\Auth\Login::class)->name('login');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
@@ -37,8 +39,7 @@ Route::middleware('guest')->group(function () {
         return view('auth.two-factor-verify');
     })->name('2fa.verify');
 
-    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-        ->name('password.request');
+    Route::get('forgot-password', \App\Livewire\Auth\ForgotPassword::class)->name('password.request');
 
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
         ->name('password.email');

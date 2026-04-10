@@ -1,23 +1,8 @@
 <div class="min-h-screen bg-[#0a0f1c] text-gray-100 font-sans">
 
     <!-- Page Hero / Banner -->
-    <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20" id="banner">
-        <div class="absolute inset-0 bg-[#0a0f1c]">
-            <img src="{{ url('assets/images/banner-img.png') }}" 
-                 alt="Contact Banner"
-                 class="w-full h-full object-cover opacity-20">
-            <div class="absolute inset-0 bg-gradient-to-b from-[#0a0f1c]/90 via-[#222f53]/80 to-[#0a0f1c]"></div>
-        </div>
-
-        <div class="max-w-screen-2xl mx-auto px-6 relative z-20 text-center">
-            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tighter leading-none">
-                CONTACT <span class="text-[#eac46e]">US</span>
-            </h1>
-            <p class="mt-6 text-xl text-gray-400 max-w-lg mx-auto">
-                We're here to help. Reach out to us anytime — 24/7 support available.
-            </p>
-        </div>
-    </section>
+    <livewire:shared.hero-banner 
+        title="CONTACT <span class='text-[#eac46e]'>US</span>" />
 
     <!-- Contact Section -->
     <section class="py-20 lg:py-28 bg-[#111827]">
