@@ -1,13 +1,8 @@
 <div class="w-full max-w-md space-y-10">
 
     <!-- Header -->
-    <div class="text-center">
-        <img src="{{ url('assets/images/icon.png') }}" alt="{{ config('app.name') }}" class="h-16 mx-auto mb-6">
-        <h1 class="text-4xl font-black tracking-tighter">
-            Join <span class="text-[#eac46e]">{{ config('app.name') }}</span>
-        </h1>
-        <p class="mt-3 text-gray-400">Create your account and start investing today</p>
-    </div>
+   
+    <x-auth-header :title="__('Join')" :subtitle="__('Create an account and start investing today')" />
 
     <!-- Livewire Form -->
     <livewire:register-form />

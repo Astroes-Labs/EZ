@@ -1,5 +1,6 @@
-<div class="bg-[#1a2238] border border-[#222f53] rounded-3xl p-8 lg:p-12 shadow-2xl">
+{{-- <div class="bg-[#1a2238] border border-[#222f53] rounded-3xl p-8 lg:p-12 shadow-2xl"> --}}
 
+<div>
     <form wire:submit="register" class="space-y-8">
         @csrf
 

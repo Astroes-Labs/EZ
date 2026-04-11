@@ -35,17 +35,15 @@ Route::middleware('guest')->group(function () {
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
-    Route::get('/2fa/verify', function () {
-        return view('auth.two-factor-verify');
-    })->name('2fa.verify');
+    Route::get('/2fa/verify', \App\Livewire\Auth\TwoFactorVerify::class)->name('2fa.verify');
 
     Route::get('forgot-password', \App\Livewire\Auth\ForgotPassword::class)->name('password.request');
 
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
         ->name('password.email');
 
-    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-        ->name('password.reset');
+    Route::get('reset-password/{token}', \App\Livewire\Auth\ResetPassword::class)
+    ->name('password.reset');
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
