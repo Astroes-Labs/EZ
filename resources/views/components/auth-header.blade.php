@@ -1,15 +1,11 @@
-@props([
-    'title',
-    'subtitle'
-])
+@props(['title', 'subtitle'])
 
-
-
-
-    <div class="text-center">
-        <img src="{{ url('assets/images/rel-icon.png') }}" alt="{{ config('app.name') }}" class="h-16 mx-auto mb-6">
-        <h1 class="text-4xl font-black tracking-tighter">
-             {!! $title !!} <span class="text-[#eac46e]">{{ config('app.name') }}</span>
-        </h1>
-        <p class="mt-3 text-gray-400"> {{ $subtitle }}</p>
-    </div>
+<div class="text-center max-w-md mx-auto">
+    <h1 class="text-5xl font-black tracking-tighter mb-4">
+        {!! $title !!}
+    </h1>
+    
+    <p class="text-lg text-gray-400">
+        {{ $subtitle }}
+    </p>
+</div>

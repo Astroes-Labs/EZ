@@ -1,8 +1,8 @@
-<div class="w-full max-w-md space-y-10">
+<div class="w-full max-w-md space-y-10 pt-20">
 
     <!-- Header -->
    
-    <x-auth-header :title="__('Join')" :subtitle="__('Create an account and start investing today')" />
+    <x-auth-header :title="__('Join Us Today')" :subtitle="__('Create an account and start investing today')" />
 
     <!-- Livewire Form -->
     <livewire:register-form />
@@ -12,5 +12,4 @@
         Already have an account? 
         <a href="{{ route('login') }}" class="text-[#eac46e] hover:text-amber-300 font-medium">Sign in here →</a>
     </p>
-
 </div>

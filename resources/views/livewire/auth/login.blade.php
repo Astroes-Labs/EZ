@@ -1,4 +1,4 @@
-<div class="w-full max-w-md space-y-10">
+<div class="w-full max-w-md space-y-10 pt-20">
 
     <!-- Header -->
     <x-auth-header :title="__('Welcome Back')" :subtitle="__('Sign in to manage your investments')" />

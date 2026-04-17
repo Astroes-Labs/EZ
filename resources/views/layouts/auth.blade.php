@@ -11,7 +11,12 @@
     
     @livewireStyles
 </head>
-<body class="min-h-screen bg-[#0a0f1c] text-gray-100 font-sans antialiased">
+{{-- <body class="min-h-screen bg-[#0a0f1c] text-gray-100 font-sans antialiased"> --}}
+<body x-data="{ mobileMenuOpen: false }" class="bg-slate-950 text-slate-200 font-sans antialiased trading-bg min-h-screen">
+
+
+    
+    <livewire:shared.home.header />
 
     <main class="min-h-screen flex items-center justify-center px-4 py-12 lg:py-20">
         {{ $slot }}

@@ -18,7 +18,7 @@ Route::middleware(['auth'])->group(function () {});
 
 
 // All protected routes (require login)
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 
     /*  
     Route::get('/dashboard', Index::class)->name('dashboard');

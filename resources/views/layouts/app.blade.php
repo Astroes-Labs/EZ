@@ -20,7 +20,7 @@
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-200 font-sans antialiased trading-bg min-h-screen">
+<body x-data="{ mobileMenuOpen: false }" class="bg-slate-950 text-slate-200 font-sans antialiased trading-bg min-h-screen">
     
     <livewire:shared.home.header />
 

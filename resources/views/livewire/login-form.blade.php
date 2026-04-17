@@ -13,7 +13,9 @@
                    type="email" 
                    required 
                    autofocus
-                   class="w-full px-6 py-4 bg-[#0a0f1c] border border-[#222f53] rounded-2xl text-white placeholder-gray-500 focus:border-[#eac46e] focus:ring-2 focus:ring-[#eac46e]/30 transition-all">
+                   class="w-full px-6 py-4 bg-[#111827]/70 border border-[#222f53] rounded-2xl text-white placeholder-gray-500 
+           focus:border-[#eac46e] focus:ring-2 focus:ring-[#eac46e]/20 
+           transition-all backdrop-blur-sm">
             @error('email') 
                 <p class="mt-2 text-sm text-red-400">{{ $message }}</p> 
             @enderror
@@ -26,7 +28,9 @@
                 <input wire:model.debounce.500ms="password" 
                        :type="showPassword ? 'text' : 'password'" 
                        required
-                       class="w-full px-6 py-4 bg-[#0a0f1c] border border-[#222f53] rounded-2xl text-white placeholder-gray-500 focus:border-[#eac46e] focus:ring-2 focus:ring-[#eac46e]/30 transition-all">
+                       class="w-full px-6 py-4 bg-[#111827]/70 border border-[#222f53] rounded-2xl text-white placeholder-gray-500 
+           focus:border-[#eac46e] focus:ring-2 focus:ring-[#eac46e]/20 
+           transition-all backdrop-blur-sm">
                 <button type="button" 
                         @click="showPassword = !showPassword"
                         class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#eac46e]">
