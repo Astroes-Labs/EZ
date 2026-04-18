@@ -42,11 +42,13 @@
                                 <i class="fa fa-map-marker text-[#eac46e] text-2xl"></i>
                             </div>
                             <div>
-                                <div class="text-sm text-gray-400 tracking-wider mb-1">HEAD OFFICE</div>
+                                <div class="text-sm text-gray-400 tracking-wider mb-1">LOCATION</div>
                                 <p class="text-lg text-gray-300 leading-relaxed">
                                     {{ config('app.company_address') }}
                                 </p>
                             </div>
+
+
                         </div>
                     </div>
 
@@ -54,6 +56,26 @@
                         <p class="text-gray-400">
                             Available 24/7 via email, live chat, WhatsApp, and Telegram.
                         </p>
+                    </div>
+
+                    <!-- Google Map -->
+                    <div class="mt-20 lg:mt-24">
+                        {{-- <div>
+                            <h3 class="text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+                                Location
+                            </h3>
+                            <p class="text-lg text-gray-400 leading-relaxed">
+                                Our team is ready to assist you with any questions or inquiries about {{
+                                config('app.name') }}.
+                                Feel free to reach out through any of the channels below.
+                            </p>
+                        </div> --}}
+                        <div class="rounded-3xl overflow-hidden border border-[#222f53] shadow-2xl">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!3m2!1sen!2sng!4v1775730105485!5m2!1sen!2sng!6m8!1m7!1s69GUOw6ljqIexBnrs_BxIg!2m2!1d47.60757425112291!2d-122.3340924182106!3f194.15288198048398!4f0.4182379478932887!5f0.7820865974627469"
+                                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
                     </div>
                 </div>
 
@@ -99,24 +121,6 @@
                 </div>
             </div>
 
-            <!-- Google Map -->
-            <div class="mt-20 lg:mt-24">
-                {{-- <div>
-                    <h3 class="text-4xl lg:text-5xl font-bold tracking-tight mb-6">
-                        Location
-                    </h3>
-                    <p class="text-lg text-gray-400 leading-relaxed">
-                        Our team is ready to assist you with any questions or inquiries about {{ config('app.name') }}.
-                        Feel free to reach out through any of the channels below.
-                    </p>
-                </div> --}}
-                <div class="rounded-3xl overflow-hidden border border-[#222f53] shadow-2xl">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!3m2!1sen!2sng!4v1775730105485!5m2!1sen!2sng!6m8!1m7!1s69GUOw6ljqIexBnrs_BxIg!2m2!1d47.60757425112291!2d-122.3340924182106!3f194.15288198048398!4f0.4182379478932887!5f0.7820865974627469"
-                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
         </div>
     </section>
 
