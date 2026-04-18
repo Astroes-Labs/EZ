@@ -101,6 +101,35 @@
         </div>
     </section>
 
+    <!-- TradingView Screener Section -->
+    <section class="about-main bg-gray-900 py-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                
+                <h2 class="text-5xl font-bold tracking-tight">TOP <span class="text-[#eac46e]">MOVERS</span></h2>
+                <p class="mt-4 text-xl text-gray-400">A Quick Overview of Live performance data across the top digital assets. Volume, price action, and momentum, all in one view.</p>
+            </div>
+            <div class="animate-fade-in">
+                <div class="pointer-events-none bg-gray-800 rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="tradingview-widget-container">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+                        {
+                            "width": "100%",
+                            "height": 390,
+                            "defaultColumn": "overview",
+                            "screener_type": "crypto_mkt",
+                            "displayCurrency": "USD",
+                            "colorTheme": "dark",
+                            "locale": "en",
+                            "isTransparent": true
+                        }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- INVESTMENT PLANS -->
     <section id="plans" class="py-28 bg-[#0a0f1c]">
         <div class="max-w-screen-2xl mx-auto px-6">
