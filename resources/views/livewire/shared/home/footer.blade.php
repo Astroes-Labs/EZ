@@ -10,10 +10,10 @@
         <div class="max-w-screen-2xl mx-auto px-6 relative z-10">
 
             <!-- Grid: 2 cols on mobile, 2 on md, 4 on lg -->
-            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-20">
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10 mb-20">
 
                 <!-- Brand + Translate -->
-                <div class="col-span-2 md:col-span-1">
+                <div class="col-span-1 md:col-span-1">
                     <a href="{{ route('home') }}" wire:navigate class="flex items-center gap-3 group mb-8">
                         <img src="{{ url('assets/images/rel-icon.png') }}"
                              alt="{{ config('app.name') }}"
