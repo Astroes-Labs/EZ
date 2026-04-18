@@ -63,7 +63,7 @@
 
                 <!-- Location + Social -->
                 <div>
-                    <h6 class="text-[#eac46e] font-semibold uppercase tracking-[1px] text-sm mb-6">Head Office</h6>
+                    <h6 class="text-[#eac46e] font-semibold uppercase tracking-[1px] text-sm mb-6">Location</h6>
                     <ul class="space-y-4 text-gray-200 text-sm">
                         <li class="leading-relaxed">
                             <a href="#" class="hover:text-white transition-colors">
