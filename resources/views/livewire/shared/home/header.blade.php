@@ -8,7 +8,7 @@
                     <img src="{{ url('assets/images/rel-icon.png') }}"
                          class="h-10 sm:h-12 w-auto transition-transform duration-300 group-hover:scale-105"
                          alt="{{ config('app.name') }}">
-                    <span class="hidden sm:block font-semibold tracking-tight text-2xl text-white leading-none">
+                    <span class="hidde/n sm:block font-semibold tracking-tight text-2xl text-white leading-none">
                         {{ ucfirst(config('app.name')) }}
                     </span>
                 </a>
