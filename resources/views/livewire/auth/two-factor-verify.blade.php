@@ -1,22 +1,13 @@
-<div class="w-full max-w-md space-y-10">
+<div class="w-full max-w-md space-y-10 pt-20">
 
+    
     <!-- Header -->
-    <div class="text-center">
-        <div class="flex justify-center mb-6">
-            <img src="{{ url('assets/images/icon.png') }}" alt="{{ config('app.name') }}" class="h-16 w-auto">
-        </div>
-        <h1 class="text-4xl font-black tracking-tighter text-white">
-            Two-Factor <span class="text-[#eac46e]">Verification</span>
-        </h1>
-        <p class="mt-4 text-gray-400">
-            Enter the 4-digit code we sent to your email or phone.
-        </p>
-    </div>
+    <x-auth-header :title="__('Login Verification')" :subtitle="__('Enter the 4-digit code we sent to your email.')" />
 
     <!-- 2FA Form -->
     <div class="bg-[#1a2238] border border-[#222f53] rounded-3xl p-8 lg:p-12 shadow-2xl">
 
-        <form wire:submit="verify" class="space-y-8">
+        <form method="POST" wire:submit="verify" class="space-y-8">
             @csrf
 
             <div>

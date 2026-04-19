@@ -1,15 +1,8 @@
-<div class="w-full max-w-md space-y-10">
+<div class="w-full max-w-md space-y-10 pt-20">
 
+    
     <!-- Header -->
-    <div class="text-center">
-        <div class="flex justify-center mb-6">
-            <img src="{{ url('assets/images/icon.png') }}" alt="{{ config('app.name') }}" class="h-16 w-auto">
-        </div>
-        <h1 class="text-4xl font-black tracking-tighter text-white">
-            Reset Your Password
-        </h1>
-        <p class="mt-4 text-gray-400">Please enter your new password below</p>
-    </div>
+    <x-auth-header :title="__('Reset Your Password')" :subtitle="__('Please enter your new password below')" />
 
     <!-- Form Card -->
     <div class="bg-[#1a2238] border border-[#222f53] rounded-3xl p-8 lg:p-12 shadow-2xl">

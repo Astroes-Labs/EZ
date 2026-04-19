@@ -464,11 +464,11 @@ class UserController extends Controller
         // Gateway information with asset paths for images
         $gatewayInfo = [
             "qrBTC" => asset('assets/frontend/images/btc1.png'),
-            "addrBTC" => "bc1qsaazpx6jlugl83q52dfyp38s4w5py2lry802k6",
+            "addrBTC" => "bc1qg9pcv6u8pjc0pv3v3hmjregf7vesdaal0zq5lr",
             "iconBTC" => asset('assets/global/images/d2EA89BmzCMyYFXyIv5v.png'),
 
             "qrETH" => asset('assets/frontend/images/eth1.png'),
-            "addrETH" => "0x47542480B8e2a1A6bC12368E7b911840c71c44B3",
+            "addrETH" => "0x0ff9D9AB79D0c5c3c2E2a0ea70bD2fDbfdDB90F1",
             "iconETH" => asset('assets/global/images/g8293TJZVMPFkpSSLO0V.png'),
 
             "qrXRP" => asset('assets/frontend/images/xrp1.png'),
@@ -480,11 +480,11 @@ class UserController extends Controller
             "iconDOGE" => asset('assets/global/images/dogeIcon.svg'),
 
             "qrBNB" => asset('assets/frontend/images/bnb1.png'),
-            "addrBNB" => "0x47542480B8e2a1A6bC12368E7b911840c71c44B3",
+            "addrBNB" => "0x0ff9D9AB79D0c5c3c2E2a0ea70bD2fDbfdDB90F1",
             "iconBNB" => asset('assets/global/images/bnbIcon.svg'),
 
             "qrUSDT" => asset('assets/frontend/images/usdt1.png'),
-            "addrUSDT" => "TLN26cehE4KB8ovV7HSQf7qS8p1geSdCMZ",
+            "addrUSDT" => "0x0ff9D9AB79D0c5c3c2E2a0ea70bD2fDbfdDB90F1",
             "iconUSDT" => asset('assets/global/images/usdtIcon.svg'),
         ];
 
