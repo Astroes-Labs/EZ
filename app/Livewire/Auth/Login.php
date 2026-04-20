@@ -6,6 +6,21 @@ use Livewire\Component;
 
 class Login extends Component
 {
+
+    public function mount()
+    {
+        // Already logged in → go to dashboard
+        if (auth()->check()) {
+            $this->redirectRoute('dashboard', navigate: true);
+            return;
+        }
+
+        // In the middle of 2FA → go back to verification page
+        if (session()->has('2fa_user_id')) {
+            $this->redirectRoute('2fa.verify', navigate: true); // adjust if needed
+            return;
+        }
+    }
     public function render()
     {
         return view('livewire.auth.login')
