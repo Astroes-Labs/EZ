@@ -98,14 +98,14 @@
 
                 @else
                     @php $currentRoute = Route::currentRouteName(); @endphp
-                    @if($currentRoute !== 'register')
+                    @if($currentRoute !== 'login')
                         <a href="{{ route('login') }}" wire:navigate
                             class="px-6 py-2.5 text-sm font-medium text-gray-300 hover:text-white transition-colors">
                             Sign In
                         </a>
                     @endif
 
-                    @if($currentRoute !== 'login')
+                    @if($currentRoute !== 'register')
                         <a href="{{ route('register') }}" wire:navigate
                             class="px-7 py-2.5 text-sm font-bold bg-[#eac46e] text-[#111827] rounded-2xl hover:bg-amber-300 transition-all active:scale-95">
                             Create Account
