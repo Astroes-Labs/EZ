@@ -5,11 +5,12 @@ namespace App\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerifyEmailMail;
 
 class RegisterForm extends Component
 {
@@ -19,6 +20,7 @@ class RegisterForm extends Component
     public $photo_back_view;
     public $honeypot = '';
 
+    // Form fields
     public $first_name = '';
     public $last_name = '';
     public $email = '';
@@ -42,6 +44,7 @@ class RegisterForm extends Component
     public $agree2 = false;
     public $agree3 = false;
 
+    // Visibility flags
     public $showEmail2 = false;
     public $showAddressFields = false;
     public $showSwiftcode = false;
@@ -78,7 +81,6 @@ class RegisterForm extends Component
         'agree2.accepted' => 'You must accept the Terms of Service.',
         'agree3.accepted' => 'You must accept the Privacy Policy.',
         'email.unique'    => 'This email is already registered.',
-        // Add more custom messages as needed
     ];
 
     public function mount()
@@ -90,22 +92,13 @@ class RegisterForm extends Component
     {
         $this->resetVisibility();
 
-        if (in_array($value, ['1', '4'])) {
-            $this->showDob = true;
-        } elseif ($value == '2') {
-            $this->showEmail2 = true;
-            $this->showEmail2 = true;
-            $this->showDob = true;
-        } elseif ($value == '3') {
-            $this->showAddressFields = true;
-            $this->showVgin = true;
-            $this->showSwiftcode = true;
-            $this->showDob = true;
-        } elseif ($value == '5') {
-            $this->showAddressFields = true;
-            $this->showVgin = true;
-            $this->showDob = true;
-        }
+        match ($value) {
+            '1', '4' => $this->showDob = true,
+            '2'      => $this->showEmail2 = $this->showDob = true,
+            '3'      => $this->showAddressFields = $this->showVgin = $this->showSwiftcode = $this->showDob = true,
+            '5'      => $this->showAddressFields = $this->showVgin = $this->showDob = true,
+            default  => null,
+        };
     }
 
     private function resetVisibility()
@@ -114,12 +107,11 @@ class RegisterForm extends Component
         $this->showAddressFields = false;
         $this->showSwiftcode = false;
         $this->showVgin = false;
-        $this->showDob = true; // always required unless you add logic to disable
+        $this->showDob = true; // Default: most account types need DOB
     }
 
     public function boot()
     {
-        // Hook into validation to dispatch toast on failure
         $this->withValidator(function (Validator $validator) {
             $validator->after(function ($validator) {
                 if ($validator->errors()->isNotEmpty()) {
@@ -144,41 +136,45 @@ class RegisterForm extends Component
                 'unique:users',
                 function ($attribute, $value, $fail) {
                     $domain = strtolower(explode('@', $value)[1] ?? '');
-                    $disposable = ['tempmail.com', 'mailinator.com', '10minutemail.com', 'guerrillamail.com', 'yopmail.com', 'sharklasers.com', 'trashmail.com'];
+                    $disposable = [
+                        'tempmail.com', 'mailinator.com', '10minutemail.com',
+                        'guerrillamail.com', 'yopmail.com', 'sharklasers.com', 'trashmail.com'
+                    ];
                     if (in_array($domain, $disposable)) {
                         $fail('Disposable email addresses are not allowed.');
                     }
                 },
             ],
-            'password' => 'required|min:8|confirmed',
-            'agree1'   => 'accepted',
-            'agree2'   => 'accepted',
-            'agree3'   => 'accepted',
-            'country'  => 'required',
-            'acctype'  => 'required|in:1,2,3,4,5',
-            'currency' => 'required|in:USD,GBP,EUR,AUD',
-            'acc_type' => 'required|in:BASIC,SILVER,GOLD,DIAMOND,PLATINUM,CUSTOM',
+            'password'   => 'required|min:8|confirmed',
+            'agree1'     => 'accepted',
+            'agree2'     => 'accepted',
+            'agree3'     => 'accepted',
+            'country'    => 'required',
+            'acctype'    => 'required|in:1,2,3,4,5',
+            'currency'   => 'required|in:USD,GBP,EUR,AUD',
+            'acc_type'   => 'required|in:BASIC,SILVER,GOLD,DIAMOND,PLATINUM,CUSTOM',
             'photo_front_view' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'photo_back_view'  => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'honeypot' => 'nullable|size:0',
-            'referrer' => 'nullable|integer', 
+            'honeypot'   => 'nullable|size:0',
+            'referrer'   => 'nullable|integer',
         ];
 
+        // Conditional rules based on visibility
         if ($this->showEmail2) {
             $rules['email2'] = 'required|email|max:220';
         }
         if ($this->showAddressFields) {
-            $rules['address']   = 'required|string|max:220';
-            $rules['city']      = 'required|string|max:220';
-            $rules['state']     = 'required|string|max:220';
-            $rules['postcode']  = 'required|string|max:220';
-            $rules['vgin']      = 'required|string|max:220';
+            $rules['address']  = 'required|string|max:220';
+            $rules['city']     = 'required|string|max:220';
+            $rules['state']    = 'required|string|max:220';
+            $rules['postcode'] = 'required|string|max:220';
+            $rules['vgin']     = 'required|string|max:220';
         }
         if ($this->showSwiftcode) {
             $rules['swiftcode'] = 'required|string|max:220';
         }
         if ($this->showDob) {
-            $rules['dob'] = 'required|date';
+            $rules['dob'] = 'required|date|before:today';
         }
 
         return $rules;
@@ -192,7 +188,6 @@ class RegisterForm extends Component
         }
 
         $key = 'register:' . request()->ip();
-
         if (RateLimiter::tooManyAttempts($key, 5)) {
             $seconds = RateLimiter::availableIn($key);
             $this->dispatch('toast', [
@@ -206,22 +201,31 @@ class RegisterForm extends Component
 
         $validated = $this->validate();
 
-        $name = trim("{$validated['first_name']} {$validated['last_name']}");
-
         $user = User::create([
-            'name'         => $name,
-            'first_name'   => $validated['first_name'],
-            'last_name'    => $validated['last_name'],
-            'email'        => $validated['email'],
-            'password'     => Hash::make($validated['password']),
-            'country'      => $validated['country'],
-            'account_type' => $validated['acctype'],
-            'currency'     => $validated['currency'],
-            'plan'         => $validated['acc_type'],
-            'referrer_id'  => $validated['referrer'] ?: null,
-            // add dob, address etc. if columns exist
+            'name'          => trim("{$validated['first_name']} {$validated['last_name']}"),
+            'first_name'    => $validated['first_name'],
+            'last_name'     => $validated['last_name'],
+            'email'         => $validated['email'],
+            'password'      => Hash::make($validated['password']),
+            'country'       => $validated['country'],
+            'account_type'  => $validated['acctype'],
+            'currency'      => $validated['currency'],
+            'plan'          => $validated['acc_type'],
+            'referrer_id'   => $validated['referrer'] ?: null,
+
+            // === Conditional fields ===
+            'dob'           => $this->showDob ? ($validated['dob'] ?? null) : null,
+            'email2'        => $this->showEmail2 ? ($validated['email2'] ?? null) : null,
+            'address'       => $this->showAddressFields ? ($validated['address'] ?? null) : null,
+            'city'          => $this->showAddressFields ? ($validated['city'] ?? null) : null,
+            'state'         => $this->showAddressFields ? ($validated['state'] ?? null) : null,
+            'postcode'      => $this->showAddressFields ? ($validated['postcode'] ?? null) : null,
+            'vgin'          => ($this->showAddressFields || $this->showVgin) 
+                                ? ($validated['vgin'] ?? null) : null,
+            'swiftcode'     => $this->showSwiftcode ? ($validated['swiftcode'] ?? null) : null,
         ]);
 
+        // Handle photo uploads
         if ($this->photo_front_view) {
             $user->photo_front_view = $this->photo_front_view->store('photos/' . $user->id, 'public');
         }
@@ -229,11 +233,18 @@ class RegisterForm extends Component
             $user->photo_back_view = $this->photo_back_view->store('photos/' . $user->id, 'public');
         }
 
-        if ($user->photo_front_view || $user->photo_back_view) {
+        if ($this->photo_front_view || $this->photo_back_view) {
             $user->save();
         }
 
-        event(new Registered($user));
+        // Send verification email
+        $verificationUrl = route('verification.verify', [
+            'id'   => $user->getKey(),
+            'hash' => sha1($user->email),
+        ]);
+
+        Mail::to($user->email)->send(new VerifyEmailMail($verificationUrl));
+
         Auth::login($user);
 
         $this->dispatch('toast', [
@@ -241,14 +252,8 @@ class RegisterForm extends Component
             'message' => 'Account created successfully!',
         ]);
 
-        return $this->redirect('/verify-email', navigate: true);
+        return $this->redirect('/email/verify', navigate: true);
     }
-
-    /*   public function render()
-    {
-        return view('livewire.register-form')
-            ->layout('layouts.app'); // adjust if needed
-    } */
 
     public function render()
     {

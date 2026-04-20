@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ResetPasswordMail;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -863,4 +865,17 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Trade::class);
     }
+
+
+    public function sendPasswordResetNotification($token): void
+    {
+        $resetUrl = url(route('password.reset', [
+            'token' => $token,
+            'email' => $this->email,
+        ], false));
+
+        Mail::to($this->email)->send(new ResetPasswordMail($resetUrl));
+    }
+
+    
 }

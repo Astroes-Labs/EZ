@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+
 use App\Http\Controllers\Controller;
+use App\Mail\WelcomeMail;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Mail;
 
 class VerifyEmailController extends Controller
 {
@@ -20,6 +23,10 @@ class VerifyEmailController extends Controller
 
         if ($request->user()->markEmailAsVerified()) {
             event(new Verified($request->user()));
+
+
+            // Send welcome email only on first verification
+            Mail::to($request->user()->email)->send(new WelcomeMail($request->user()));
         }
 
         return redirect()->intended(route('dashboard', absolute: false).'?verified=1');

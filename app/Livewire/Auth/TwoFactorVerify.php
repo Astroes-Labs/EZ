@@ -5,6 +5,7 @@ namespace App\Livewire\Auth;
 use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Services\LogoutService;
 
 class TwoFactorVerify extends Component
 {
@@ -61,6 +62,14 @@ class TwoFactorVerify extends Component
         ]);
 
         return redirect()->intended(route('dashboard'));
+    }
+
+
+    public function restartLogin(LogoutService $logout)
+    {
+        $logout->handle();
+
+        return $this->redirectRoute('login', navigate: true);
     }
     public function render()
     {
