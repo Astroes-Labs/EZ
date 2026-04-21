@@ -18,12 +18,9 @@
 
                     <!-- Header -->
                     <tr>
-                        <td
-                            style="background-color:#111827;padding:32px 40px;text-align:center;border-bottom:1px solid #222f53;">
-                            <img src="{{ asset('assets/images/rel-icon.png', true) }}" alt="{{ config('app.name') }}"
-                                style="height:48px; width:auto; display:block;" height="48">
-                            <p
-                                style="margin:10px 0 0;font-size:20px;font-weight:700;color:#ffffff;letter-spacing:0.5px;">
+                       <td style="background-color:#111827;padding:32px 40px;text-align:center;border-bottom:1px solid #222f53;">
+                            <img src="{{ url('assets/images/rel-icon.png') }}" alt="{{ config('app.name') }}" style="height:48px;width:auto;">
+                            <p style="margin:10px 0 0;font-size:20px;font-weight:700;color:#ffffff;letter-spacing:0.5px;">
                                 {{ ucfirst(config('app.name')) }}
                             </p>
                         </td>
