@@ -10,6 +10,7 @@ use App\Mail\TwoFactorCodeMail;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\RateLimiter;
+use Masmerise\Toaster\Toaster;
 
 class LoginForm extends Component
 {
@@ -37,6 +38,7 @@ class LoginForm extends Component
         if (RateLimiter::tooManyAttempts($key, 10)) {
             $seconds = RateLimiter::availableIn($key);
             $this->addError('email', "Too many attempts. Wait {$seconds}s.");
+            Toaster::error("Too many attempts. Wait {$seconds}s.");
             return;
         }
         RateLimiter::hit($key);
@@ -47,6 +49,8 @@ class LoginForm extends Component
 
         if (!$user || !Hash::check($this->password, $user->password)) {
             $this->addError('email', 'Invalid credentials.');
+             Toaster::error('Invalid credentials.'); // 👈
+            //  dd("Invalid credentials."); // 👈
             return;
         }
 
@@ -67,8 +71,10 @@ class LoginForm extends Component
             'type' => 'success',
             'message' => 'Check your email for the 4-digit code.'
         ]);
+         Toaster::success('Check your email for the 4-digit code.'); // 👈
 
         return redirect()->route('2fa.verify');
+        //  return $this->redirect(route('2fa.verify'), navigate: true);
     }
 
     public function render()

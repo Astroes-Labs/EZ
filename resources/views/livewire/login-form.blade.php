@@ -50,7 +50,7 @@
             </label>
 
             @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}" 
+                <a href="{{ route('password.request') }}"  wire:navigate
                    class="text-sm text-[#eac46e] hover:text-amber-300 transition">
                     Forgot password?
                 </a>
@@ -71,16 +71,7 @@
             </span>
         </button>
 
-        <!-- Global Errors -->
-        @if($errors->any())
-            <div class="p-5 bg-red-900/50 border border-red-600 rounded-2xl text-red-300 text-sm">
-                <ul class="list-disc list-inside space-y-1">
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+       
     </form>
 
 </div>

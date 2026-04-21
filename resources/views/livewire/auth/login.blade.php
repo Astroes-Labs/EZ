@@ -10,7 +10,7 @@
     <!-- Register Link -->
     <p class="text-center text-gray-400">
         Don't have an account? 
-        <a href="{{ route('register') }}" class="text-[#eac46e] hover:text-amber-300 font-medium">Create one now →</a>
+        <a href="{{ route('register') }}"  wire:navigate class="text-[#eac46e] hover:text-amber-300 font-medium">Create one now →</a>
     </p>
 
 </div>

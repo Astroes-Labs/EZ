@@ -10,6 +10,6 @@
     <!-- Login Link -->
     <p class="text-center text-gray-400">
         Already have an account? 
-        <a href="{{ route('login') }}" class="text-[#eac46e] hover:text-amber-300 font-medium">Sign in here →</a>
+        <a href="{{ route('login') }}" wire:navigate class="text-[#eac46e] hover:text-amber-300 font-medium">Sign in here →</a>
     </p>
 </div>

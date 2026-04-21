@@ -4,6 +4,10 @@
         <p>Kindly send only {{ $gatewayCode }} to this deposit address. Sending any other coin or token to this address may result in loss of your crypto.</p>
         <p>ADDRESS: <span style="font-weight:bolder;">{{ $addr }}</span></p>
         <p>Please scan Barcode for wallet payment confirmation below:</p>
+        @if($warning !== "")
+            
+        <small><b>{{$warning}}</b></small>
+        @endif
         <p><img src="{{ $imgUrl }}" alt="QR CODE" style="width:370px;"></p>
     </div>
 </div>

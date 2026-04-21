@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Services\LogoutService;
+use Masmerise\Toaster\Toaster;
 
 class TwoFactorVerify extends Component
 {
@@ -39,11 +40,13 @@ class TwoFactorVerify extends Component
 
         if ($this->user->login_code !== $this->code) {
             $this->addError('code', 'Invalid code.');
+                Toaster::error('Invalid code.'); // 👈
             return;
         }
 
         if (now()->gt($this->user->login_code_expires_at)) {
             $this->addError('code', 'Code has expired.');
+             Toaster::error('Code has expired. Please log in again.'); // 👈
             return;
         }
 
@@ -60,6 +63,9 @@ class TwoFactorVerify extends Component
             'type' => 'success',
             'message' => 'Login successful!'
         ]);
+
+        Toaster::success('Login successful!'); // 👈
+
 
         return redirect()->intended(route('dashboard'));
     }

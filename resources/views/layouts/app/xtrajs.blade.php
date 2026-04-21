@@ -163,8 +163,10 @@
         e.preventDefault();
         "use strict";
 
-        var coin = $(this).val(); // Selected coin
+        // var coin = $(this).val(); // Selected coin
+        var coin = $("#gatewaySelect").val(); // Selected coin
         $('.paymentCurrency').text(" " + coin);
+
 
         var amount = $('#amount').val(); // Amount from the input field
         fetchAndDisplayCoinValue(coin, amount);
@@ -242,9 +244,9 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function (coinData) {
-                    console.log('Coin Value:', coinData.cash_balance);
+                    console.log('Coin Value:', coinData);
 
-                    var coinValue = amount / coinData.cash_balance;
+                    var coinValue = amount / coinData;
 
                     // Format to 4 decimals initially
                     var formattedValue = coinValue.toFixed(4);
@@ -255,6 +257,8 @@
                         formattedValue = coinValue.toFixed(6);
                     }
 
+                    
+                    console.log('Formatted Value:', formattedValue);
                     // Update the UI with the calculated value
                     $('.paymentAmount').text(formattedValue);
                     $('#coin_price').val(formattedValue);

@@ -11,6 +11,7 @@ use Livewire\WithFileUploads;
 use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerifyEmailMail;
+use Masmerise\Toaster\Toaster;
 
 class RegisterForm extends Component
 {
@@ -252,7 +253,9 @@ class RegisterForm extends Component
             'message' => 'Account created successfully!',
         ]);
 
-        return $this->redirect('/email/verify', navigate: true);
+        Toaster::success('Account created successfully!'); // 👈
+
+        return $this->redirect(route('verification.notice'), navigate: true);
     }
 
     public function render()

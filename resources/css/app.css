@@ -2,3 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 @import '@fortawesome/fontawesome-free/css/all.min.css';
+
+@source '../../vendor/masmerise/livewire-toaster/resources/views';

@@ -65,7 +65,7 @@
                         <div class="row manual-row">
 
                         </div>
-
+ 
 
                         <div class="transaction-list table-responsive">
                             <div class="user-panel-title">

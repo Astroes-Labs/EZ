@@ -500,9 +500,10 @@ class UserController extends Controller
         $imgUrl = $gatewayInfo['qr' . $gatewayCode];
         $addr = $gatewayInfo['addr' . $gatewayCode];
         $icon = $gatewayInfo['icon' . $gatewayCode];
+        $warning = $icon === "iconUSDT" ? "Make Sure Deposit only USDT on BEP-20 to this Address" : "";
 
         // Generate the credentials HTML to send back to the frontend
-        $credentials = view('livewire.dashboard.partials.payment-details', compact('gatewayCode', 'addr', 'imgUrl'))->render();
+        $credentials = view('livewire.dashboard.partials.payment-details', compact('gatewayCode', 'addr', 'imgUrl', 'warning'))->render();
 
         // Prepare the data for the response
         $data = [
@@ -512,6 +513,7 @@ class UserController extends Controller
             'charge_type' => 'percentage',
             'minimum_deposit' => 300,
             'maximum_deposit' => 999999,
+            'warning' => $warning
         ];
 
         // Return the data as a JSON response

@@ -22,6 +22,8 @@
         {{ $slot }}
     </main>
 
+    <x-toaster-hub />
+
     @livewireScripts
 </body>
 </html>
