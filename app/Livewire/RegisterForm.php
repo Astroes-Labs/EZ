@@ -12,6 +12,7 @@ use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerifyEmailMail;
 use Masmerise\Toaster\Toaster;
+use Illuminate\Support\Facades\URL;
 
 class RegisterForm extends Component
 {
@@ -238,11 +239,14 @@ class RegisterForm extends Component
             $user->save();
         }
 
-        // Send verification email
-        $verificationUrl = route('verification.verify', [
-            'id'   => $user->getKey(),
-            'hash' => sha1($user->email),
-        ]);
+        $verificationUrl = URL::temporarySignedRoute(
+            'verification.verify',
+            now()->addMinutes(60),
+            [
+                'id'   => $user->getKey(),
+                'hash' => sha1($user->email),
+            ]
+        );
 
         Mail::to($user->email)->send(new VerifyEmailMail($verificationUrl));
 
