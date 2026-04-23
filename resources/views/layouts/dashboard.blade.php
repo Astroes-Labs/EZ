@@ -406,7 +406,7 @@
 
             <div class="logo">
                     <img class="logo-unfold h-8 w-8" src="{{ url('assets/images/rel-icon.png') }}" alt="Logo" />
-                    <span class="text-lg font-semibold">fetyre</span>
+                    <span class="text-lg font-semibold">{{ config('app.name') }}</span>
             </div>
             <div class="nav-wrap">
                 <div class="nav-left">
@@ -423,10 +423,10 @@
                     <div class="single-nav-right">
 
                         <div class="single-right">
-                            <div class="color-switcher">
+                            {{-- <div class="color-switcher">
                                 <i icon-name="moon" class="dark-icon" data-mode="dark"></i>
                                 <i icon-name="sun" class="light-icon" data-mode="light"></i>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="single-nav-right user-notifications">

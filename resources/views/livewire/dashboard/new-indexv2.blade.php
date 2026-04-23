@@ -827,8 +827,9 @@
         <div class="desktop-screen-show" style="padding: 1.5rem;">
 
             <div class="row g-3 align-items-stretch">
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-12">
                     <div class="user-ranking">
+                        
                         <h4>
                             {{ $userClass['class'] }}
                         </h4>
@@ -837,11 +838,11 @@
                                 style="height: 75px; width: 75px; filter: drop-shadow(0 4px 12px rgba(234,196,110,0.3));">
                         </p> --}}
                         <div class="rank" data-bs-toggle="tooltip" data-bs-placement="top" title="">
-                            <img src="{{ $userClass['icon']  }}" alt="" style="height: 36px; width: 36px;">
+                            <img src="{{ $userClass['icon']  }}" alt="" style="height: ; width: 36px;">
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12 col-12">
+                <div class="col-xl-9 col-lg-9 col-md-8 col-sm-8 col-12">
                     <div class="site-card" style="height:100%; margin-bottom:0;">
                         <div class="site-card-header">
                             <h3 class="title">Referral Link</h3>
