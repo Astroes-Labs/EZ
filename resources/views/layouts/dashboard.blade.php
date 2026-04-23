@@ -397,11 +397,16 @@
     <div class="panel-layout">
         <!--Header-->
         <div class="panel-header">
-            <div class="logo">
+            {{-- <div class="logo">
                 <a href="..">
                     <img class="logo-unfold" src="{{ url('assets/images/rel-icon.png') }}" alt="Logo" />
                     <img class="logo-fold" src="{{ url('assets/images/rel-icon.png') }}" alt="Logo" />
                 </a>
+            </div> --}}
+
+            <div class="logo">
+                    <img class="logo-unfold h-8 w-8" src="{{ url('assets/images/rel-icon.png') }}" alt="Logo" />
+                    <span class="text-lg font-semibold">fetyre</span>
             </div>
             <div class="nav-wrap">
                 <div class="nav-left">

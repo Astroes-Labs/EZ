@@ -120,52 +120,56 @@
             justify-content: center;
             padding: 6px;
         }
-/* ─── REFERRAL LINK ──────────────────────────────── */
-.referral-link-form {
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
-}
 
-.referral-link-form input[type="text"] {
-    background: rgba(255, 255, 255, 0.04) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 12px !important;
-    color: var(--text-muted) !important;
-    padding: 0.75rem 1.1rem !important;
-    font-size: 0.9rem !important;
-    flex: 1;                    /* Input takes most space */
-    outline: none;
-    transition: var(--transition);
-    min-width: 0;               /* Prevents overflow issues */
-}
+        /* ─── REFERRAL LINK ──────────────────────────────── */
+        .referral-link-form {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
 
-.referral-link-form input[type="text"]:focus {
-    border-color: var(--accent) !important;
-    color: var(--text-primary) !important;
-}
+        .referral-link-form input[type="text"] {
+            background: rgba(255, 255, 255, 0.04) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 12px !important;
+            color: var(--text-muted) !important;
+            padding: 0.75rem 1.1rem !important;
+            font-size: 0.9rem !important;
+            flex: 1;
+            /* Input takes most space */
+            outline: none;
+            transition: var(--transition);
+            min-width: 0;
+            /* Prevents overflow issues */
+        }
 
-.referral-link-form button {
-    background: var(--accent) !important;
-    color: var(--accent-text) !important;
-    border: none !important;
-    border-radius: 12px !important;
-    padding: 0.75rem 1.5rem !important;
-    font-weight: 700 !important;
-    font-size: 0.9rem !important;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: var(--transition);
-    flex-shrink: 0;             /* Button keeps its natural width */
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+        .referral-link-form input[type="text"]:focus {
+            border-color: var(--accent) !important;
+            color: var(--text-primary) !important;
+        }
 
-.referral-link-form button:hover {
-    background: #f0d080 !important;
-    transform: translateY(-1px);
-}
+        .referral-link-form button {
+            background: var(--accent) !important;
+            color: var(--accent-text) !important;
+            border: none !important;
+            border-radius: 12px !important;
+            padding: 0.75rem 1.5rem !important;
+            font-weight: 700 !important;
+            font-size: 0.9rem !important;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: var(--transition);
+            flex-shrink: 0;
+            /* Button keeps its natural width */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .referral-link-form button:hover {
+            background: #f0d080 !important;
+            transform: translateY(-1px);
+        }
 
         .referral-joined {
             color: var(--text-faint) !important;
@@ -731,6 +735,91 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--accent);
         }
+
+        /* ─── REVIEW CARD ───────────────────────────── */
+        .review-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 1.4rem 1.5rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        /* Title */
+        .review-card .user-panel-title h5 {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+        }
+
+        /* ─── TABLE RESET ───────────────────────────── */
+        .review-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        /* Rows */
+        .review-table tr {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .review-table tr:last-child {
+            border-bottom: none;
+        }
+
+        /* Left labels */
+        .review-table td:first-child {
+            color: var(--text-faint);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.85rem 0;
+        }
+
+        /* Right values */
+        .review-table td.value {
+            text-align: right;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Currency accent */
+        .review-table .currency,
+        .review-table .paymentCurrency {
+            color: var(--accent);
+            margin-left: 4px;
+        }
+
+        /* Payment logo */
+        .review-table .payment-method {
+            /* height: 30px; */
+            padding: 4px 6px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+        }
+
+        /* Total row highlight */
+        .review-table .total-row td {
+            padding-top: 1rem;
+            font-weight: 700;
+        }
+
+        .review-table .total-row td:first-child {
+            color: var(--text-primary);
+        }
+
+        .review-table .total-row td.value {
+            color: var(--accent);
+            font-size: 1rem;
+        }
+
+        /* Optional hover (very subtle) */
+        .review-table tr:hover td {
+            background: rgba(234, 196, 110, 0.03);
+        }
     </style>
 
     <!-- Placeholder for dynamically loaded content -->
@@ -896,7 +985,8 @@
                         <div class="content">
                             <h4 id="target"
                                 style="display: none; font-family:'DM Sans',sans-serif; font-size:0.95rem; color:var(--accent);">
-                                {{ Auth::user()->rankName() }}</h4>
+                                {{ Auth::user()->rankName() }}
+                            </h4>
                             <p>Rank Achieved</p>
                         </div>
                     </div>
@@ -1968,55 +2058,55 @@
 
         $(document).on('click', '#proceed-button', function () {
             $('#verify-content').html(`
-            <div class="site-card">
-                <div class="site-card-header">
-                    <h3 class="title">Verify Identity</h3>
-                </div>
-                <div class="site-card-body vh-100">
-                @if (Auth::user()->account_verified == 0)
-                    <form action="{{ route('user.verify.store') }}" method="post" id="verifyIdentityForm" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <div class="body-title">Upload Front of Government Issued Identity Document:</div>
-                            <div class="wrap-custom-file">
-                                <input type="file" name="photo_front_view" id="photo_front_view" accept=".gif, .jpg, .png, .jpeg" onchange="imagePreview(this, 'photo-front-preview')">
-                                <label for="photo_front_view">
-                                    <img id="photo-front-preview" class="upload-icon" src="../assets/global/materials/upload.svg" alt="Upload Front">
-                                    <span>Upload Front</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="body-title">Upload Back of Government Issued Identity Document:</div>
-                            <div class="wrap-custom-file">
-                                <input type="file" name="photo_back_view" id="photo_back_view" accept=".gif, .jpg, .png, .jpeg" onchange="imagePreview(this, 'photo-back-preview')">
-                                <label for="photo_back_view">
-                                    <img id="photo-back-preview" class="upload-icon" src="../assets/global/materials/upload.svg" alt="Upload Back">
-                                    <span>Upload Back</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="progress-steps-form">
-                            <button type="submit" class="site-btn blue-btn">Submit for Verification</button>
-                        </div>
-                    </form>
-                @elseif (Auth::user()->account_verified == 2)
-                    <div class="transaction-status text-center">
-                        <div class="spinner-border text-warning" style="width: 3rem; height: 3rem;" role="status"><span class="visually-hidden">Loading...</span></div>
-                        <h2 class="text-warning font-weight-bold mt-3">Account Verification Pending</h2>
-                        <p class="text-warning">Your identity verification is still being processed. Please be patient while we review your documents.</p>
+                <div class="site-card">
+                    <div class="site-card-header">
+                        <h3 class="title">Verify Identity</h3>
                     </div>
-                @else
-                    <div class="transaction-status text-center">
-                        <div class="icon success mb-3"><i class="anticon anticon-check" style="color: green; font-size: 48px;"></i></div>
-                        <h2 class="text-success font-weight-bold">Account Verified!</h2>
-                        <p>Congratulations! Your identity has been successfully verified. You now have full access to all features on our platform.</p>
-                        <a href="{{ route('index') }}" onclick="openCustom(event, this)" class="btn btn-primary mt-3"><i class="anticon anticon-home"></i> Go to Dashboard</a>
+                    <div class="site-card-body vh-100">
+                    @if (Auth::user()->account_verified == 0)
+                        <form action="{{ route('user.verify.store') }}" method="post" id="verifyIdentityForm" enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-3">
+                                <div class="body-title">Upload Front of Government Issued Identity Document:</div>
+                                <div class="wrap-custom-file">
+                                    <input type="file" name="photo_front_view" id="photo_front_view" accept=".gif, .jpg, .png, .jpeg" onchange="imagePreview(this, 'photo-front-preview')">
+                                    <label for="photo_front_view">
+                                        <img id="photo-front-preview" class="upload-icon" src="../assets/global/materials/upload.svg" alt="Upload Front">
+                                        <span>Upload Front</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="body-title">Upload Back of Government Issued Identity Document:</div>
+                                <div class="wrap-custom-file">
+                                    <input type="file" name="photo_back_view" id="photo_back_view" accept=".gif, .jpg, .png, .jpeg" onchange="imagePreview(this, 'photo-back-preview')">
+                                    <label for="photo_back_view">
+                                        <img id="photo-back-preview" class="upload-icon" src="../assets/global/materials/upload.svg" alt="Upload Back">
+                                        <span>Upload Back</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="progress-steps-form">
+                                <button type="submit" class="site-btn blue-btn">Submit for Verification</button>
+                            </div>
+                        </form>
+                    @elseif (Auth::user()->account_verified == 2)
+                        <div class="transaction-status text-center">
+                            <div class="spinner-border text-warning" style="width: 3rem; height: 3rem;" role="status"><span class="visually-hidden">Loading...</span></div>
+                            <h2 class="text-warning font-weight-bold mt-3">Account Verification Pending</h2>
+                            <p class="text-warning">Your identity verification is still being processed. Please be patient while we review your documents.</p>
+                        </div>
+                    @else
+                        <div class="transaction-status text-center">
+                            <div class="icon success mb-3"><i class="anticon anticon-check" style="color: green; font-size: 48px;"></i></div>
+                            <h2 class="text-success font-weight-bold">Account Verified!</h2>
+                            <p>Congratulations! Your identity has been successfully verified. You now have full access to all features on our platform.</p>
+                            <a href="{{ route('index') }}" onclick="openCustom(event, this)" class="btn btn-primary mt-3"><i class="anticon anticon-home"></i> Go to Dashboard</a>
+                        </div>
+                    @endif
                     </div>
-                @endif
                 </div>
-            </div>
-            `);
+                `);
         });
     </script>
 
