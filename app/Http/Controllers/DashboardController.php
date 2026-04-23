@@ -135,7 +135,8 @@ class DashboardController extends Controller
         $dashboardData = $this->getDashboardData();
 
         // Return the view with the necessary data
-        return view('livewire.dashboard.index', $dashboardData);
+        // return view('livewire.dashboard.index', $dashboardData);
+        return view('livewire.dashboard.new-indexv2', $dashboardData);
     }
 
     // Dynamic load dashboard from menu

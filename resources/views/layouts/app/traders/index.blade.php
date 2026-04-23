@@ -86,7 +86,7 @@
                 <h3 class="title">Copy Traders</h3>
             </div>
             <div class="site-card-body">
-                <h4 class="mb-3">Copied Traders</h4>
+                <h4 class="mb-3">Copying...</h4>
                 <div class="row">
                     @foreach ($traders as $trader)
                         @if (in_array($trader->id, $copiedTraders))
@@ -112,10 +112,7 @@
                 <h4 class="my-4">Available Traders</h4>
                 <div class="row">
                     @foreach ($traders as $trader)
-                    @php
-                        
-                        echo("hgfdfghgf");
-                    @endphp
+                  
                         @if (!in_array($trader->id, $copiedTraders))
                             <div class="col-12 mb-3">
                                 <div class="p-3 border rounded-pill d-flex align-items-center justify-content-between">

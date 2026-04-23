@@ -11,6 +11,9 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ResetPasswordMail;
+use App\Mail\VerifyEmailMail;
+use Illuminate\Support\Facades\URL;
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -877,5 +880,18 @@ class User extends Authenticatable implements MustVerifyEmail
         Mail::to($this->email)->send(new ResetPasswordMail($resetUrl));
     }
 
+    public function sendEmailVerificationNotification()
+    {
+        $verificationUrl = URL::temporarySignedRoute(
+            'verification.verify',
+            now()->addMinutes(60),   // Same as your register method
+            [
+                'id'   => $this->getKey(),
+                'hash' => sha1($this->getEmailForVerification()),  // Better than sha1($this->email)
+            ]
+        );
+
+        Mail::to($this->email)->send(new VerifyEmailMail($verificationUrl));
+    }
     
 }
