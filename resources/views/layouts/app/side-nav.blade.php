@@ -72,10 +72,9 @@
                         class="anticon anticon-picture"></i><span>Update Photo</span></a>
             </li>
 
-            {{-- <li class="side-nav-item ">
-                <a href="../user/transactions.html"><i class="anticon anticon-file-text"></i><span>All
-                        Transactions</span></a>
-            </li> --}}
+            <li class="side-nav-item ">
+                <a href="{{ route('settings') }}" onclick="openCustom(event, this)"><i class="anticon anticon-file-text"></i><span>Settings</span></a>
+            </li>
 
             <li class="side-nav-item ">
                 <a href="{{ route('traders.index') }}" onclick="openCustom(event, this)"><i

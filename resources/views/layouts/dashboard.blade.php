@@ -68,7 +68,7 @@
             font-family: 'DM Sans', sans-serif !important;
         }
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Syne', sans-serif !important;
+            font-family:   sans-serif !important;
             color: var(--text-primary) !important;
         }
 
@@ -195,7 +195,7 @@
             color: var(--text-primary) !important;
             border: 1px solid var(--border) !important;
             border-radius: var(--radius-sm) !important;
-            font-family: 'Syne', sans-serif !important;
+            font-family:   sans-serif !important;
         }
         .notification-pop .all-noti .single-noti a {
             background: var(--bg-layer1) !important;
@@ -261,11 +261,11 @@
             border-radius: var(--radius-sm) !important;
         }
         .side-wallet-box .user-balance-card .wallet-info .wallet-id { color: var(--text-muted) !important; font-size: 12px !important; }
-        .side-wallet-box .user-balance-card .wallet-info .balance { color: var(--accent) !important; font-family: 'Syne', sans-serif !important; font-weight: 700 !important; }
+        .side-wallet-box .user-balance-card .wallet-info .balance { color: var(--accent) !important; font-family:   sans-serif !important; font-weight: 700 !important; }
         .side-wallet-box .actions .user-sidebar-btn {
             background: var(--accent) !important; color: var(--bg-deep) !important;
             border-radius: var(--radius-sm) !important;
-            font-family: 'Syne', sans-serif !important; font-weight: 700 !important;
+            font-family:   sans-serif !important; font-weight: 700 !important;
             border: none !important;
         }
         .side-wallet-box .actions .user-sidebar-btn:hover { background: #f0d08a !important; }
@@ -284,7 +284,7 @@
         .panel-layout .side-nav .side-nav-inside .side-nav-menu .side-nav-item a {
             color: var(--text-secondary) !important;
             border-radius: var(--radius-sm) !important;
-            font-family: 'Syne', sans-serif !important;
+            font-family:   sans-serif !important;
             font-weight: 600 !important;
             font-size: 12px !important;
             text-transform: uppercase !important;
@@ -311,7 +311,7 @@
             border: 1px solid var(--border) !important;
             color: var(--text-muted) !important;
             border-radius: var(--radius-sm) !important;
-            font-family: 'Syne', sans-serif !important;
+            font-family:   sans-serif !important;
             font-weight: 600 !important;
             font-size: 11px !important;
             text-transform: uppercase !important;
@@ -381,6 +381,470 @@
         }
     </style>
 
+
+    <style>
+        /* ============================================================
+        USER CENTER PAGE — Matches premium dark fintech theme
+        ============================================================ */
+        :root {
+            --bg-deep:       #0a0f1c;
+            --bg-layer1:     #111827;
+            --bg-layer2:     #1a2238;
+            --bg-layer3:     #1e2a42;
+            --accent:        #eac46e;
+            --accent-dim:    rgba(234,196,110,0.12);
+            --accent-border: rgba(234,196,110,0.25);
+            --border:        #222f53;
+            --border-soft:   rgba(34,47,83,0.5);
+            --text-primary:  #f0f4ff;
+            --text-secondary:#8fa0bf;
+            --text-muted:    #4e6085;
+            --success:       #3dd68c;
+            --danger:        #f87171;
+            --radius-sm:     8px;
+            --radius-md:     14px;
+            --radius-lg:     20px;
+            --shadow-card:   0 4px 24px rgba(0,0,0,0.35);
+            --transition:    all 0.22s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .uc-page {
+            /* max-width: 680px; */
+            margin: 0 auto;
+            padding: 0 0 80px;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text-primary);
+        }
+
+        /* ── Profile Hero ── */
+        .uc-profile {
+            background: var(--bg-layer2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px 20px 20px;
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        .uc-profile::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 80% 0%, rgba(234,196,110,0.07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .uc-profile-top {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .uc-avatar-wrap {
+            position: relative;
+            flex-shrink: 0;
+        }
+        .uc-avatar {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-border);
+        }
+        .uc-avatar-default {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: var(--bg-layer3);
+            border: 2px solid var(--accent-border);
+            display: flex; align-items: center; justify-content: center;
+            font-family:   sans-serif;
+            font-size: 22px; font-weight: 700;
+            color: var(--accent);
+        }
+        .uc-avatar-badge {
+            position: absolute;
+            bottom: 2px; right: 2px;
+            width: 18px; height: 18px;
+            border-radius: 50%;
+            background: var(--success);
+            border: 2px solid var(--bg-layer2);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .uc-avatar-badge svg { width: 9px; stroke: #fff; }
+
+        .uc-profile-info { flex: 1; min-width: 0; }
+        .uc-nickname {
+            font-family:   sans-serif;
+            font-size: 1.1rem; font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 3px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .uc-uid {
+            font-size: 0.72rem; color: var(--text-muted);
+            letter-spacing: 0.04em; text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+        .uc-kyc-badge {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 3px 10px; border-radius: 20px;
+            background: var(--accent-dim); border: 1px solid var(--accent-border);
+            font-size: 0.68rem; font-weight: 600;
+            color: var(--accent); letter-spacing: 0.05em; text-transform: uppercase;
+            font-family:   sans-serif;
+        }
+        .uc-kyc-badge svg { width: 10px; }
+
+        /* logout + settings row */
+        .uc-profile-actions {
+            display: flex; gap: 10px;
+        }
+        .uc-btn-logout {
+            flex: 1;
+            height: 42px;
+            background: rgba(248,113,113,0.1);
+            border: 1px solid rgba(248,113,113,0.25);
+            border-radius: var(--radius-sm);
+            color: var(--danger);
+            font-family:   sans-serif;
+            font-weight: 700; font-size: 0.78rem;
+            text-transform: uppercase; letter-spacing: 0.06em;
+            cursor: pointer; transition: var(--transition);
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .uc-btn-logout:hover { background: rgba(248,113,113,0.18); border-color: rgba(248,113,113,0.4); }
+        .uc-btn-settings {
+            flex: 1;
+            height: 42px;
+            background: var(--accent-dim);
+            border: 1px solid var(--accent-border);
+            border-radius: var(--radius-sm);
+            color: var(--accent);
+            font-family:   sans-serif;
+            font-weight: 700; font-size: 0.78rem;
+            text-transform: uppercase; letter-spacing: 0.06em;
+            cursor: pointer; transition: var(--transition);
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            text-decoration: none;
+        }
+        .uc-btn-settings:hover { background: rgba(234,196,110,0.2); color: var(--accent); }
+
+        /* ── Tab Bar ── */
+        .uc-tabs {
+            display: flex;
+            background: var(--bg-layer2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 5px;
+            margin-bottom: 16px;
+            gap: 4px;
+        }
+        .uc-tab {
+            flex: 1;
+            padding: 9px 4px;
+            text-align: center;
+            font-family:   sans-serif;
+            font-size: 0.72rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            color: var(--text-muted);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            background: transparent;
+            white-space: nowrap;
+        }
+        .uc-tab:hover { color: var(--text-secondary); }
+        .uc-tab.active {
+            background: var(--accent-dim);
+            border-color: var(--accent-border);
+            color: var(--accent);
+        }
+
+        /* ── Tab Panels ── */
+        .uc-panel { display: none; }
+        .uc-panel.active { display: block; }
+
+        /* ── Section Label ── */
+        .uc-section-label {
+            font-family:   sans-serif;
+            font-size: 0.7rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--text-muted);
+            padding: 0 4px;
+            margin: 20px 0 8px;
+        }
+        .uc-section-label:first-child { margin-top: 0; }
+
+        /* ── Settings List ── */
+        .uc-list {
+            background: var(--bg-layer2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+        .uc-list-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 18px;
+            border-bottom: 1px solid var(--border-soft);
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            gap: 14px;
+        }
+        .uc-list-item:last-child { border-bottom: none; }
+        .uc-list-item:hover { background: var(--bg-layer3); }
+
+        .uc-item-icon {
+            width: 36px; height: 36px; min-width: 36px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-layer1);
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
+        }
+        .uc-list-item:hover .uc-item-icon {
+            background: var(--accent-dim);
+            border-color: var(--accent-border);
+        }
+        .uc-item-icon svg { width: 16px; stroke: var(--text-muted); transition: var(--transition); }
+        .uc-list-item:hover .uc-item-icon svg { stroke: var(--accent); }
+
+        .uc-item-body { flex: 1; min-width: 0; }
+        .uc-item-title {
+            font-size: 0.88rem; font-weight: 500;
+            color: var(--text-primary);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .uc-item-sub {
+            font-size: 0.72rem; color: var(--text-muted);
+            margin-top: 2px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+
+        .uc-item-value {
+            font-size: 0.78rem; color: var(--text-muted);
+            text-align: right; flex-shrink: 0;
+            max-width: 140px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .uc-item-value.accent { color: var(--accent); }
+        .uc-item-value.success { color: var(--success); }
+        .uc-item-value.danger { color: var(--danger); }
+        .uc-item-value.muted { color: var(--text-muted); }
+
+        .uc-chevron {
+            width: 16px; height: 16px; min-width: 16px;
+            stroke: var(--text-muted); flex-shrink: 0;
+            transition: var(--transition);
+        }
+        .uc-list-item:hover .uc-chevron { stroke: var(--accent); transform: translateX(2px); }
+
+        /* ── Toggle Switch ── */
+        .uc-toggle {
+            position: relative;
+            width: 44px; height: 24px; flex-shrink: 0;
+        }
+        .uc-toggle input { opacity: 0; width: 0; height: 0; }
+        .uc-toggle-track {
+            position: absolute; inset: 0;
+            background: var(--bg-layer1);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .uc-toggle input:checked + .uc-toggle-track {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        .uc-toggle-track::before {
+            content: '';
+            position: absolute;
+            width: 18px; height: 18px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            top: 2px; left: 2px;
+            transition: var(--transition);
+        }
+        .uc-toggle input:checked + .uc-toggle-track::before {
+            transform: translateX(20px);
+            background: var(--bg-deep);
+        }
+
+        /* ── My Info — PFP big card ── */
+        .uc-pfp-card {
+            background: var(--bg-layer2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px 20px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .uc-pfp-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 90% 50%, var(--accent-dim), transparent 60%);
+            pointer-events: none;
+        }
+        .uc-pfp-large {
+            width: 72px; height: 72px;
+            border-radius: 50%; object-fit: cover;
+            border: 2px solid var(--accent-border);
+            flex-shrink: 0;
+        }
+        .uc-pfp-large-default {
+            width: 72px; height: 72px;
+            border-radius: 50%;
+            background: var(--bg-layer3);
+            border: 2px solid var(--accent-border);
+            display: flex; align-items: center; justify-content: center;
+            font-family:   sans-serif;
+            font-size: 26px; font-weight: 700;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .uc-pfp-info { flex: 1; min-width: 0; }
+        .uc-pfp-name {
+            font-family:   sans-serif;
+            font-size: 1.05rem; font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 3px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .uc-pfp-email {
+            font-size: 0.78rem; color: var(--text-secondary);
+            margin-bottom: 6px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .uc-pfp-edit {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 5px 12px; border-radius: 20px;
+            background: var(--accent-dim); border: 1px solid var(--accent-border);
+            font-size: 0.7rem; font-weight: 700;
+            color: var(--accent); letter-spacing: 0.05em; text-transform: uppercase;
+            cursor: pointer; transition: var(--transition);
+            text-decoration: none;
+        }
+        .uc-pfp-edit:hover { background: rgba(234,196,110,0.2); color: var(--accent); }
+        .uc-pfp-edit svg { width: 10px; stroke: var(--accent); }
+
+        /* KYC levels */
+        .uc-kyc-levels {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+        .uc-kyc-level {
+            padding: 4px 10px; border-radius: 20px;
+            font-size: 0.68rem; font-weight: 700;
+            letter-spacing: 0.05em; text-transform: uppercase;
+            font-family:   sans-serif;
+        }
+        .uc-kyc-level.done {
+            background: rgba(61,214,140,0.12);
+            border: 1px solid rgba(61,214,140,0.25);
+            color: var(--success);
+        }
+        .uc-kyc-level.pending {
+            background: rgba(251,191,36,0.1);
+            border: 1px solid rgba(251,191,36,0.2);
+            color: var(--warning);
+        }
+        .uc-kyc-level.locked {
+            background: var(--bg-layer1);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        /* Preferences radio-style rows */
+        .uc-pref-group { margin-bottom: 0; }
+        .uc-pref-label {
+            font-family:   sans-serif;
+            font-size: 0.68rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--text-muted);
+            padding: 14px 18px 6px;
+            display: block;
+        }
+
+        /* ── Empty state ── */
+        .uc-empty {
+            text-align: center; padding: 40px 20px;
+            color: var(--text-muted); font-size: 0.85rem;
+        }
+        .uc-empty svg { width: 40px; stroke: var(--text-muted); margin-bottom: 12px; opacity: 0.4; }
+
+        /* ── Section description ── */
+        .uc-section-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            padding: 0 2px;
+            line-height: 1.5;
+        }
+        .locked-funds-card {
+            background: linear-gradient(135deg, var(--bg-layer2), var(--bg-layer1));
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .locked-funds-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, var(--accent-dim), transparent 60%);
+            pointer-events: none;
+        }
+
+        .locked-funds-inner {
+            padding: 24px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .locked-label {
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-family:   sans-serif;
+        }
+
+        .locked-amount {
+            font-size: 2.2rem;
+            font-weight: 700;
+            font-family:   sans-serif;
+            color: var(--accent);
+            margin-top: 8px;
+        }
+
+        .locked-meta {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+        }
+
+        /* subtle hover effect */
+        .locked-funds-card:hover {
+            border-color: var(--accent-border);
+            box-shadow: var(--shadow-accent);
+            transform: translateY(-2px);
+        }
+        /* ── Responsive ── */
+        @media (max-width: 575px) {
+            .uc-page { padding-bottom: 90px; }
+            .uc-tab { font-size: 0.65rem; padding: 8px 2px; }
+        }
+    </style>
     <title>
         {{ config('app.name') }} - Dashboard
     </title>
@@ -411,7 +875,7 @@
             <div class="nav-wrap">
                 <div class="nav-left">
                     <button class="sidebar-toggle">
-                        <i class="anticon anticon-arrow-left"></i>
+                        <i class="anticon anticon-menu"></i>
                     </button>
                     <div class="mob-logo mobile-screen-show">
                         <a href="..">
@@ -604,10 +1068,15 @@
                             </a>
                         </li>
                         <li class="side-nav-item">
+                            <a href="{{ route('settings') }}" onclick="openCustom(event, this)">
+                                <i class="anticon anticon-setting"></i><span>Settings</span>
+                            </a>
+                        </li>
+                        {{-- <li class="side-nav-item">
                             <a href="{{ route('account.info') }}" onclick="openCustom(event, this)">
                                 <i class="anticon anticon-info-circle"></i><span>Account Info</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="side-nav-item">
                             <a href="{{ route('account.info.edit') }}" onclick="openCustom(event, this)">
                                 <i class="anticon anticon-setting"></i><span>Edit Account Info</span>
@@ -729,6 +1198,7 @@
     <script src="{{ asset('assets/frontend/js/main.js?var=5') }}"></script>
     <script src="{{ asset('assets/frontend/js/cookie.js') }}"></script>
     <script src="{{ asset('assets/global/js/pusher.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/custom-router.js') }}"></script>
 
     @yield('xtraJs')
 

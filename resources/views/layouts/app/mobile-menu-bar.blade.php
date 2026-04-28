@@ -13,7 +13,7 @@
         <a href="{{ route('referrals.rank.show') }}" onclick="openCustom(event, this)">
             <i icon-name="gift"></i> 
         </a>
-        <a href="{{ route('account.info.edit') }}" onclick="openCustom(event, this)">
+        <a href="{{ route('settings') }}" onclick="openCustom(event, this)">
             <i icon-name="settings"></i>
         </a>
     </div>

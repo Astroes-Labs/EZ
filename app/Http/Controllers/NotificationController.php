@@ -7,34 +7,25 @@ use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
-    // Get notifications for dropdown
-
+    // Dropdown notifications
     public function getDropdownNotifications()
     {
-
-        $notifications = Notification::where('user_id', auth()->id())
+        $notifications = Notification::forUser()
             ->orderBy('read', 'asc')
-            ->orderBy('created_at', 'desc')
+            ->latest()
             ->limit(10)
             ->get();
 
-        if ($notifications->isEmpty()) {
-            //return view('layout.dashboard.notice-drop-down', ['notifications' => collect()]);
-            return view('livewire.dashboard.partials.notice-drop-down-list', ['notifications' => collect()]);
-        }
-
-        //return view('layout.dashboard.notice-drop-down', compact('notifications'))->render();
-        return view('livewire.dashboard.partials.notice-drop-down-list', compact('notifications'))->render();
+        return view(
+            'livewire.dashboard.partials.notice-drop-down-list',
+            ['notifications' => $notifications]
+        )->render();
     }
-
-
-
-
 
     // Mark all as read
     public function markAllAsRead()
     {
-        Notification::where('user_id', auth()->id())->update([
+        Notification::forUser()->update([
             'read' => true,
             'read_at' => now(),
         ]);
@@ -42,54 +33,69 @@ class NotificationController extends Controller
         return response()->json(['message' => 'All notifications marked as read']);
     }
 
-    // Mark single notification as read
+    // Mark one as read
     public function markAsRead($id)
     {
-        $notification = Notification::where('user_id', auth()->id())->findOrFail($id);
-        $notification->update(['read' => true, 'read_at' => now()]);
+        $notification = Notification::forUser()->findOrFail($id);
+
+        if (!$notification->read) {
+            $notification->update([
+                'read' => true,
+                'read_at' => now(),
+            ]);
+        }
 
         return response()->json(['message' => 'Notification marked as read']);
     }
 
-    // Show all notifications
+    // All notifications page
     public function index()
     {
-        $notifications = Notification::where('user_id', auth()->id())
+        $notifications = Notification::forUser()
             ->orderBy('read', 'asc')
-            ->orderBy('created_at', 'desc')
-            ->paginate(7); // Adjust items per page as needed
+            ->latest()
+            ->paginate(7);
 
-        return view('livewire.dashboard.partials.notifications-index', compact('notifications'));
+        return view(
+            'livewire.dashboard.partials.notifications-index',
+            compact('notifications')
+        );
     }
 
-    // Show single notification
+    // Single notification
     public function show($id)
     {
-        $notification = Notification::where('user_id', auth()->id())->findOrFail($id);
+        $notification = Notification::forUser()->findOrFail($id);
 
         if (!$notification->read) {
-            $notification->update(['read' => true, 'read_at' => now()]);
+            $notification->update([
+                'read' => true,
+                'read_at' => now(),
+            ]);
         }
 
-        return view('livewire.dashboard.partials.notifications-show', compact('notification'));
+        return view(
+            'livewire.dashboard.partials.notifications-show',
+            compact('notification')
+        );
     }
 
-
-
-    // Add a new notification (used outside this controller)
+    // Create notification
     public static function addNotification($userId, $title, $message)
     {
         Notification::create([
             'user_id' => $userId,
             'title' => $title,
             'message' => $message,
+            'read' => false,
         ]);
     }
 
+    // ✅ FIXED unread count
     public function getUnreadCount()
     {
-        $unreadCount = auth()->user()->unreadNotifications()->count();
+        $count = Notification::forUser()->unread()->count();
 
-        return response()->json(['unreadCount' => $unreadCount]);
+        return response()->json(['unreadCount' => $count]);
     }
 }

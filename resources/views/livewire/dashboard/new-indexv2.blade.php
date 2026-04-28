@@ -447,15 +447,15 @@
 
         .mob-shortcut-btn a {
             flex: 1;
-            background: var(--bg-card) !important;
-            border: 1px solid var(--border) !important;
+            background: var(--accent-dim) !important;
+            border: 1px solid rgba(234, 196, 110, 0.35) !important;
             border-radius: var(--radius-lg) !important;
             padding: 0.9rem 0.5rem !important;
             display: flex !important;
             flex-direction: column !important;
             align-items: center !important;
             gap: 6px;
-            color: var(--text-muted) !important;
+            color: var(--accent) !important;
             font-size: 0.72rem !important;
             font-weight: 600 !important;
             text-decoration: none !important;
@@ -465,10 +465,11 @@
             letter-spacing: 0.04em;
         }
 
+        /* Hover becomes subtle */
         .mob-shortcut-btn a:hover {
-            background: var(--accent-dim) !important;
-            border-color: rgba(234, 196, 110, 0.35) !important;
-            color: var(--accent) !important;
+            background: var(--bg-card) !important;
+            border-color: var(--border) !important;
+            color: var(--text-muted) !important;
             transform: translateY(-2px);
         }
 
@@ -820,6 +821,71 @@
         .review-table tr:hover td {
             background: rgba(234, 196, 110, 0.03);
         }
+
+        /* ─── ENHANCED RANK CARD ───────────────────── */
+        .user-ranking.enhanced {
+            text-align: center;
+            gap: 0.6rem;
+        }
+
+        .user-ranking.enhanced .rank-badge {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 0.4rem;
+            background: var(--accent-dim);
+            border: 1px solid rgba(234, 196, 110, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .user-ranking.enhanced .rank-badge img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .user-ranking.enhanced h4 {
+            color: var(--accent) !important;
+            font-size: 1rem !important;
+        }
+
+        .user-ranking.enhanced .rank-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* ─── REFERRAL CARD POLISH ─────────────────── */
+        .referral-card {
+            position: relative;
+        }
+
+        .referral-card::after {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, rgba(234, 196, 110, 0.08), transparent 70%);
+            border-radius: 50%;
+        }
+
+        /* Input improvement */
+        .referral-link-form input {
+            font-size: 0.85rem !important;
+        }
+
+        /* Button refinement */
+        .referral-link-form button {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
     </style>
 
     <!-- Placeholder for dynamically loaded content -->
@@ -829,7 +895,7 @@
             <div class="row g-3 align-items-stretch">
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-12">
                     <div class="user-ranking">
-                        
+
                         <h4>
                             {{ $userClass['class'] }}
                         </h4>
@@ -1631,8 +1697,8 @@
         function hideSpinner() { $('#spinner-overlay').fadeOut(); }
         $(document).ready(function () { hideSpinner(); });
     </script>
-
-    <script>
+{{-- CustomRouter  --}}
+    {{-- <script>
         function openCustom(event, element) {
             event.preventDefault();
             const url = element.getAttribute('href');
@@ -1653,7 +1719,7 @@
                 console.log('Updated price:', newPrice);
             });
         });
-    </script>
+    </script> --}}
 
     <script>
         var globalData;
@@ -2059,55 +2125,55 @@
 
         $(document).on('click', '#proceed-button', function () {
             $('#verify-content').html(`
-                <div class="site-card">
-                    <div class="site-card-header">
-                        <h3 class="title">Verify Identity</h3>
-                    </div>
-                    <div class="site-card-body vh-100">
-                    @if (Auth::user()->account_verified == 0)
-                        <form action="{{ route('user.verify.store') }}" method="post" id="verifyIdentityForm" enctype="multipart/form-data">
-                            @csrf
-                            <div class="mb-3">
-                                <div class="body-title">Upload Front of Government Issued Identity Document:</div>
-                                <div class="wrap-custom-file">
-                                    <input type="file" name="photo_front_view" id="photo_front_view" accept=".gif, .jpg, .png, .jpeg" onchange="imagePreview(this, 'photo-front-preview')">
-                                    <label for="photo_front_view">
-                                        <img id="photo-front-preview" class="upload-icon" src="../assets/global/materials/upload.svg" alt="Upload Front">
-                                        <span>Upload Front</span>
-                                    </label>
+                        <div class="site-card">
+                            <div class="site-card-header">
+                                <h3 class="title">Verify Identity</h3>
+                            </div>
+                            <div class="site-card-body vh-100">
+                            @if (Auth::user()->account_verified == 0)
+                                <form action="{{ route('user.verify.store') }}" method="post" id="verifyIdentityForm" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <div class="body-title">Upload Front of Government Issued Identity Document:</div>
+                                        <div class="wrap-custom-file">
+                                            <input type="file" name="photo_front_view" id="photo_front_view" accept=".gif, .jpg, .png, .jpeg" onchange="imagePreview(this, 'photo-front-preview')">
+                                            <label for="photo_front_view">
+                                                <img id="photo-front-preview" class="upload-icon" src="../assets/global/materials/upload.svg" alt="Upload Front">
+                                                <span>Upload Front</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="body-title">Upload Back of Government Issued Identity Document:</div>
+                                        <div class="wrap-custom-file">
+                                            <input type="file" name="photo_back_view" id="photo_back_view" accept=".gif, .jpg, .png, .jpeg" onchange="imagePreview(this, 'photo-back-preview')">
+                                            <label for="photo_back_view">
+                                                <img id="photo-back-preview" class="upload-icon" src="../assets/global/materials/upload.svg" alt="Upload Back">
+                                                <span>Upload Back</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="progress-steps-form">
+                                        <button type="submit" class="site-btn blue-btn">Submit for Verification</button>
+                                    </div>
+                                </form>
+                            @elseif (Auth::user()->account_verified == 2)
+                                <div class="transaction-status text-center">
+                                    <div class="spinner-border text-warning" style="width: 3rem; height: 3rem;" role="status"><span class="visually-hidden">Loading...</span></div>
+                                    <h2 class="text-warning font-weight-bold mt-3">Account Verification Pending</h2>
+                                    <p class="text-warning">Your identity verification is still being processed. Please be patient while we review your documents.</p>
                                 </div>
-                            </div>
-                            <div class="mb-3">
-                                <div class="body-title">Upload Back of Government Issued Identity Document:</div>
-                                <div class="wrap-custom-file">
-                                    <input type="file" name="photo_back_view" id="photo_back_view" accept=".gif, .jpg, .png, .jpeg" onchange="imagePreview(this, 'photo-back-preview')">
-                                    <label for="photo_back_view">
-                                        <img id="photo-back-preview" class="upload-icon" src="../assets/global/materials/upload.svg" alt="Upload Back">
-                                        <span>Upload Back</span>
-                                    </label>
+                            @else
+                                <div class="transaction-status text-center">
+                                    <div class="icon success mb-3"><i class="anticon anticon-check" style="color: green; font-size: 48px;"></i></div>
+                                    <h2 class="text-success font-weight-bold">Account Verified!</h2>
+                                    <p>Congratulations! Your identity has been successfully verified. You now have full access to all features on our platform.</p>
+                                    <a href="{{ route('index') }}" onclick="openCustom(event, this)" class="btn btn-primary mt-3"><i class="anticon anticon-home"></i> Go to Dashboard</a>
                                 </div>
+                            @endif
                             </div>
-                            <div class="progress-steps-form">
-                                <button type="submit" class="site-btn blue-btn">Submit for Verification</button>
-                            </div>
-                        </form>
-                    @elseif (Auth::user()->account_verified == 2)
-                        <div class="transaction-status text-center">
-                            <div class="spinner-border text-warning" style="width: 3rem; height: 3rem;" role="status"><span class="visually-hidden">Loading...</span></div>
-                            <h2 class="text-warning font-weight-bold mt-3">Account Verification Pending</h2>
-                            <p class="text-warning">Your identity verification is still being processed. Please be patient while we review your documents.</p>
                         </div>
-                    @else
-                        <div class="transaction-status text-center">
-                            <div class="icon success mb-3"><i class="anticon anticon-check" style="color: green; font-size: 48px;"></i></div>
-                            <h2 class="text-success font-weight-bold">Account Verified!</h2>
-                            <p>Congratulations! Your identity has been successfully verified. You now have full access to all features on our platform.</p>
-                            <a href="{{ route('index') }}" onclick="openCustom(event, this)" class="btn btn-primary mt-3"><i class="anticon anticon-home"></i> Go to Dashboard</a>
-                        </div>
-                    @endif
-                    </div>
-                </div>
-                `);
+                        `);
         });
     </script>
 

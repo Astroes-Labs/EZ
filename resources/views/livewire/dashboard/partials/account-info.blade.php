@@ -1,103 +1,119 @@
-<div class="row">
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-        <div class="site-card">
-            <div class="site-card-header">
-                <h3 class="title">Account Info</h3>
-                <div class="card-header-links">
-                    <a href="{{ route('account.info.edit') }}" class="card-header-link"
-                        onclick="openCustom(event, this)">Edit Account Info</a>
-                </div>
+<div class="uc-panel active">
+
+    {{-- Section Header --}}
+    <div class="uc-section-label">Account Info</div>
+
+    {{-- Top Card (Avatar + Basic Info) --}}
+    <div class="uc-pfp-card">
+        @if(Auth::user()->photo_profile)
+            <img class="uc-pfp-large" src="{{ Auth::user()->photo_profile }}" alt="Profile">
+        @else
+            <div class="uc-pfp-large-default">
+                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
             </div>
-            <div class="site-card-body">
-                <div class="row">
-                    <div class="col-xl-3">
-                        <div class="mb-3">
-                            <div class="body-title">Avatar:</div>
-                            <div class="avatar-container">
-                                <img src="{{ Auth::user()->photo_profile ?? '../assets/global/materials/upload.svg' }}"
-                                    alt="Avatar" class="avatar-img">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="details-display">
-                    <div class="row">
-                        <div class="col-xl-6 col-md-12 mb-3">
-                            <div class="form-group">
-                                <label><strong>Full Name:</strong></label>
-                                <input type="text" class="form-control" value="{{ Auth::user()->name ?? '' }}" disabled>
-                            </div>
-                        </div>
+        @endif
 
-                        <div class="col-xl-6 col-md-12 mb-3">
-                            <div class="form-group">
-                                <label><strong>Email Address:</strong></label>
-                                <input type="email" class="form-control" value="{{ Auth::user()->email ?? '' }}"
-                                    disabled>
-                            </div>
-                        </div>
+        <div class="uc-pfp-info">
+            <div class="uc-pfp-name">{{ Auth::user()->name }}</div>
+            <div class="uc-pfp-email">{{ Auth::user()->email }}</div>
 
-                        @if (!empty(Auth::user()->email2))
-                            <div class="col-xl-6 col-md-12 mb-3">
-                                <div class="form-group">
-                                    <label><strong>Second Email Address:</strong></label>
-                                    <input type="email" class="form-control" value="{{ Auth::user()->email2 }}" disabled>
-                                </div>
-                            </div>
-                        @endif
+            <a href="{{ route('account.info.edit') }}" 
+               onclick="openCustom(event, this)" 
+               class="uc-pfp-edit">
+               
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z"/>
+                </svg>
 
-                        <div class="col-xl-6 col-md-12 mb-3">
-                            <div class="form-group">
-                                <label><strong>Postal Code:</strong></label>
-                                <input type="text" class="form-control" value="{{ Auth::user()->postcode ?? '' }}"
-                                    disabled>
-                            </div>
-                        </div>
+                Edit Info
+            </a>
+        </div>
+    </div>
 
-                        <div class="col-xl-6 col-md-12 mb-3">
-                            <div class="form-group">
-                                <label><strong>Street Address:</strong></label>
-                                <input type="text" class="form-control" value="{{ Auth::user()->address ?? '' }}"
-                                    disabled>
-                            </div>
-                        </div>
+    {{-- Details List --}}
+    <div class="uc-section-label">Personal Details</div>
+    <div class="uc-list">
 
-                        <div class="col-xl-6 col-md-12 mb-3">
-                            <div class="form-group">
-                                <label><strong>City:</strong></label>
-                                <input type="text" class="form-control" value="{{ Auth::user()->city ?? '' }}" disabled>
-                            </div>
-                        </div>
+        <div class="uc-list-item">
+            <div class="uc-item-body">
+                <div class="uc-item-title">Full Name</div>
+                <div class="uc-item-sub">{{ Auth::user()->name }}</div>
+            </div>
+        </div>
 
-                        <div class="col-xl-6 col-md-12 mb-3">
-                            <div class="form-group">
-                                <label><strong>State:</strong></label>
-                                <input type="text" class="form-control" value="{{ Auth::user()->state ?? '' }}"
-                                    disabled>
-                            </div>
-                        </div>
+        <div class="uc-list-item">
+            <div class="uc-item-body">
+                <div class="uc-item-title">Email Address</div>
+                <div class="uc-item-sub">{{ Auth::user()->email }}</div>
+            </div>
+        </div>
 
-                        <div class="col-xl-6 col-md-12 mb-3">
-                            <div class="form-group">
-                                <label><strong>Country:</strong></label>
-                                <input type="text" class="form-control" value="{{ Auth::user()->country ?? '' }}"
-                                    disabled>
-                            </div>
-                        </div>
+        @if (!empty(Auth::user()->email2))
+        <div class="uc-list-item">
+            <div class="uc-item-body">
+                <div class="uc-item-title">Second Email</div>
+                <div class="uc-item-sub">{{ Auth::user()->email2 }}</div>
+            </div>
+        </div>
+        @endif
 
-                        <div class="col-xl-6 col-md-12 mb-3">
-                            <div class="form-group">
-                                <label><strong>Joining Date:</strong></label>
-                                <input type="text" class="form-control"
-                                    value="{{ Auth::user()->created_at->format('D, M j, Y h:i A') ?? '' }}" disabled>
-                            </div>
-                        </div>
-                    </div>
+    </div>
 
+    {{-- Address Info --}}
+    <div class="uc-section-label">Address</div>
+    <div class="uc-list">
 
+        <div class="uc-list-item">
+            <div class="uc-item-body">
+                <div class="uc-item-title">Street Address</div>
+                <div class="uc-item-sub">{{ Auth::user()->address ?? '—' }}</div>
+            </div>
+        </div>
 
+        <div class="uc-list-item">
+            <div class="uc-item-body">
+                <div class="uc-item-title">City</div>
+                <div class="uc-item-sub">{{ Auth::user()->city ?? '—' }}</div>
+            </div>
+        </div>
+
+        <div class="uc-list-item">
+            <div class="uc-item-body">
+                <div class="uc-item-title">State</div>
+                <div class="uc-item-sub">{{ Auth::user()->state ?? '—' }}</div>
+            </div>
+        </div>
+
+        <div class="uc-list-item">
+            <div class="uc-item-body">
+                <div class="uc-item-title">Postal Code</div>
+                <div class="uc-item-sub">{{ Auth::user()->postcode ?? '—' }}</div>
+            </div>
+        </div>
+
+        <div class="uc-list-item">
+            <div class="uc-item-body">
+                <div class="uc-item-title">Country</div>
+                <div class="uc-item-sub">{{ Auth::user()->country ?? '—' }}</div>
+            </div>
+        </div>
+
+    </div>
+
+    {{-- Meta Info --}}
+    <div class="uc-section-label">Account Meta</div>
+    <div class="uc-list">
+
+        <div class="uc-list-item">
+            <div class="uc-item-body">
+                <div class="uc-item-title">Joining Date</div>
+                <div class="uc-item-sub">
+                    {{ Auth::user()->created_at->format('D, M j, Y h:i A') }}
                 </div>
             </div>
         </div>
+
     </div>
+
 </div>

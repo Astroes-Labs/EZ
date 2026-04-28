@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 // use App\Livewire\Dashboard\Index;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\FinancialDataController;
 use App\Http\Controllers\TraderController;
 use App\Http\Controllers\TradeController;
 use App\Http\Controllers\ForgotPasswordController;
+
 // use App\Livewire\Home\Index;
 
 Route::middleware(['auth'])->group(function () {});
@@ -25,7 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/home', Index::class)->name('index'); 
     */   
     
-
+    Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/home', [DashboardController::class, 'showIndex'])->name('index'); //sidebar or mobile menu dashboard route 
 

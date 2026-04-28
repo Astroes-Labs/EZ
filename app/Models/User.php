@@ -136,7 +136,7 @@ class User extends Authenticatable implements MustVerifyEmail
         $userclass = [
             'Basic' => [
                 'range' => [1000, 50000],
-                'icon' => '', // Replace with the actual icon file name
+                'icon' => 'assets/frontend/images/default-icon.png', // Replace with the actual icon file name
             ],
             'Gold' => [
                 'range' => [51000, 100000],

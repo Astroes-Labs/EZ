@@ -1,4 +1,4 @@
-<div class="row">
+{{-- <div class="row">
     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
         <div class="user-ranking">
             <h4>
@@ -38,4 +38,52 @@
         </div>
     </div>
 
+</div> --}}
+
+<div class="row g-3">
+    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+        <div class="user-ranking enhanced">
+
+            <div class="rank-badge">
+                <img src="{{ $userClass['icon'] }}" alt="">
+            </div>
+
+            <h4>{{ $userClass['class'] }}</h4>
+
+            <span class="rank-label">Current Tier</span>
+
+        </div>
+    </div>
+
+    <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12 col-12">
+        <div class="site-card referral-card">
+
+            <div class="site-card-header">
+                <h3 class="title">Referral Link</h3>
+            </div>
+
+            <div class="site-card-body">
+                <div class="referral-link">
+
+                    <div class="referral-link-form">
+                        <input type="text"
+                               value="{{ route('register') . '?refid=' . Auth::id() }}"
+                               id="refLink"
+                               readonly />
+
+                        <button type="submit" onclick="copyRef()">
+                            <i class="anticon anticon-copy"></i>
+                            <span id="copy">Copy</span>
+                        </button>
+                    </div>
+
+                    <p class="referral-joined">
+                        {{ Auth::user()->referralCount() }} people joined using your link
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
