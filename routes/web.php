@@ -29,7 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/home', [DashboardController::class, 'showIndex'])->name('index'); //sidebar or mobile menu dashboard route 
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('index'); //sidebar or mobile menu dashboard route 
 
     
     Route::get('/deposit', [DashboardController::class, 'showDeposit'])->name('deposit');

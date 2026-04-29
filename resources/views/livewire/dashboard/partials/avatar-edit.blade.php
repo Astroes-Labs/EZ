@@ -1,5 +1,8 @@
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="uc-section-label" style="display:flex;align-items:center;gap:10px;">
+            @include('livewire.dashboard.partials.back-button')
+        </div>
         <div class="site-card">
             <div class="site-card-header">
                 <h3 class="title">Update Avatar</h3>
@@ -12,13 +15,16 @@
                         <div class="col-xl-3">
                             <div class="mb-3">
                                 <div class="body-title">Avatar:</div>
-                                
+
                                 <div class="wrap-custom-file">
-                                    <input type="file" name="avatar" id="avatar" accept=".gif, .jpg, .png" onchange="imagePreview(this, 'avatar-preview')" >
+                                    <input type="file" name="avatar" id="avatar" accept=".gif, .jpg, .png"
+                                        onchange="imagePreview(this, 'avatar-preview')">
 
 
                                     <label for="avatar">
-                                        <img id="avatar-preview" class="upload-icon" src="{{ Auth::user()->photo_profile ?? '../assets/global/materials/upload.svg' }}" alt="">
+                                        <img id="avatar-preview" class="upload-icon"
+                                            src="{{ Auth::user()->photo_profile ?? '../assets/global/materials/upload.svg' }}"
+                                            alt="">
                                         <span>Update Avatar</span>
                                     </label>
                                 </div>

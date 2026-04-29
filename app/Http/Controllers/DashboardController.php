@@ -22,8 +22,8 @@ class DashboardController extends Controller
     | Both DashboardController and SettingsController use the same
     | source of truth — no duplication.
     */
-    use SharedDashboardData;
 
+    use SharedDashboardData;
 
     /*
     |--------------------------------------------------------------------------
@@ -52,17 +52,14 @@ class DashboardController extends Controller
     public function index()
     {
         $data = $this->getSharedData();
-        return view('livewire.dashboard.new-indexv2', $data);
+        return $this->renderDashboard('livewire.dashboard.partials.index', $data);
+        // return view('livewire.dashboard.index', $data);
     }
 
     /**
      * Dynamic partial load via openCustom() AJAX.
      */
-    public function showIndex()
-    {
-        $data = $this->getSharedData();
-        return view('livewire.dashboard.partials.index', $data);
-    }
+   
 
 
     /*

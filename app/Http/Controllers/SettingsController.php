@@ -20,12 +20,4 @@ class SettingsController extends Controller
         return view('livewire.dashboard.partials.settings', $data);
     }
 
-    /**
-     * AJAX partial load — called via openCustom().
-     */
-    public function show()
-    {
-        $data = $this->getSharedData();
-        return view('livewire.dashboard.partials.settings', $data);
-    }
 }

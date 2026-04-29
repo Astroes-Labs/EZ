@@ -1,146 +1,143 @@
-// custom-router.js
+// custom-router.js - FINAL POLISHED VERSION
 (function ($) {
     'use strict';
 
-    // History stack for custom navigation
     let navigationHistory = [];
-    let isPoppingState = false;
+    let isProcessing = false;
+    let maxHistoryLength = 20;   // ← Added: Prevent memory bloat
 
-    /**
-     * Save current state before navigating away
-     */
     function saveCurrentState() {
-        const currentUrl = window.location.href;
-        const currentTitle = document.title;
-        const currentContent = $('#dynamic-content').html();
+        const url = window.location.href;
+        const title = document.title || 'Dashboard';
 
-        // Only push if it's different from the last entry
-        if (navigationHistory.length === 0 || navigationHistory[navigationHistory.length - 1].url !== currentUrl) {
-            navigationHistory.push({
-                url: currentUrl,
-                title: currentTitle,
-                content: currentContent
-            });
+        // Prevent duplicates
+        if (navigationHistory.length === 0 || navigationHistory.at(-1).url !== url) {
+            navigationHistory.push({ url, title });
+            
+            // Limit history size
+            if (navigationHistory.length > maxHistoryLength) {
+                navigationHistory.shift();
+            }
+            
+            console.log(`📌 History saved [${navigationHistory.length}]:`, url);
         }
     }
 
-    /**
-     * Main custom router function
-     */
     window.openCustom = function (event, element) {
         if (event) event.preventDefault();
+        if (isProcessing) return;
 
         const url = element.getAttribute('href');
-        const price = element.getAttribute('data-price') || null;
-
         if (!url) return;
 
-        saveCurrentState();
-
-        console.log('Navigating to:', url);
+        isProcessing = true;
+        showSpinner();
 
         $.ajax({
             url: url,
             method: 'GET',
-            beforeSend: function () {
-                showSpinner();
-            },
+            headers: { 'X-Requested-With': 'XMLHttpRequest' },
             success: function (response) {
-                $('#dynamic-content').html(response).promise().done(function () {
-                    hideSpinner();
+                if (typeof response === 'string') {
+                    $('#dynamic-content').html(response);
+                } else {
+                    console.warn('Response is not HTML');
+                    return;
+                }
 
-                    // Update browser URL and history
-                    const newState = { url: url, title: document.title };
-                    history.pushState(newState, document.title, url);
-                });
+                history.pushState({ url, title: document.title }, document.title, url);
+                saveCurrentState();                    // ← Save AFTER load
             },
-            error: function (xhr, status, error) {
-                console.error('Navigation error:', error);
+            error: function (xhr) {
+                if (xhr.status === 401) {
+                    window.location.href = '/login';
+                } else if (xhr.status === 419) {
+                    window.location.reload();
+                } else if (xhr.status === 403) {
+                    toastr?.error('Access denied');
+                } else {
+                    toastr?.error('Failed to load page');
+                }
+            },
+            complete: function () {
                 hideSpinner();
-                toastr.error('Failed to load page. Please try again.');
+                isProcessing = false;
             }
         });
     };
 
-    /**
-     * Back button functionality
-     */
     window.goBackCustom = function () {
-        if (navigationHistory.length > 1) {
-            // Remove current page
-            navigationHistory.pop();
-
-            const previous = navigationHistory[navigationHistory.length - 1];
-
-            isPoppingState = true;
-
-            $('#dynamic-content').html(previous.content);
-
-            // Update browser history
-            history.pushState(
-                { url: previous.url, title: previous.title },
-                previous.title,
-                previous.url
-            );
-
-            isPoppingState = false;
-
-            console.log('Navigated back to:', previous.url);
-        } else {
-            // If no history, go to dashboard
-            const dashboardUrl = "{{ route('dashboard') }}";
-            window.location.href = dashboardUrl;
+        if (isProcessing || navigationHistory.length <= 1) {
+            window.location.href = "{{ route('dashboard') }}";
+            return;
         }
+
+        navigationHistory.pop();           // Remove current
+        const previous = navigationHistory.at(-1);
+
+        console.log('⬅️ Going back to:', previous.url);
+
+        isProcessing = true;
+        showSpinner();
+
+        $.ajax({
+            url: previous.url,
+            method: 'GET',
+            headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            success: function (response) {
+                $('#dynamic-content').html(response);
+                history.pushState({ url: previous.url, title: previous.title }, 
+                                previous.title, previous.url);
+                saveCurrentState();            // Re-save the page we returned to
+            },
+            error: function () {
+                toastr?.error('Failed to go back');
+                window.location.href = previous.url;   // Hard fallback
+            },
+            complete: function () {
+                hideSpinner();
+                isProcessing = false;
+            }
+        });
     };
 
-    /**
-     * Handle browser back/forward buttons
-     */
     function handlePopState(e) {
-        if (isPoppingState) return;
+        if (!e.state?.url || isProcessing) return;
 
-        const state = e.state;
+        showSpinner();
 
-        if (state && state.url) {
-            showSpinner();
-
-            $.ajax({
-                url: state.url,
-                method: 'GET',
-                success: function (response) {
-                    $('#dynamic-content').html(response);
-                    hideSpinner();
-                },
-                error: function () {
-                    hideSpinner();
-                    toastr.error('Failed to restore previous page.');
-                }
-            });
-        }
+        $.ajax({
+            url: e.state.url,
+            method: 'GET',
+            success: function (response) {
+                $('#dynamic-content').html(response);
+                saveCurrentState();
+            },
+            complete: hideSpinner
+        });
     }
 
-    /**
-     * Initialize the router
-     */
-    function initCustomRouter() {
-        // Save initial state
+    // Utility functions
+    window.clearHistory = function () {
+        navigationHistory = [];
+        saveCurrentState();
+        console.log('🧹 History cleared');
+    };
+
+    // Initialize
+    $(document).ready(function () {
         saveCurrentState();
 
-        // Listen for browser back/forward
         window.addEventListener('popstate', handlePopState);
 
-        // Optional: Keyboard back support (Alt + Left Arrow)
-        $(document).on('keydown', function (e) {
-            if (e.altKey && e.key === 'ArrowLeft') {
-                e.preventDefault();
-                goBackCustom();
+        // Optional: Warn before leaving page
+        window.addEventListener('beforeunload', () => {
+            if (navigationHistory.length > 5) {
+                console.log('User leaving with', navigationHistory.length, 'pages in history');
             }
         });
 
-        console.log('%cCustom Router with History initialized ✅', 'color: #eac46e; font-weight: bold');
-    }
-
-    // Auto-init when script loads
-    $(document).ready(initCustomRouter);
+        console.log('%c✅ Custom Router Fully Loaded | History:', navigationHistory.length, 'color:#eac46e; font-weight:bold');
+    });
 
 })(jQuery);

@@ -1,7 +1,10 @@
 <div class="uc-panel active">
 
     {{-- Section Header --}}
-    <div class="uc-section-label">Account Info</div>
+    <div class="uc-section-label" style="display:flex;align-items:center;gap:10px;">
+        @include('livewire.dashboard.partials.back-button')
+        <span>Account Info</span>
+    </div>
 
     {{-- Top Card (Avatar + Basic Info) --}}
     <div class="uc-pfp-card">
@@ -17,13 +20,11 @@
             <div class="uc-pfp-name">{{ Auth::user()->name }}</div>
             <div class="uc-pfp-email">{{ Auth::user()->email }}</div>
 
-            <a href="{{ route('account.info.edit') }}" 
-               onclick="openCustom(event, this)" 
-               class="uc-pfp-edit">
-               
+            <a href="{{ route('account.info.edit') }}" onclick="openCustom(event, this)" class="uc-pfp-edit">
+
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                    <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z"/>
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                    <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z" />
                 </svg>
 
                 Edit Info
@@ -50,12 +51,12 @@
         </div>
 
         @if (!empty(Auth::user()->email2))
-        <div class="uc-list-item">
-            <div class="uc-item-body">
-                <div class="uc-item-title">Second Email</div>
-                <div class="uc-item-sub">{{ Auth::user()->email2 }}</div>
+            <div class="uc-list-item">
+                <div class="uc-item-body">
+                    <div class="uc-item-title">Second Email</div>
+                    <div class="uc-item-sub">{{ Auth::user()->email2 }}</div>
+                </div>
             </div>
-        </div>
         @endif
 
     </div>
