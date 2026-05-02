@@ -887,8 +887,6 @@
     }
 </style>
 
-<!-- Placeholder for dynamically loaded content -->
-<div id="dynamic-content">
     <div class="desktop-screen-show" style="padding: 1.5rem;">
 
         <div class="row g-3 align-items-stretch">
@@ -1598,5 +1596,4 @@
             </div>
         </div>
     </div>
-</div>
 

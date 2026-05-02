@@ -16,8 +16,7 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        $data = $this->getSharedData();
-        return view('livewire.dashboard.partials.settings', $data);
+        return $this->renderDashboard('livewire.dashboard.partials.settings');
     }
 
 }

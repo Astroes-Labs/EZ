@@ -21,13 +21,18 @@
             <div class="uc-profile-info">
                 <div class="uc-nickname">{{ Auth::user()->name }}</div>
                 <div class="uc-uid">UID: {{ Auth::id() }}</div>
-                <span class="uc-kyc-badge">
-                    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 1l1.9 3.8 4.1.6-3 2.9.7 4.1L8 10.4l-3.7 2 .7-4.1-3-2.9 4.1-.6L8 1z"
-                            stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" />
-                    </svg>
-                    @if(Auth::user()->account_verified == 1) Verified @elseif(Auth::user()->account_verified == 2)
-                    Pending @else Unverified @endif
+                <span class=" badge rounded-pill px-3 py-2 fs-6 fw-semibold
+                    @if(Auth::user()->identity_verified == 1)
+                           uc-kyc-verified
+                    @else
+                        uc-kyc-badge
+                    @endif">
+
+                    @if(Auth::user()->identity_verified == 1)
+                        ✓ Verified
+                    @else
+                        ⚠ Unverified
+                    @endif
                 </span>
             </div>
         </div>
@@ -166,12 +171,17 @@
                 <div class="uc-item-body">
                     <div class="uc-item-title">KYC Verification</div>
                     <div class="uc-kyc-levels" style="margin-top:6px;">
-                        <span class="uc-kyc-level {{ Auth::user()->account_verified >= 1 ? 'done' : 'locked' }}">Lv
-                            1</span>
-                        <span
-                            class="uc-kyc-level {{ Auth::user()->account_verified == 2 ? 'pending' : (Auth::user()->account_verified > 2 ? 'done' : 'locked') }}">Lv
-                            2</span>
-                        <span class="uc-kyc-level locked">Lv 3</span>
+                        <!-- Level 1 -->
+                        <span class="uc-kyc-level 
+                            @if(Auth::user()->identity_verified == 0) done @else locked @endif">
+                            Lv 1
+                        </span>
+
+                        <!-- Level 2 -->
+                        <span class="uc-kyc-level 
+                            @if(Auth::user()->identity_verified == 1) done @else locked @endif">
+                            Lv 2
+                        </span>
                     </div>
                 </div>
                 <svg class="uc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"

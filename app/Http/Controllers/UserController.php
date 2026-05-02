@@ -14,6 +14,7 @@ use App\Mail\EmailVerificationMail;
 use App\Mail\WelcomeEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\TwoFactorCodeMail;
 
 
 class UserController extends Controller
@@ -548,8 +549,7 @@ class UserController extends Controller
     //Update/Upload Kyc
     public function showUserVerify()
     {
-
-        return view('livewire.dashboard.partials.user-verify');
+        return $this->renderDashboard('livewire.dashboard.partials.user-verify');
     }
 
     public function storeUserVerify(Request $request)
@@ -600,7 +600,7 @@ class UserController extends Controller
 
     public function showUpdateEmail()
     {
-        return view('livewire.dashboard.partials.email-update');
+        return $this->renderDashboard('livewire.dashboard.partials.email-update');
     }
 
 
@@ -612,22 +612,33 @@ class UserController extends Controller
             ->orWhere('email2', $request->email)
             ->first();
 
-        if ($user) {
-            $activationCode = mt_rand(1000, 9999);
-            $user->pin = $activationCode;
-            $user->save();
-
-            Mail::to($user->email)->send(new EmailVerificationMail($user));
-            if ($user->email2) {
-                Mail::to($user->email2)->send(new EmailVerificationMail($user));
-            }
-
-            return response()->json(['message' => 'Token sent successfully.', 'alert_returned' => 'TS'], 200);
+        if (!$user) {
+            return response()->json([
+                'message' => 'Email not found.',
+                'alert_returned' => 'ENF'
+            ], 404);
         }
 
-        return response()->json(['message' => 'Email not found.', 'alert_returned' => 'ENF'], 404);
-    }
+        // Generate 4-digit token
+        $activationCode = mt_rand(1000, 9999);
 
+        $user->update([
+            'pin' => $activationCode,                    // or 'email_token' if you prefer
+            'pin_expires_at' => now()->addMinutes(10),  // recommended: add expiry
+        ]);
+
+        // Send using the same universal mailer as login
+        Mail::to($user->email)->send(new TwoFactorCodeMail($activationCode, $user));
+
+        if ($user->email2) {
+            Mail::to($user->email2)->send(new TwoFactorCodeMail($activationCode, $user));
+        }
+
+        return response()->json([
+            'message' => 'Token sent successfully.',
+            'alert_returned' => 'TS'
+        ], 200);
+    }
 
     public function confirmEmailUpdate(Request $request)
     {

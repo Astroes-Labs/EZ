@@ -7,6 +7,8 @@ use Livewire\Component;
 class Login extends Component
 {
 
+
+    // CHECK LOGINFORM Livewire component FOR LOGIN LOGIC, THIS COMPONENT ONLY HANDLES THE VIEW AND REDIRECTS
     public function mount()
     {
         // Already logged in → go to dashboard

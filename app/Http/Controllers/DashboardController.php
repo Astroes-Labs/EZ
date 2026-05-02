@@ -51,15 +51,13 @@ class DashboardController extends Controller
     */
     public function index()
     {
-        $data = $this->getSharedData();
-        return $this->renderDashboard('livewire.dashboard.partials.index', $data);
-        // return view('livewire.dashboard.index', $data);
+        return $this->renderDashboard('livewire.dashboard.partials.index');
     }
 
     /**
      * Dynamic partial load via openCustom() AJAX.
      */
-   
+
 
 
     /*
@@ -69,7 +67,7 @@ class DashboardController extends Controller
     */
     public function showDeposit()
     {
-        return view('livewire.dashboard.partials.deposit');
+        return $this->renderDashboard('livewire.dashboard.partials.deposit');
     }
 
     public function storeDeposit(Request $request)
@@ -123,7 +121,12 @@ class DashboardController extends Controller
             $deposit->status_class = $this->getStatusClass($deposit->status);
         }
 
-        return view('livewire.dashboard.partials.deposit-history', compact('deposits'));
+        // Just pass the extra data you need
+        return $this->renderDashboard('livewire.dashboard.partials.deposit-history', [
+            'deposits' => $deposits,
+            // You can add more variables here if needed
+            // 'title' => 'Deposit History',
+        ]);
     }
 
 
@@ -134,7 +137,7 @@ class DashboardController extends Controller
     */
     public function showPlans()
     {
-        return view('livewire.dashboard.partials.plans');
+        return $this->renderDashboard('livewire.dashboard.partials.plans');
     }
 
 
@@ -145,7 +148,7 @@ class DashboardController extends Controller
     */
     public function showWithdraw()
     {
-        return view('livewire.dashboard.partials.withdraw');
+        return $this->renderDashboard('livewire.dashboard.partials.withdraw');
     }
 
     public function storeWithdraw(Request $request)
@@ -219,7 +222,7 @@ class DashboardController extends Controller
             $withdrawal->status_class = $this->getStatusClass($withdrawal->status);
         }
 
-        return view('livewire.dashboard.partials.withdraw-history', compact('withdrawals'));
+        return $this->renderDashboard('livewire.dashboard.partials.withdraw-history', compact('withdrawals'));
     }
 
 

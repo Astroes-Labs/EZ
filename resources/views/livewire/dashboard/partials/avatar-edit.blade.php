@@ -1,8 +1,5 @@
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-        <div class="uc-section-label" style="display:flex;align-items:center;gap:10px;">
-            @include('livewire.dashboard.partials.back-button')
-        </div>
         <div class="site-card">
             <div class="site-card-header">
                 <h3 class="title">Update Avatar</h3>

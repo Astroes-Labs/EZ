@@ -21,9 +21,6 @@
                             style="background-color:#111827;padding:32px 40px;text-align:center;border-bottom:1px solid #222f53;">
                             <img src="{{ url('assets/images/rel-icon.png') }}" alt="{{ config('app.name') }}"
                                 style="height:48px; width:auto; display:block;" height="48">
-                            {{-- <img src="{{ asset('assets/images/rel-icon.png', true) }}"
-                                alt="{{ config('app.name') }}" style="height:48px; width:auto; display:block;"
-                                height="48"> --}}
                             <p
                                 style="margin:10px 0 0;font-size:20px;font-weight:700;color:#ffffff;letter-spacing:0.5px;">
                                 {{ ucfirst(config('app.name')) }}
@@ -43,10 +40,10 @@
 
                             <h1
                                 style="margin:0 0 12px;font-size:28px;font-weight:800;color:#ffffff;letter-spacing:-0.5px;">
-                                Verification Code
+                                Token Verification
                             </h1>
                             <p style="margin:0 0 36px;font-size:15px;color:#9ca3af;line-height:1.6;">
-                                Use the code below to complete your login. It expires in <strong
+                                Use the code below as your token verification code. It expires in <strong
                                     style="color:#eac46e;">10 minutes</strong>.
                             </p>
 

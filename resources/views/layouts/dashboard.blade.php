@@ -721,6 +721,30 @@
             width: 10px;
         }
 
+        /* Verified KYC Badge - Green Version */
+        .uc-kyc-verified {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-family: sans-serif;
+            background: rgba(61, 214, 140, 0.15);
+            border: 1px solid rgba(61, 214, 140, 0.4);
+            color: var(--success);
+        }
+
+        .uc-kyc-verified svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        
+
         /* logout + settings row */
         .uc-profile-actions {
             display: flex;
@@ -1108,40 +1132,39 @@
         }
 
         /* KYC levels */
-        .uc-kyc-levels {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 4px;
-        }
+  .uc-kyc-levels {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
 
-        .uc-kyc-level {
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            font-family: sans-serif;
-        }
+    .uc-kyc-level {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        font-family: sans-serif;
+    }
 
-        .uc-kyc-level.done {
-            background: rgba(61, 214, 140, 0.12);
-            border: 1px solid rgba(61, 214, 140, 0.25);
-            color: var(--success);
-        }
+    .uc-kyc-level.done {
+        background: rgba(61, 214, 140, 0.15);
+        border: 1px solid rgba(61, 214, 140, 0.4);
+        color: var(--success);
+    }
 
-        .uc-kyc-level.pending {
-            background: rgba(251, 191, 36, 0.1);
-            border: 1px solid rgba(251, 191, 36, 0.2);
-            color: var(--warning);
-        }
+    .uc-kyc-level.pending {
+        background: rgba(251, 191, 36, 0.15);
+        border: 1px solid rgba(251, 191, 36, 0.5);
+        color: var(--warning);
+    }
 
-        .uc-kyc-level.locked {
-            background: var(--bg-layer1);
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-        }
+    .uc-kyc-level.locked {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+    }
 
         /* Preferences radio-style rows */
         .uc-pref-group {
@@ -1234,6 +1257,71 @@
             border-color: var(--accent-border);
             box-shadow: var(--shadow-accent);
             transform: translateY(-2px);
+        }
+
+        /* Review Section - Premium Dark Theme */
+        .review-section {
+            margin-top: 24px;
+        }
+
+        .review-card {
+            background: var(--bg-layer2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .review-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .review-label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .review-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-family: sans-serif;
+            text-align: right;
+        }
+
+        .review-value.accent {
+            color: var(--accent);
+        }
+
+        .review-value.total {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .payment-method {
+            vertical-align: middle;
+            border: 1px solid var(--accent-border);
+        }
+
+        /* Highlight total row */
+        .total-row {
+            margin-top: 8px;
+            padding-top: 16px !important;
+            border-top: 1px solid var(--accent-border);
+        }
+
+        .total-row .review-label {
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
         /* ── Responsive ── */
@@ -1576,11 +1664,15 @@
                             </div>
                         </div>
                         <!--Page Content-->
-                        @if(isset($content_view))
-                            @include($content_view)
-                        @else
-                            @yield('content')
-                        @endif
+                            
+                        <!-- ADD THIS WRAPPER -->
+                        <div id="dynamic-content">
+                            @if(isset($content_view))
+                                @include($content_view)
+                            @else
+                                @yield('content')
+                            @endif
+                        </div>
                         <!--/Page Content-->
                     </div>
                 </div>
@@ -1632,11 +1724,11 @@
     <script src="{{ asset('assets/frontend/js/custom-router.js') }}"></script>
 
     {{-- @yield('xtraJs') --}}
-    
 
-{{-- @section('xtraJs') --}}
+
+    {{-- @section('xtraJs') --}}
     @include('layouts.app.xtrajs')
-{{-- @endsection --}}
+    {{-- @endsection --}}
 
 </body>
 

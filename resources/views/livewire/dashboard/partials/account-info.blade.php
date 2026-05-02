@@ -2,7 +2,6 @@
 
     {{-- Section Header --}}
     <div class="uc-section-label" style="display:flex;align-items:center;gap:10px;">
-        @include('livewire.dashboard.partials.back-button')
         <span>Account Info</span>
     </div>
 

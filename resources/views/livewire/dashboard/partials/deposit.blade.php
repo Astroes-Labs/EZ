@@ -94,48 +94,44 @@
                                 </tbody>
                             </table>
                         </div> --}}
-                        <div class="transaction-list review-card">
+                        <!-- Review Details -->
+                        <div class="review-section mt-4" id="reviewSection" style="display: none;">
+                            <div class="uc-section-label">Review Deposit Details</div>
 
-                            <div class="user-panel-title mb-3">
-                                <h5 class="mb-0">Review Details</h5>
+                            <div class="review-card">
+                                <div class="review-item">
+                                    <span class="review-label">You Deposit</span>
+                                    <span class="review-value accent">
+                                        <span class="amount">0.00</span>
+                                        <span class="currency">{{ Auth::user()->currency }}</span>
+                                    </span>
+                                </div>
+
+                                <div class="review-item">
+                                    <span class="review-label">Payment Amount</span>
+                                    <span class="review-value">
+                                        <span class="paymentAmount">0.00</span>
+                                        <span class="paymentCurrency"></span>
+                                    </span>
+                                </div>
+
+                                <div class="review-item">
+                                    <span class="review-label">Payment Method</span>
+                                    <span class="review-value" id="logo">
+                                        <!-- Default Icon (Hidden by default) -->
+                                        <img src="{{ asset('assets/frontend/images/default-icon.png') }}"
+                                            class="payment-method default-icon" alt="Select Method"
+                                            style="width: 28px; height: 28px; border-radius: 6px;">
+
+                                        <span class="ms-2" id="gateway-name"></span>
+                                    </span>
+                                </div>
+
+                                <div class="review-item total-row">
+                                    <span class="review-label">Total Cost</span>
+                                    <span class="review-value accent total"></span>
+                                </div>
                             </div>
-
-                            <table class="review-table">
-                                <tbody>
-
-                                    <tr>
-                                        <td>Amount</td>
-                                        <td class="value">
-                                            <span class="amount"></span>
-                                            <span class="currency"></span>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Payment Amount</td>
-                                        <td class="value">
-                                            <span class="paymentAmount"></span>
-                                            <span class="paymentCurrency"></span>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Payment Method</td>
-                                        <td class="value"  id="logo">
-                                            <img src="" class="payment-method" alt="">
-                                        </td>
-                                    </tr>
-
-                                    <tr class="total-row">
-                                        <td>Total</td>
-                                        <td class="value">
-                                            <span class="total"></span>
-                                        </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-
                         </div>
                         <div class="buttons">
                             <button type="submit" class="site-btn blue-btn">
