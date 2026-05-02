@@ -1366,6 +1366,41 @@
             color: var(--text-primary);
             font-size: 1.1rem;
         }
+
+        /* Support Chat Styling */
+        #chat-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .message {
+            max-width: 75%;
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: var(--accent);
+            color: var(--bg-deep);
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.support {
+            align-self: flex-start;
+            background: var(--bg-layer3);
+            border-bottom-left-radius: 4px;
+        }
+
+        .ticket-list-item {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ticket-list-item:hover {
+            background: var(--accent-dim);
+        }
     </style>
     <title>
         {{ config('app.name') }} - Dashboard
@@ -1520,11 +1555,11 @@
                                         <i class="anticon anticon-lock"></i>Change Password
                                     </a>
                                 </li> --}}
-                                <li>
-                                    <a href="../user/support-ticket-index.html" class="dropdown-item" type="button">
+                                {{-- <li>
+                                    <a href="{{ route('support.index') }}" class="dropdown-item" type="button">
                                         <i class="anticon anticon-customer-service"></i>Support Tickets
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="logout">
                                     <form id="logout-form" method="POST" action="{{ route('logout') }}">
                                         @csrf
@@ -1613,12 +1648,12 @@
                                 <i class="anticon anticon-setting"></i><span>Settings</span>
                             </a>
                         </li>
-{{--                         
-                         <li class="side-nav-item">
+                        {{--
+                        <li class="side-nav-item">
                             <a href="{{ route('account.info') }}" onclick="openCustom(event, this)">
                                 <i class="anticon anticon-info-circle"></i><span>Account Info</span>
                             </a>
-                        </li> 
+                        </li>
                         <li class="side-nav-item">
                             <a href="{{ route('account.info.edit') }}" onclick="openCustom(event, this)">
                                 <i class="anticon anticon-setting"></i><span>Edit Account Info</span>

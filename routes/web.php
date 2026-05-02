@@ -13,6 +13,7 @@ use App\Http\Controllers\FinancialDataController;
 use App\Http\Controllers\TraderController;
 use App\Http\Controllers\TradeController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\SupportController;
 
 // use App\Livewire\Home\Index;
 
@@ -25,13 +26,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
     /*  
     Route::get('/dashboard', Index::class)->name('dashboard');
     Route::get('/dashboard/home', Index::class)->name('index'); 
-    */   
-    
+    */
+
+    Route::get('/support', [SupportController::class, 'index'])->name('support.index');
+
+    Route::post('/support/tickets', [SupportController::class, 'store'])->name('support.store');
+    Route::get('/support/tickets/{ticket}', [SupportController::class, 'show'])->name('support.show');
+    Route::post('/support/tickets/{ticket}/messages', [SupportController::class, 'sendMessage'])->name('support.message.store');
+
+
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('index'); //sidebar or mobile menu dashboard route 
 
-    
+
     Route::get('/deposit', [DashboardController::class, 'showDeposit'])->name('deposit');
     Route::get('/deposit/fetch-payment-details', [UserController::class, 'fetchPaymentDetails'])->name('deposit.fetchPaymentDetails');
     Route::post('/deposit/store', [DashboardController::class, 'storeDeposit'])->name('deposit.store');

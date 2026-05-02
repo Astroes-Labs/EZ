@@ -734,4 +734,83 @@
             });
         });
     });
+
+    
+</script>
+
+
+<script>
+let currentTicketId = null;
+
+function newTicket() {
+    const subject = prompt("Enter ticket subject:");
+    if (!subject) return;
+
+    const message = prompt("Describe your issue:");
+    if (!message) return;
+
+    $.post('{{ route("support.store") }}', {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        subject: subject,
+        message: message,
+        priority: 'medium'
+    }).done(function(res) {
+        if (res.success) {
+            toastr.success('Ticket created!');
+            location.reload(); // Refresh list
+        }
+    });
+}
+
+function openTicket(ticketId) {
+    currentTicketId = ticketId;
+
+    $.get('{{ url("/support/tickets") }}/' + ticketId)
+        .done(function(data) {
+            $('#chat-placeholder').hide();
+            $('#chat-messages').show().empty();
+            $('#message-input-area').show();
+
+            $('#current-ticket-subject').text(data.ticket.subject);
+            $('#current-ticket-status').text(data.ticket.status.toUpperCase())
+                .removeClass().addClass('badge bg-' + (data.ticket.status === 'open' ? 'warning' : 'success'));
+
+            data.messages.forEach(msg => {
+                const isUser = !msg.is_admin;
+                $('#chat-messages').append(`
+                    <div class="message ${isUser ? 'user' : 'support'}">
+                        ${msg.message}
+                        <small class="d-block text-end opacity-75">${msg.created_at}</small>
+                    </div>
+                `);
+            });
+
+            $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
+        });
+}
+
+function sendMessage() {
+    const input = $('#message-input');
+    const msg = input.val().trim();
+    if (!msg || !currentTicketId) return;
+
+    $.post('{{ url("/support/tickets") }}/' + currentTicketId + '/messages', {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        message: msg
+    }).done(function(message) {
+        $('#chat-messages').append(`
+            <div class="message user">
+                ${message.message}
+                <small class="d-block text-end opacity-75">Just now</small>
+            </div>
+        `);
+        $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
+        input.val('');
+    });
+}
+
+// Keyboard support
+$(document).on('keypress', '#message-input', function(e) {
+    if (e.which === 13) sendMessage();
+});
 </script>
