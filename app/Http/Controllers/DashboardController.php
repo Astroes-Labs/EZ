@@ -233,12 +233,12 @@ class DashboardController extends Controller
     */
     public function showAccountInfo()
     {
-        return view('livewire.dashboard.partials.account-info');
+        return $this->renderDashboard('livewire.dashboard.partials.account-info');
     }
 
     public function editAccountInfo()
     {
-        return view('livewire.dashboard.partials.account-info-edit');
+        return $this->renderDashboard('livewire.dashboard.partials.account-info-edit');
     }
 
     public function updateAccountInfo(Request $request)
@@ -276,7 +276,7 @@ class DashboardController extends Controller
     */
     public function editAvatar()
     {
-        return view('livewire.dashboard.partials.avatar-edit');
+        return $this->renderDashboard('livewire.dashboard.partials.avatar-edit');
     }
 
     public function updateAvatar(Request $request)
@@ -314,12 +314,12 @@ class DashboardController extends Controller
     */
     public function previewLockedFunds()
     {
-        return view('livewire.dashboard.partials.locked-funds-preview');
+       return $this->renderDashboard('livewire.dashboard.partials.locked-funds-preview');
     }
 
     public function showLockedFunds()
     {
-        return view('livewire.dashboard.partials.locked-funds');
+        return $this->renderDashboard('livewire.dashboard.partials.locked-funds');
     }
 
     public function storeLockedFunds(Request $request)
@@ -379,7 +379,7 @@ class DashboardController extends Controller
         $ranks     = $user->rankArray();
         $userClass = Auth::user()->userClassArray();
 
-        return view('livewire.dashboard.partials.referrals-rank', compact('ranks', 'userClass'));
+        return $this->renderDashboard('livewire.dashboard.partials.referrals-rank', compact('ranks', 'userClass'));
     }
 
     public function showUserRank()
@@ -387,7 +387,7 @@ class DashboardController extends Controller
         $user  = auth()->user();
         $ranks = $user->userClassArray();
 
-        return view('livewire.dashboard.partials.user-rank', compact('ranks'));
+        return $this->renderDashboard('livewire.dashboard.partials.user-rank', compact('ranks'));
     }
 
 

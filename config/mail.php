@@ -114,5 +114,6 @@ return [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
-
+    
+    'rate_limit_enabled' => env('MAIL_RATE_LIMIT_ENABLED', true),
 ];

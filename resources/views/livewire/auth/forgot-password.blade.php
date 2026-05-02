@@ -39,7 +39,7 @@
     </form>
 
     <p class="text-center">
-        <a href="{{ route('login') }}" class="text-gray-400 hover:text-white transition">← Back to Login</a>
+        <a href="{{ route('login') }}" wire:navigate class="text-gray-400 hover:text-white transition">← Back to Login</a>
     </p>
 
 </div>

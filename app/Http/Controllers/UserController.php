@@ -15,6 +15,7 @@ use App\Mail\WelcomeEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\TwoFactorCodeMail;
+use Illuminate\Support\Facades\RateLimiter;
 
 
 class UserController extends Controller
@@ -608,6 +609,27 @@ class UserController extends Controller
     {
         $request->validate(['email' => 'required|email']);
 
+        // ==================== RATE LIMITER ====================
+        $key = 'email-token:' . $request->ip();
+
+        // ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+        // Set this to false in .env when you want to disable rate limiting for testing
+        $rateLimitEnabled = config('mail.rate_limit_enabled', true);
+
+        if ($rateLimitEnabled && RateLimiter::tooManyAttempts($key, 5)) {
+            $seconds = RateLimiter::availableIn($key);
+
+            return response()->json([
+                'message' => "Too many attempts. Please wait {$seconds} seconds.",
+                'alert_returned' => 'RATE_LIMIT'
+            ], 429);
+        }
+
+        if ($rateLimitEnabled) {
+            RateLimiter::hit($key, 600); // 10 minutes decay
+        }
+        // =====================================================
+
         $user = User::where('email', $request->email)
             ->orWhere('email2', $request->email)
             ->first();
@@ -622,22 +644,33 @@ class UserController extends Controller
         // Generate 4-digit token
         $activationCode = mt_rand(1000, 9999);
 
+        // Save token + expiry
         $user->update([
-            'pin' => $activationCode,                    // or 'email_token' if you prefer
-            'pin_expires_at' => now()->addMinutes(10),  // recommended: add expiry
+            'pin' => $activationCode,
+            'pin_expires_at' => now()->addMinutes(10),
         ]);
 
-        // Send using the same universal mailer as login
-        Mail::to($user->email)->send(new TwoFactorCodeMail($activationCode, $user));
+        try {
+            // Send using your universal TwoFactorCodeMail
+            Mail::to($user->email)->send(new TwoFactorCodeMail($activationCode, $user));
 
-        if ($user->email2) {
-            Mail::to($user->email2)->send(new TwoFactorCodeMail($activationCode, $user));
+            if ($user->email2) {
+                Mail::to($user->email2)->send(new TwoFactorCodeMail($activationCode, $user));
+            }
+
+            return response()->json([
+                'message' => 'Token sent successfully.',
+                'alert_returned' => 'TS'
+            ], 200);
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            \Log::error('Email Token Sending Failed: ' . $e->getMessage());
+
+            return response()->json([
+                'message' => 'Failed to send email. Please try again later.',
+                'alert_returned' => 'MAIL_ERROR'
+            ], 500);
         }
-
-        return response()->json([
-            'message' => 'Token sent successfully.',
-            'alert_returned' => 'TS'
-        ], 200);
     }
 
     public function confirmEmailUpdate(Request $request)
@@ -672,7 +705,7 @@ class UserController extends Controller
     // Show the password update form
     public function showUpdatePassword()
     {
-        return view('livewire.dashboard.partials.password-update');
+         return $this->renderDashboard('livewire.dashboard.partials.password-update');
     }
 
     // Generate password change token and send it via email

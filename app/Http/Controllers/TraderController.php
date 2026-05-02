@@ -15,7 +15,7 @@ class TraderController extends Controller
         $traders = Trader::all();
         $copiedTraders = $user->traders->pluck('id')->toArray();
 
-        return view('layouts.app.traders.index', compact('traders', 'copiedTraders'));
+       return $this->renderDashboard('layouts.app.traders.index', compact('traders', 'copiedTraders'));
     }
 
 

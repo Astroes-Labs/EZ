@@ -16,9 +16,11 @@
 
                         @foreach ($ranks as $rank)
                             <span class="mb-4" style="font-size: 20px;">
-                                <img src="assets/frontend/images/ranks/{{ $rank['icon'] }}" alt="{{ $rank['name'] }} Icon" style="height: 48px; width: 48px;">
-                                <b>{{ $rank['name'] }}</b> ({{ $rank['name'] === 'Recruit' ? 0 : $rank['min_referrals'] . '-' . $rank['max_referrals'] }})
+                                <img src="{{ asset('assets/frontend/images/ranks/' . $rank['icon']) }}"
+                                    alt="{{ $rank['name'] }} Icon" style="height: 48px; width: 48px;">
 
+                                <b>{{ $rank['name'] }}</b>
+                                ({{ $rank['name'] === 'Recruit' ? 0 : $rank['min_referrals'] . '-' . $rank['max_referrals'] }}
                                 referrals) -
                                 {{ $rank['interest'] }}% interest on every deposit
                             </span><br><br>
