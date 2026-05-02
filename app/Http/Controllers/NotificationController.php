@@ -56,7 +56,7 @@ class NotificationController extends Controller
             ->latest()
             ->paginate(7);
 
-        return view(
+        return $this->renderDashboard(
             'livewire.dashboard.partials.notifications-index',
             compact('notifications')
         );
@@ -74,7 +74,7 @@ class NotificationController extends Controller
             ]);
         }
 
-        return view(
+       return $this->renderDashboard(
             'livewire.dashboard.partials.notifications-show',
             compact('notification')
         );

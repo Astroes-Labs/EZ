@@ -887,704 +887,38 @@
     }
 </style>
 
-    <div class="desktop-screen-show" style="padding: 1.5rem;">
+<div class="desktop-screen-show" style="padding: 1.5rem;">
 
-        <div class="row g-3 align-items-stretch">
-            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-12">
-                <div class="user-ranking">
+    <div class="row g-3 align-items-stretch">
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-12">
+            <div class="user-ranking">
 
-                    <h4>
-                        {{ $userClass['class'] }}
-                    </h4>
-                    {{-- <p style="margin:0;">
-                        <img src="{{ $userClass['icon']  }}" alt=""
-                            style="height: 75px; width: 75px; filter: drop-shadow(0 4px 12px rgba(234,196,110,0.3));">
-                    </p> --}}
-                    <div class="rank" data-bs-toggle="tooltip" data-bs-placement="top" title="">
-                        <img src="{{ $userClass['icon']  }}" alt="" style="height: ; width: 36px;">
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-9 col-lg-9 col-md-8 col-sm-8 col-12">
-                <div class="site-card" style="height:100%; margin-bottom:0;">
-                    <div class="site-card-header">
-                        <h3 class="title">Referral Link</h3>
-                    </div>
-                    <div class="site-card-body">
-                        <div class="referral-link">
-                            <div class="referral-link-form">
-                                <input type="text" value="{{ route('register') . '?refid=' . Auth::id() }}" id="refLink"
-                                    readonly />
-
-
-                                <button type="submit" onclick="copyRef()">
-                                    <i class="anticon anticon-copy"></i>
-                                    <span id="copy">Copy</span>
-                                </button>
-                            </div>
-                            <p class="referral-joined">
-                                {{ Auth::user()->referralCount() }} people have joined using this URL.
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="row user-cards g-3" style="margin-top:1.25rem;">
-            <div class="col-12">
-                <div class="referral-link">
-                    <div class="referral-link-form">
-                        <a class="user-sidebar-btn btn btn-primary border-rounded  btn-lg btn-block"
-                            href="{{ route('deposit') }}" onclick="openCustom(event, this)">
-                            <i class="anticon anticon-plus"></i>
-                            <span class="text-uppercase">Fund account now</span>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-        <div class="row user-cards g-3" style="margin-top:1.25rem;">
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="single">
-                    <div class="icon"><i class="anticon anticon-inbox"></i></div>
-                    <div class="content">
-                        <h4><span class="count">{{ $allTransactionsCount }}</span></h4>
-                        <p>All Transactions</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="single">
-                    <div class="icon"><i class="anticon anticon-file-add"></i></div>
-                    <div class="content">
-                        <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
-                                class="count">{{ number_format($totalDeposited) }}</span></h4>
-                        <p>Total Deposit</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="single">
-                    <div class="icon"><i class="anticon anticon-check-square"></i></div>
-                    <div class="content">
-                        <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
-                                class="count">{{ number_format($totalTrade) }}</span></h4>
-                        <p>Total Investment</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="single">
-                    <div class="icon"><i class="anticon anticon-credit-card"></i></div>
-                    <div class="content">
-                        <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
-                                class="count">{{ number_format($totalTradeProfit) }}</span></h4>
-                        <p>Total Profit</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="single">
-                    <div class="icon"><i class="anticon anticon-lock"></i></div>
-                    <div class="content">
-                        <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
-                                class="count">{{ number_format(Auth::user()->locked_funds, 0) }}</span></h4>
-                        <p>Total Locked Funds </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="single">
-                    <div class="icon"><i class="anticon anticon-money-collect"></i></div>
-                    <div class="content">
-                        <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
-                                class="count">{{ number_format($totalWithdrawn) }}</span></h4>
-                        <p>Total Withdrawal</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="single">
-                    <div class="icon"><i class="anticon anticon-gift"></i></div>
-                    <div class="content">
-                        <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span class="count">0</span></h4>
-                        <p>Referral Bonus</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="single">
-                    <div class="icon"><i class="anticon anticon-account-book"></i></div>
-                    <div class="content">
-                        <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span class="count">0</span></h4>
-                        <p>Deposit Bonus</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="single">
-                    <div class="icon"><i class="anticon anticon-gold"></i></div>
-                    <div class="content">
-                        <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span class="count">0</span></h4>
-                        <p>Investment Bonus</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="single">
-                    <div class="icon"><i class="anticon anticon-inbox"></i></div>
-                    <div class="content">
-                        <h4 class="count">{{ Auth::user()->referralCount() }}</h4>
-                        <p>Total Referral</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="single">
-                    <div class="icon"><i class="anticon anticon-radar-chart"></i></div>
-                    <div class="content">
-                        <h4 id="target"
-                            style="display: none; font-family:'DM Sans',sans-serif; font-size:0.95rem; color:var(--accent);">
-                            {{ Auth::user()->rankName() }}
-                        </h4>
-                        <p>Rank Achieved</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
-                <div class="single">
-                    <div class="icon"><i class="anticon anticon-question"></i></div>
-                    <div class="content">
-                        <h4 class="count">0</h4>
-                        <p>Total Ticket</p>
-                    </div>
+                <h4>
+                    {{ $userClass['class'] }}
+                </h4>
+                {{-- <p style="margin:0;">
+                    <img src="{{ $userClass['icon']  }}" alt=""
+                        style="height: 75px; width: 75px; filter: drop-shadow(0 4px 12px rgba(234,196,110,0.3));">
+                </p> --}}
+                <div class="rank" data-bs-toggle="tooltip" data-bs-placement="top" title="">
+                    <img src="{{ $userClass['icon']  }}" alt="" style="height: ; width: 36px;">
                 </div>
             </div>
         </div>
-
-
-        <div class="row" style="margin-top:1.5rem;">
-            <div class="col-xl-12">
-                <div class="site-card">
-                    <div class="site-card-header">
-                        <h3 class="title">Recent Transactions</h3>
-                    </div>
-                    <div class="site-card-body table-responsive">
-                        <div class="site-datatable">
-                            <table class="display data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Description</th>
-                                        <th>Amount</th>
-                                        <th>Status</th>
-                                        <th>Payment Method</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($transactions as $transaction)
-                                        <tr>
-                                            <td>
-                                                <strong>
-                                                    @if ($transaction['type'] === 'Withdrawal')
-                                                        Withdrawn {{ $transaction['currency'] ?? 'N/A' }}
-                                                    @else
-                                                        {{ $transaction['comment'] ?? 'Deposit' }}
-                                                    @endif
-                                                </strong>
-                                                <div class="date">
-                                                    {{ \Carbon\Carbon::parse($transaction['created_at'])->format('M d Y H:i') }}
-                                                </div>
-                                            </td>
-
-                                            <td
-                                                class="{{ $transaction['type'] === 'Withdrawal' ? 'text-danger' : 'text-success' }}">
-                                                {{ $transaction['type'] === 'Withdrawal' ? '-' : '+' }}
-                                                {{ number_format($transaction['amount'], 2) }}
-                                            </td>
-                                            <td>
-                                                <div class="site-badge {{ $transaction['status_class'] }}">
-                                                    {{ ucfirst($transaction['status']) }}
-                                                </div>
-                                            </td>
-                                            <td>{{ $transaction['type'] === 'Withdrawal' ? $transaction['payment_method'] : $transaction['crypto_currency'] }}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+        <div class="col-xl-9 col-lg-9 col-md-8 col-sm-8 col-12">
+            <div class="site-card" style="height:100%; margin-bottom:0;">
+                <div class="site-card-header">
+                    <h3 class="title">Referral Link</h3>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="mobile-screen-show" style="padding: 1rem;">
-        <div class="row g-3">
-            <div class="col-12">
-                <div class="user-ranking-mobile">
-                    <div class="icon"><img
-                            src="{{ Auth::user()->photo_profile ?? '../assets/global/materials/upload.svg' }}" alt=""
-                            height="45" width="45"
-                            style="border-radius: 50%; border: 2px solid var(--accent); object-fit:cover;" /></div>
-                    <div class="name">
-                        <h4>Hi, {{ Auth::user()->name  }}
-
-                        </h4>
-                        <p>
-                            <span> {{ $userClass['class']  }}
-
-                            </span>
-                        </p>
-                    </div>
-                    <div class="rank-badge" style="margin-left:auto;"><img src="{{ $userClass['icon']  }}" alt=""
-                            style="height:36px;width:36px;" />
-                    </div>
-                </div>
-                <div class="user-wallets-mobile">
-                    <img src="../assets/frontend/materials/wallet-shadow.png" alt="" class="wallet-shadow"
-                        style="display:none;">
-                    <div class="head">All Wallets in {{ Auth::user()->currency  }}</div>
-                    <div class="one">
-                        <div class="balance">
-
-                            <span
-                                class="symbol">{{ Auth::user()->getCurrencySymbol() . ' ' . Auth::user()->displayBalance(Auth::user()->trading_balance) }}</span>
-                            <span class="after-dot">
-                            </span>
-                        </div>
-                        <div class="wallet">Total Balance</div>
-                    </div>
-
-
-                    <div class="one p-wal">
-                        <div class="balance">
-                            <span class="symbol"
-                                style="font-size:1.1rem !important; color:var(--text-muted) !important;">{{ Auth::user()->getCurrencySymbol() . ' ' . Auth::user()->displayBalance(Auth::user()->locked_funds) }}</span>
-                            <span class="after-dot">
-                            </span>
-                        </div>
-                        <div class="wallet">Locked Funds</div>
-                    </div>
-                    <div class="info">
-                        <i icon-name="info"></i>You Earned 0 {{ Auth::user()->currency  }} This Week
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div class="mob-shortcut-btn">
-
-                    <a href="{{ route('deposit') }}" onclick="openCustom(event, this)">
-                        <div class="w-100" style="display:flex;justify-content:center;">
-                            <img src="{{ asset('assets\frontend\icons\layout-dashboard.svg')  }}" alt=""
-                                style="height:22px;width:22px;opacity:0.7;">
-                        </div>
-
-                        Deposit
-                    </a>
-                    <a href="{{ route('trade.index') }}" onclick="openCustom(event, this)">
-                        <div class="w-100" style="display:flex;justify-content:center;">
-                            <img src="{{ asset('assets\frontend\icons\home.svg')  }}" alt=""
-                                style="height:22px;width:22px;opacity:0.7;">
-                        </div> Trade Hub
-                    </a>
-                    <a href="{{ route('withdraw') }}" onclick="openCustom(event, this)">
-                        <div class="w-100" style="display:flex;justify-content:center;">
-                            <img src="{{ asset('assets\frontend\icons\send.svg')  }}" alt=""
-                                style="height:22px;width:22px;opacity:0.7;">
-                        </div> Withdraw
-                    </a>
-                </div>
-            </div>
-
-
-            <div class="col-12">
-                <!-- all navigation -->
-                <div class="all-feature-mobile mb-3 mobile-screen-show">
-                    <div class="title">All Navigations</div>
-
-                    <div class="contents row g-2">
-                        <div class="col-4">
-                            <div class="single">
-                                <a href="{{ route('plans') }}" onclick="openCustom(event, this)">
-                                    <div class="icon"><img src="../assets/frontend/materials/schema.png" alt=""
-                                            style="height:22px;width:22px;">
-                                    </div>
-                                    <div class="name">Pricing</div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-4">
-                            <div class="single">
-                                <a href="{{ route('deposit') }}" onclick="openCustom(event, this)">
-                                    <div class="icon"><img src="../assets/frontend/materials/deposit.png" alt=""
-                                            style="height:22px;width:22px;">
-                                    </div>
-                                    <div class="name">Fund Account</div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="single">
-                                <a href="{{ route('deposit.history') }}" onclick="openCustom(event, this)">
-                                    <div class="icon"><img src="../assets/frontend/materials/deposit-log.png" alt=""
-                                            style="height:22px;width:22px;">
-                                    </div>
-                                    <div class="name">Deposit History</div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-4">
-                            <div class="single">
-                                <a href="{{ route('withdraw') }}" onclick="openCustom(event, this)">
-                                    <div class="icon"><img src="../assets/frontend/materials/withdraw.png" alt=""
-                                            style="height:22px;width:22px;">
-                                    </div>
-                                    <div class="name">Withdraw</div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="single">
-                                <a href="{{ route('withdraw.history') }}" onclick="openCustom(event, this)">
-                                    <div class="icon"><img src="../assets/frontend/materials/withdraw-log.png" alt=""
-                                            style="height:22px;width:22px;">
-                                    </div>
-                                    <div class="name">Withdraw History</div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="single">
-                                <a href="{{ route('account.info') }}" onclick="openCustom(event, this)">
-                                    <div class="icon"><img src="../assets/frontend/materials/schema-log.png" alt=""
-                                            style="height:22px;width:22px;">
-                                    </div>
-                                    <div class="name">Account Info</div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-4">
-                            <div class="single">
-                                <a href="{{ route('traders.index') }}" onclick="openCustom(event, this)">
-                                    <div class="icon"><img src="../assets/frontend/materials/transactions.png" alt=""
-                                            style="height:22px;width:22px;">
-                                    </div>
-                                    <div class="name">Copy Trading</div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-4">
-                            <div class="single">
-                                <a href="{{ route('user.verify') }}" onclick="openCustom(event, this)">
-                                    <div class="icon"><img src="../assets/frontend/materials/transfer-log.png" alt=""
-                                            style="height:22px;width:22px;">
-                                    </div>
-                                    <div class="name">ID Verification </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="single">
-                                <a href="{{ route('locked.funds') }}" onclick="openCustom(event, this)">
-                                    <div class="icon"><img src="../assets/frontend/materials/transfer.png" alt=""
-                                            style="height:22px;width:22px;">
-                                    </div>
-                                    <div class="name">Locked Funds</div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="moretext">
-                        <div class="row g-2 contents">
-
-                            <div class="col-4">
-                                <div class="single">
-                                    <a href="{{ route('referrals.rank.show') }}" onclick="openCustom(event, this)">
-                                        <div class="icon"><img src="../assets/frontend/materials/referral.png" alt=""
-                                                style="height:22px;width:22px;">
-                                        </div>
-                                        <div class="name">Referral/Rank</div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="single">
-                                    <a href="{{ route('account.info.edit') }}" onclick="openCustom(event, this)">
-                                        <div class="icon"><img src="../assets/frontend/materials/settings.png" alt=""
-                                                style="height:22px;width:22px;">
-                                        </div>
-                                        <div class="name">Settings</div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="single">
-                                    <a href="{{ route('notifications.index') }}" onclick="openCustom(event, this)">
-                                        <div class="icon"><img src="../assets/frontend/materials/profile.png" alt=""
-                                                style="height:22px;width:22px;">
-                                        </div>
-                                        <div class="name">Notifications</div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="centered">
-                        <button class="moreless-button site-btn-sm grad-btn">Load more</button>
-                    </div>
-                </div>
-
-                <!-- all Statistic -->
-                <div class="all-feature-mobile mb-3 mobile-screen-show">
-                    <div class="title">All Statistic</div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="all-cards-mobile">
-                                <div class="contents row">
-                                    <div class="col-12">
-                                        <div class="single-card">
-                                            <div class="icon">
-                                                <img src="{{ asset('assets\frontend\icons\home-white.svg')  }}" alt=""
-                                                    style="height:18px;width:18px;">
-                                            </div>
-                                            <div class="content">
-                                                <div class="amount count">{{ $allTransactionsCount }}
-                                                </div>
-                                                <div class="name">All Transactions</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="single-card">
-                                            <div class="icon">
-                                                <img src="{{ asset('assets\frontend\icons\download.svg')  }}" alt=""
-                                                    style="height:18px;width:18px;">
-                                            </div>
-                                            <div class="content">
-                                                <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
-                                                        class="count">{{ number_format($totalDeposited) }}</span>
-                                                </div>
-                                                <div class="name">Total Deposit</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="single-card">
-                                            <div class="icon">
-                                                <img src="{{ asset('assets\frontend\icons\box-white.svg')  }}" alt=""
-                                                    style="height:18px;width:18px;">
-                                            </div>
-                                            <div class="content">
-                                                <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
-                                                        class="count">{{ number_format($totalTrade) }}</span>
-                                                </div>
-                                                <div class="name">Total Investment</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="moretext-2">
-                                    <div class="contents row">
-                                        <div class="col-12">
-                                            <div class="single-card">
-                                                <div class="icon">
-                                                    <img src="{{ asset('assets\frontend\icons\credit-card.svg')  }}"
-                                                        alt="" style="height:18px;width:18px;">
-                                                </div>
-                                                <div class="content">
-                                                    <div class="amount"> {{ Auth::user()->getCurrencySymbol()}}<span
-                                                            class="count">{{ number_format($totalTradeProfit) }}</span>
-                                                    </div>
-                                                    <div class="name">Total Profit</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="single-card">
-                                                <div class="icon">
-                                                    <img src="{{ asset('assets\frontend\icons\log-in.svg')  }}" alt=""
-                                                        style="height:18px;width:18px;">
-                                                </div>
-                                                <div class="content">
-                                                    <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
-                                                            class="count">{{ number_format(Auth::user()->locked_funds, 0) }}</span>
-                                                    </div>
-                                                    <div class="name">Total Locked Funds</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="single-card">
-                                                <div class="icon">
-                                                    <img src="{{ asset('assets\frontend\icons\log-in.svg')  }}" alt=""
-                                                        style="height:18px;width:18px;">
-                                                </div>
-                                                <div class="content">
-                                                    <div class="amount"> {{ Auth::user()->getCurrencySymbol()}}<span
-                                                            class="count">{{ number_format($totalWithdrawn) }}</span>
-                                                    </div>
-                                                    <div class="name">Total Withdraw</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="single-card">
-                                                <div class="icon">
-                                                    <img src="{{ asset('assets\frontend\icons\users-2.svg')  }}" alt=""
-                                                        style="height:18px;width:18px;">
-                                                </div>
-                                                <div class="content">
-                                                    <div class="amount"> {{ Auth::user()->getCurrencySymbol()}}<span
-                                                            class="count">0</span>
-                                                    </div>
-                                                    <div class="name">Referral Bonus</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="single-card">
-                                                <div class="icon">
-                                                    <img src="{{ asset('assets\frontend\icons\anchor.svg')  }}" alt=""
-                                                        style="height:18px;width:18px;">
-                                                </div>
-                                                <div class="content">
-                                                    <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
-                                                            class="count">0</span>
-                                                    </div>
-                                                    <div class="name">Deposit Bonus</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="single-card">
-                                                <div class="icon">
-                                                    <img src="{{ asset('assets\frontend\icons\archive.svg')  }}" alt=""
-                                                        style="height:18px;width:18px;">
-                                                </div>
-                                                <div class="content">
-                                                    <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
-                                                            class="count">0</span>
-                                                    </div>
-                                                    <div class="name"> Investment Bonus</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="single-card">
-                                                <div class="icon">
-                                                    <img src="{{ asset('assets\frontend\icons\gift.svg')  }}" alt=""
-                                                        style="height:18px;width:18px;">
-                                                </div>
-                                                <div class="content">
-                                                    <div class="amount count">
-                                                        {{ Auth::user()->referralCount() }}
-                                                    </div>
-                                                    <div class="name"> Total Referral</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="single-card">
-                                                <div class="icon">
-                                                    <img src="{{ asset('assets\frontend\icons\award.svg')  }}" alt=""
-                                                        style="height:18px;width:18px;">
-                                                </div>
-                                                <div class="content">
-                                                    <div class="amount ">
-                                                        {{ Auth::user()->rankName() }}
-                                                    </div>
-                                                    <div class="name">Rank Achieved</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="single-card">
-                                                <div class="icon">
-                                                    <img src="{{ asset('assets\frontend\icons\alert-triangle.svg')  }}"
-                                                        alt="" style="height:18px;width:18px;">
-                                                </div>
-                                                <div class="content">
-                                                    <div class="amount count">0</div>
-                                                    <div class="name"> Total Ticket</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="centered">
-                                    <button class="moreless-button-2 site-btn-sm grad-btn">Load more</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="all-feature-mobile mobile-transactions mb-3 mobile-screen-show" style="display: block;">
-                    <div class="title">Recent Transactions</div>
-                    <div class="contents">
-                        @foreach ($transactions as $transaction)
-                            <div class="single-transaction">
-                                <div class="transaction-left">
-                                    <div class="transaction-des">
-                                        <div class="transaction-title">
-                                            <strong>
-                                                @if ($transaction['type'] === 'Withdrawal')
-                                                    Withdrawal
-                                                @else
-                                                    {{ $transaction['comment'] ?? 'Deposit' }}
-                                                @endif
-                                            </strong>
-                                        </div>
-                                        <div class="transaction-id">
-                                            {{ $transaction['transaction_id'] }}
-                                        </div>
-                                        <div class="transaction-date">
-                                            {{ \Carbon\Carbon::parse($transaction['created_at'])->format('M d Y H:i') }}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="transaction-right" style="text-align:right;">
-                                    <div
-                                        class="transaction-amount {{ $transaction['type'] === 'Withdrawal' ? 'text-danger' : 'text-success' }}">
-                                        {{ $transaction['type'] === 'Withdrawal' ? '-' : '+' }}
-                                        {{ number_format($transaction['amount'], 2) }} {{ $transaction['currency'] ?? '' }}
-                                    </div>
-                                    <div class="transaction-fee sub">
-                                    </div>
-                                    <div class="transaction-gateway">
-                                        {{ $transaction['gateway'] }}
-                                    </div>
-                                    <div class="site-badge {{ $transaction['status_class'] }}" style="margin-top:4px;">
-                                        {{ ucfirst($transaction['status']) }}
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div class="mobile-ref-url mb-4">
-                    <div class="all-feature-mobile">
-                        <div class="title">Referral URL</div>
-                        <div class="mobile-referral-link-form">
-
+                <div class="site-card-body">
+                    <div class="referral-link">
+                        <div class="referral-link-form">
                             <input type="text" value="{{ route('register') . '?refid=' . Auth::id() }}" id="refLink"
                                 readonly />
+
+
                             <button type="submit" onclick="copyRef()">
+                                <i class="anticon anticon-copy"></i>
                                 <span id="copy">Copy</span>
                             </button>
                         </div>
@@ -1592,8 +926,684 @@
                             {{ Auth::user()->referralCount() }} people have joined using this URL.
                         </p>
                     </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row user-cards g-3" style="margin-top:1.25rem;">
+        <div class="col-12">
+            <div class="referral-link">
+                <div class="referral-link-form">
+                    <a class="user-sidebar-btn btn btn-primary border-rounded  btn-lg btn-block"
+                        href="{{ route('deposit') }}" onclick="openCustom(event, this)">
+                        <i class="anticon anticon-plus"></i>
+                        <span class="text-uppercase">Fund account now</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row user-cards g-3" style="margin-top:1.25rem;">
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="single">
+                <div class="icon"><i class="anticon anticon-inbox"></i></div>
+                <div class="content">
+                    <h4><span class="count">{{ $allTransactionsCount }}</span></h4>
+                    <p>All Transactions</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="single">
+                <div class="icon"><i class="anticon anticon-file-add"></i></div>
+                <div class="content">
+                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
+                            class="count">{{ number_format($totalDeposited) }}</span></h4>
+                    <p>Total Deposit</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="single">
+                <div class="icon"><i class="anticon anticon-check-square"></i></div>
+                <div class="content">
+                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
+                            class="count">{{ number_format($totalTrade) }}</span></h4>
+                    <p>Total Investment</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="single">
+                <div class="icon"><i class="anticon anticon-credit-card"></i></div>
+                <div class="content">
+                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
+                            class="count">{{ number_format($totalTradeProfit) }}</span></h4>
+                    <p>Total Profit</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="single">
+                <div class="icon"><i class="anticon anticon-lock"></i></div>
+                <div class="content">
+                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
+                            class="count">{{ number_format(Auth::user()->locked_funds, 0) }}</span></h4>
+                    <p>Total Locked Funds </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="single">
+                <div class="icon"><i class="anticon anticon-money-collect"></i></div>
+                <div class="content">
+                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
+                            class="count">{{ number_format($totalWithdrawn) }}</span></h4>
+                    <p>Total Withdrawal</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="single">
+                <div class="icon"><i class="anticon anticon-gift"></i></div>
+                <div class="content">
+                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span class="count">0</span></h4>
+                    <p>Referral Bonus</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="single">
+                <div class="icon"><i class="anticon anticon-account-book"></i></div>
+                <div class="content">
+                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span class="count">0</span></h4>
+                    <p>Deposit Bonus</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="single">
+                <div class="icon"><i class="anticon anticon-gold"></i></div>
+                <div class="content">
+                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span class="count">0</span></h4>
+                    <p>Investment Bonus</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="single">
+                <div class="icon"><i class="anticon anticon-inbox"></i></div>
+                <div class="content">
+                    <h4 class="count">{{ Auth::user()->referralCount() }}</h4>
+                    <p>Total Referral</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="single">
+                <div class="icon"><i class="anticon anticon-radar-chart"></i></div>
+                <div class="content">
+                    <h4 id="target"
+                        style="display: none; font-family:'DM Sans',sans-serif; font-size:0.95rem; color:var(--accent);">
+                        {{ Auth::user()->rankName() }}
+                    </h4>
+                    <p>Rank Achieved</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="single">
+                <div class="icon"><i class="anticon anticon-question"></i></div>
+                <div class="content">
+                    <h4 class="count">0</h4>
+                    <p>Total Ticket</p>
                 </div>
             </div>
         </div>
     </div>
 
+
+    <div class="row" style="margin-top:1.5rem;">
+        <div class="col-xl-12">
+            <div class="site-card">
+                <div class="site-card-header">
+                    <h3 class="title">Recent Transactions</h3>
+                </div>
+                <div class="site-card-body table-responsive">
+                    <div class="site-datatable">
+                        <table class="display data-table">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Payment Method</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($transactions as $transaction)
+                                    <tr>
+                                        <td>
+                                            <strong>
+                                                @if ($transaction['type'] === 'Withdrawal')
+                                                    Withdrawn {{ $transaction['currency'] ?? 'N/A' }}
+                                                @else
+                                                    {{ $transaction['comment'] ?? 'Deposit' }}
+                                                @endif
+                                            </strong>
+                                            <div class="date">
+                                                {{ \Carbon\Carbon::parse($transaction['created_at'])->format('M d Y H:i') }}
+                                            </div>
+                                        </td>
+
+                                        <td
+                                            class="{{ $transaction['type'] === 'Withdrawal' ? 'text-danger' : 'text-success' }}">
+                                            {{ $transaction['type'] === 'Withdrawal' ? '-' : '+' }}
+                                            {{ number_format($transaction['amount'], 2) }}
+                                        </td>
+                                        <td>
+                                            <div class="site-badge {{ $transaction['status_class'] }}">
+                                                {{ ucfirst($transaction['status']) }}
+                                            </div>
+                                        </td>
+                                        <td>{{ $transaction['type'] === 'Withdrawal' ? $transaction['payment_method'] : $transaction['crypto_currency'] }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mobile-screen-show" style="padding: 1rem;">
+    <div class="row g-3">
+        <div class="col-12">
+            <div class="user-ranking-mobile">
+                <div class="icon"><img
+                        src="{{ Auth::user()->photo_profile ?? '../assets/global/materials/upload.svg' }}" alt=""
+                        height="45" width="45"
+                        style="border-radius: 50%; border: 2px solid var(--accent); object-fit:cover;" /></div>
+                <div class="name">
+                    <h4>Hi, {{ Auth::user()->name  }}
+
+                    </h4>
+                    <p>
+                        <span> {{ $userClass['class']  }}
+
+                        </span>
+                    </p>
+                </div>
+                <div class="rank-badge" style="margin-left:auto;"><img src="{{ $userClass['icon']  }}" alt=""
+                        style="height:36px;width:36px;" />
+                </div>
+            </div>
+            <div class="user-wallets-mobile">
+                <img src="../assets/frontend/materials/wallet-shadow.png" alt="" class="wallet-shadow"
+                    style="display:none;">
+                <div class="head">All Wallets in {{ Auth::user()->currency  }}</div>
+                <div class="one">
+                    <div class="balance">
+
+                        <span
+                            class="symbol">{{ Auth::user()->getCurrencySymbol() . ' ' . Auth::user()->displayBalance(Auth::user()->trading_balance) }}</span>
+                        <span class="after-dot">
+                        </span>
+                    </div>
+                    <div class="wallet">Total Balance</div>
+                </div>
+
+
+                <div class="one p-wal">
+                    <div class="balance">
+                        <span class="symbol"
+                            style="font-size:1.1rem !important; color:var(--text-muted) !important;">{{ Auth::user()->getCurrencySymbol() . ' ' . Auth::user()->displayBalance(Auth::user()->locked_funds) }}</span>
+                        <span class="after-dot">
+                        </span>
+                    </div>
+                    <div class="wallet">Locked Funds</div>
+                </div>
+                <div class="info">
+                    <i icon-name="info"></i>You Earned 0 {{ Auth::user()->currency  }} This Week
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="mob-shortcut-btn">
+
+                <a href="{{ route('deposit') }}" onclick="openCustom(event, this)">
+                    <div class="w-100" style="display:flex;justify-content:center;">
+                        <img src="{{ asset('assets\frontend\icons\layout-dashboard.svg')  }}" alt=""
+                            style="height:22px;width:22px;opacity:0.7;">
+                    </div>
+
+                    Deposit
+                </a>
+                <a href="{{ route('trade.index') }}" onclick="openCustom(event, this)">
+                    <div class="w-100" style="display:flex;justify-content:center;">
+                        <img src="{{ asset('assets\frontend\icons\home.svg')  }}" alt=""
+                            style="height:22px;width:22px;opacity:0.7;">
+                    </div> Trade Hub
+                </a>
+                <a href="{{ route('withdraw') }}" onclick="openCustom(event, this)">
+                    <div class="w-100" style="display:flex;justify-content:center;">
+                        <img src="{{ asset('assets\frontend\icons\send.svg')  }}" alt=""
+                            style="height:22px;width:22px;opacity:0.7;">
+                    </div> Withdraw
+                </a>
+            </div>
+        </div>
+
+
+        <div class="col-12">
+            <!-- all navigation -->
+            <div class="all-feature-mobile mb-3 mobile-screen-show">
+                <div class="title">All Navigations</div>
+
+                <div class="contents row g-2">
+                    <div class="col-4">
+                        <div class="single">
+                            <a href="{{ route('plans') }}" onclick="openCustom(event, this)">
+                                <div class="icon"><img src="../assets/frontend/materials/schema.png" alt=""
+                                        style="height:22px;width:22px;">
+                                </div>
+                                <div class="name">Pricing</div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="single">
+                            <a href="{{ route('deposit') }}" onclick="openCustom(event, this)">
+                                <div class="icon"><img src="../assets/frontend/materials/deposit.png" alt=""
+                                        style="height:22px;width:22px;">
+                                </div>
+                                <div class="name">Fund Account</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="single">
+                            <a href="{{ route('deposit.history') }}" onclick="openCustom(event, this)">
+                                <div class="icon"><img src="../assets/frontend/materials/deposit-log.png" alt=""
+                                        style="height:22px;width:22px;">
+                                </div>
+                                <div class="name">Deposit History</div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="single">
+                            <a href="{{ route('withdraw') }}" onclick="openCustom(event, this)">
+                                <div class="icon"><img src="../assets/frontend/materials/withdraw.png" alt=""
+                                        style="height:22px;width:22px;">
+                                </div>
+                                <div class="name">Withdraw</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="single">
+                            <a href="{{ route('withdraw.history') }}" onclick="openCustom(event, this)">
+                                <div class="icon"><img src="../assets/frontend/materials/withdraw-log.png" alt=""
+                                        style="height:22px;width:22px;">
+                                </div>
+                                <div class="name">Withdraw History</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="single">
+                            <a href="{{ route('account.info') }}" onclick="openCustom(event, this)">
+                                <div class="icon"><img src="../assets/frontend/materials/schema-log.png" alt=""
+                                        style="height:22px;width:22px;">
+                                </div>
+                                <div class="name">Account Info</div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="single">
+                            <a href="{{ route('traders.index') }}" onclick="openCustom(event, this)">
+                                <div class="icon"><img src="../assets/frontend/materials/transactions.png" alt=""
+                                        style="height:22px;width:22px;">
+                                </div>
+                                <div class="name">Copy Trading</div>
+                            </a>
+                        </div>
+                    </div>
+
+                    {{-- <div class="col-4">
+                        <div class="single">
+                            <a href="{{ route('user.verify') }}" onclick="openCustom(event, this)">
+                                <div class="icon"><img src="../assets/frontend/materials/transfer-log.png" alt=""
+                                        style="height:22px;width:22px;">
+                                </div>
+                                <div class="name">ID Verification </div>
+                            </a>
+                        </div>
+                    </div> --}}
+                    <div class="col-4">
+                        <div class="single">
+                            <a href="{{ route('locked.funds') }}" onclick="openCustom(event, this)">
+                                <div class="icon"><img src="../assets/frontend/materials/transfer.png" alt=""
+                                        style="height:22px;width:22px;">
+                                </div>
+                                <div class="name">Locked Funds</div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="single">
+                            <a href="{{ route('referrals.rank.show') }}" onclick="openCustom(event, this)">
+                                <div class="icon"><img src="../assets/frontend/materials/referral.png" alt=""
+                                        style="height:22px;width:22px;">
+                                </div>
+                                <div class="name">Referral/Rank</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="moretext">
+                    <div class="row g-2 contents">
+
+                        {{-- <div class="col-4">
+                            <div class="single">
+                                <a href="{{ route('referrals.rank.show') }}" onclick="openCustom(event, this)">
+                                    <div class="icon"><img src="../assets/frontend/materials/referral.png" alt=""
+                                            style="height:22px;width:22px;">
+                                    </div>
+                                    <div class="name">Referral/Rank</div>
+                                </a>
+                            </div>
+                        </div> --}}
+                        {{-- <div class="col-4">
+                            <div class="single">
+                                <a href="{{ route('account.info.edit') }}" onclick="openCustom(event, this)">
+                                    <div class="icon"><img src="../assets/frontend/materials/settings.png" alt=""
+                                            style="height:22px;width:22px;">
+                                    </div>
+                                    <div class="name">Settings</div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="single">
+                                <a href="{{ route('notifications.index') }}" onclick="openCustom(event, this)">
+                                    <div class="icon"><img src="../assets/frontend/materials/profile.png" alt=""
+                                            style="height:22px;width:22px;">
+                                    </div>
+                                    <div class="name">Notifications</div>
+                                </a>
+                            </div>
+                        </div>--}}
+                    </div>
+                </div>
+
+                <div class="centered">
+                    {{-- <button class="moreless-button site-btn-sm grad-btn">Load more</button> --}}
+                </div>
+            </div>
+
+            <!-- all Statistic -->
+            <div class="all-feature-mobile mb-3 mobile-screen-show">
+                <div class="title">All Statistic</div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="all-cards-mobile">
+                            <div class="contents row">
+                                <div class="col-12">
+                                    <div class="single-card">
+                                        <div class="icon">
+                                            <img src="{{ asset('assets\frontend\icons\home-white.svg')  }}" alt=""
+                                                style="height:18px;width:18px;">
+                                        </div>
+                                        <div class="content">
+                                            <div class="amount count">{{ $allTransactionsCount }}
+                                            </div>
+                                            <div class="name">All Transactions</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="single-card">
+                                        <div class="icon">
+                                            <img src="{{ asset('assets\frontend\icons\download.svg')  }}" alt=""
+                                                style="height:18px;width:18px;">
+                                        </div>
+                                        <div class="content">
+                                            <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
+                                                    class="count">{{ number_format($totalDeposited) }}</span>
+                                            </div>
+                                            <div class="name">Total Deposit</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="single-card">
+                                        <div class="icon">
+                                            <img src="{{ asset('assets\frontend\icons\box-white.svg')  }}" alt=""
+                                                style="height:18px;width:18px;">
+                                        </div>
+                                        <div class="content">
+                                            <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
+                                                    class="count">{{ number_format($totalTrade) }}</span>
+                                            </div>
+                                            <div class="name">Total Investment</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="moretext-2">
+                                <div class="contents row">
+                                    <div class="col-12">
+                                        <div class="single-card">
+                                            <div class="icon">
+                                                <img src="{{ asset('assets\frontend\icons\credit-card.svg')  }}" alt=""
+                                                    style="height:18px;width:18px;">
+                                            </div>
+                                            <div class="content">
+                                                <div class="amount"> {{ Auth::user()->getCurrencySymbol()}}<span
+                                                        class="count">{{ number_format($totalTradeProfit) }}</span>
+                                                </div>
+                                                <div class="name">Total Profit</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="single-card">
+                                            <div class="icon">
+                                                <img src="{{ asset('assets\frontend\icons\log-in.svg')  }}" alt=""
+                                                    style="height:18px;width:18px;">
+                                            </div>
+                                            <div class="content">
+                                                <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
+                                                        class="count">{{ number_format(Auth::user()->locked_funds, 0) }}</span>
+                                                </div>
+                                                <div class="name">Total Locked Funds</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="single-card">
+                                            <div class="icon">
+                                                <img src="{{ asset('assets\frontend\icons\log-in.svg')  }}" alt=""
+                                                    style="height:18px;width:18px;">
+                                            </div>
+                                            <div class="content">
+                                                <div class="amount"> {{ Auth::user()->getCurrencySymbol()}}<span
+                                                        class="count">{{ number_format($totalWithdrawn) }}</span>
+                                                </div>
+                                                <div class="name">Total Withdraw</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="single-card">
+                                            <div class="icon">
+                                                <img src="{{ asset('assets\frontend\icons\users-2.svg')  }}" alt=""
+                                                    style="height:18px;width:18px;">
+                                            </div>
+                                            <div class="content">
+                                                <div class="amount"> {{ Auth::user()->getCurrencySymbol()}}<span
+                                                        class="count">0</span>
+                                                </div>
+                                                <div class="name">Referral Bonus</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="single-card">
+                                            <div class="icon">
+                                                <img src="{{ asset('assets\frontend\icons\anchor.svg')  }}" alt=""
+                                                    style="height:18px;width:18px;">
+                                            </div>
+                                            <div class="content">
+                                                <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
+                                                        class="count">0</span>
+                                                </div>
+                                                <div class="name">Deposit Bonus</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="single-card">
+                                            <div class="icon">
+                                                <img src="{{ asset('assets\frontend\icons\archive.svg')  }}" alt=""
+                                                    style="height:18px;width:18px;">
+                                            </div>
+                                            <div class="content">
+                                                <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
+                                                        class="count">0</span>
+                                                </div>
+                                                <div class="name"> Investment Bonus</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="single-card">
+                                            <div class="icon">
+                                                <img src="{{ asset('assets\frontend\icons\gift.svg')  }}" alt=""
+                                                    style="height:18px;width:18px;">
+                                            </div>
+                                            <div class="content">
+                                                <div class="amount count">
+                                                    {{ Auth::user()->referralCount() }}
+                                                </div>
+                                                <div class="name"> Total Referral</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="single-card">
+                                            <div class="icon">
+                                                <img src="{{ asset('assets\frontend\icons\award.svg')  }}" alt=""
+                                                    style="height:18px;width:18px;">
+                                            </div>
+                                            <div class="content">
+                                                <div class="amount ">
+                                                    {{ Auth::user()->rankName() }}
+                                                </div>
+                                                <div class="name">Rank Achieved</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="single-card">
+                                            <div class="icon">
+                                                <img src="{{ asset('assets\frontend\icons\alert-triangle.svg')  }}"
+                                                    alt="" style="height:18px;width:18px;">
+                                            </div>
+                                            <div class="content">
+                                                <div class="amount count">0</div>
+                                                <div class="name"> Total Ticket</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="centered">
+                                <button class="moreless-button-2 site-btn-sm grad-btn">Load more</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="all-feature-mobile mobile-transactions mb-3 mobile-screen-show" style="display: block;">
+                <div class="title">Recent Transactions</div>
+                <div class="contents">
+                    @foreach ($transactions as $transaction)
+                        <div class="single-transaction">
+                            <div class="transaction-left">
+                                <div class="transaction-des">
+                                    <div class="transaction-title">
+                                        <strong>
+                                            @if ($transaction['type'] === 'Withdrawal')
+                                                Withdrawal
+                                            @else
+                                                {{ $transaction['comment'] ?? 'Deposit' }}
+                                            @endif
+                                        </strong>
+                                    </div>
+                                    <div class="transaction-id">
+                                        {{ $transaction['transaction_id'] }}
+                                    </div>
+                                    <div class="transaction-date">
+                                        {{ \Carbon\Carbon::parse($transaction['created_at'])->format('M d Y H:i') }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="transaction-right" style="text-align:right;">
+                                <div
+                                    class="transaction-amount {{ $transaction['type'] === 'Withdrawal' ? 'text-danger' : 'text-success' }}">
+                                    {{ $transaction['type'] === 'Withdrawal' ? '-' : '+' }}
+                                    {{ number_format($transaction['amount'], 2) }} {{ $transaction['currency'] ?? '' }}
+                                </div>
+                                <div class="transaction-fee sub">
+                                </div>
+                                <div class="transaction-gateway">
+                                    {{ $transaction['gateway'] }}
+                                </div>
+                                <div class="site-badge {{ $transaction['status_class'] }}" style="margin-top:4px;">
+                                    {{ ucfirst($transaction['status']) }}
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="mobile-ref-url mb-4">
+                <div class="all-feature-mobile">
+                    <div class="title">Referral URL</div>
+                    <div class="mobile-referral-link-form">
+
+                        <input type="text" value="{{ route('register') . '?refid=' . Auth::id() }}" id="refLink"
+                            readonly />
+                        <button type="submit" onclick="copyRef()">
+                            <span id="copy">Copy</span>
+                        </button>
+                    </div>
+                    <p class="referral-joined">
+                        {{ Auth::user()->referralCount() }} people have joined using this URL.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

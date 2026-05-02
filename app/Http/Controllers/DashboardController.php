@@ -268,6 +268,35 @@ class DashboardController extends Controller
         }
     }
 
+    public function updateCurrency(Request $request)
+    {
+        $validated = $request->validate([
+            'currency' => 'required|in:USD,GBP,EUR,AUD', // Add more currencies if needed
+        ]);
+
+        try {
+            $user = auth()->user();
+            $user->update(['currency' => $validated['currency']]);
+
+            // Optional: Send notification
+            app(NotificationController::class)->addNotification(
+                $user->id,
+                'Currency Updated',
+                "Your display currency has been changed to {$validated['currency']}."
+            );
+
+            return response()->json([
+                'message' => 'success',
+                'currency' => $validated['currency']
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'error',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
 
     /*
     |--------------------------------------------------------------------------
@@ -314,7 +343,7 @@ class DashboardController extends Controller
     */
     public function previewLockedFunds()
     {
-       return $this->renderDashboard('livewire.dashboard.partials.locked-funds-preview');
+        return $this->renderDashboard('livewire.dashboard.partials.locked-funds-preview');
     }
 
     public function showLockedFunds()

@@ -700,4 +700,38 @@
             $('#reviewSection').fadeIn(300);
         }
     });
+
+    $(document).ready(function () {
+        $('.currency-option').on('click', function () {
+            $('.currency-option').removeClass('active');
+            $(this).addClass('active');
+            $(this).find('input').prop('checked', true);
+
+            const newCurrency = $(this).find('input').val();
+
+            $.ajax({
+                url: '{{ route("account.currency.update") }}',
+                type: 'POST',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    currency: newCurrency
+                },
+                beforeSend: function () { showSpinner(); },
+                success: function (response) {
+                    if (response.message === 'success') {
+                        toastr.success('Currency updated successfully! Reloading page...');
+
+                        // Force reload after short delay
+                        setTimeout(function () {
+                            window.location.reload(true);   // true = force reload from server
+                        }, 1200);
+                        hideSpinner();
+                    }
+                },
+                error: function () {
+                    toastr.error('Failed to update currency');
+                }
+            });
+        });
+    });
 </script>

@@ -743,7 +743,7 @@
             height: 14px;
         }
 
-        
+
 
         /* logout + settings row */
         .uc-profile-actions {
@@ -1132,39 +1132,39 @@
         }
 
         /* KYC levels */
-  .uc-kyc-levels {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
+        .uc-kyc-levels {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
 
-    .uc-kyc-level {
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        font-family: sans-serif;
-    }
+        .uc-kyc-level {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-family: sans-serif;
+        }
 
-    .uc-kyc-level.done {
-        background: rgba(61, 214, 140, 0.15);
-        border: 1px solid rgba(61, 214, 140, 0.4);
-        color: var(--success);
-    }
+        .uc-kyc-level.done {
+            background: rgba(61, 214, 140, 0.15);
+            border: 1px solid rgba(61, 214, 140, 0.4);
+            color: var(--success);
+        }
 
-    .uc-kyc-level.pending {
-        background: rgba(251, 191, 36, 0.15);
-        border: 1px solid rgba(251, 191, 36, 0.5);
-        color: var(--warning);
-    }
+        .uc-kyc-level.pending {
+            background: rgba(251, 191, 36, 0.15);
+            border: 1px solid rgba(251, 191, 36, 0.5);
+            color: var(--warning);
+        }
 
-    .uc-kyc-level.locked {
-        background: rgba(255,255,255,0.05);
-        border: 1px solid var(--border);
-        color: var(--text-muted);
-    }
+        .uc-kyc-level.locked {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+        }
 
         /* Preferences radio-style rows */
         .uc-pref-group {
@@ -1335,6 +1335,37 @@
                 padding: 8px 2px;
             }
         }
+
+        .currency-option {
+            cursor: pointer;
+            display: block;
+        }
+
+        .currency-box {
+            background: var(--bg-layer3);
+            border: 2px solid transparent;
+            border-radius: var(--radius-md);
+            padding: 16px 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .currency-option input:checked+.currency-box,
+        .currency-option.active .currency-box {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        .currency-box .flag {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .currency-box strong {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
     </style>
     <title>
         {{ config('app.name') }} - Dashboard
@@ -1471,7 +1502,7 @@
                                         <i class="anticon anticon-setting"></i>Settings
                                     </a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="{{ route('avatar.edit') }}" onclick="openCustom(event, this)"
                                         class="dropdown-item" type="button">
                                         <i class="anticon anticon-picture"></i>Update Avatar
@@ -1488,7 +1519,7 @@
                                         class="dropdown-item" type="button">
                                         <i class="anticon anticon-lock"></i>Change Password
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li>
                                     <a href="../user/support-ticket-index.html" class="dropdown-item" type="button">
                                         <i class="anticon anticon-customer-service"></i>Support Tickets
@@ -1582,11 +1613,12 @@
                                 <i class="anticon anticon-setting"></i><span>Settings</span>
                             </a>
                         </li>
-                        {{-- <li class="side-nav-item">
+{{--                         
+                         <li class="side-nav-item">
                             <a href="{{ route('account.info') }}" onclick="openCustom(event, this)">
                                 <i class="anticon anticon-info-circle"></i><span>Account Info</span>
                             </a>
-                        </li> --}}
+                        </li> 
                         <li class="side-nav-item">
                             <a href="{{ route('account.info.edit') }}" onclick="openCustom(event, this)">
                                 <i class="anticon anticon-setting"></i><span>Edit Account Info</span>
@@ -1616,7 +1648,7 @@
                             <a href="{{ route('password.update') }}" onclick="openCustom(event, this)">
                                 <i class="anticon anticon-key"></i><span>Change Password</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="side-nav-item">
                             <a href="{{ route('locked.funds') }}" onclick="openCustom(event, this)">
                                 <i class="anticon anticon-lock"></i><span>Locked Funds</span>
@@ -1664,7 +1696,7 @@
                             </div>
                         </div>
                         <!--Page Content-->
-                            
+
                         <!-- ADD THIS WRAPPER -->
                         <div id="dynamic-content">
                             @if(isset($content_view))
@@ -1694,7 +1726,7 @@
                 <a href="{{ route('referrals.rank.show') }}" onclick="openCustom(event, this)">
                     <i icon-name="gift"></i>
                 </a>
-                <a href="{{ route('account.info.edit') }}" onclick="openCustom(event, this)">
+                <a href="{{ route('settings') }}" onclick="openCustom(event, this)">
                     <i icon-name="settings"></i>
                 </a>
             </div>

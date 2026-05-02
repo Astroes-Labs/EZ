@@ -68,6 +68,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/account/info', [DashboardController::class, 'showAccountInfo'])->name('account.info');
     Route::get('/account/info/edit', [DashboardController::class, 'editAccountInfo'])->name('account.info.edit');
     Route::post('/account/info/update', [DashboardController::class, 'updateAccountInfo'])->name('account.info.update');
+    Route::post('/account/currency/update', [DashboardController::class, 'updateCurrency'])->name('account.currency.update');
     Route::get('/avatar/edit', [DashboardController::class, 'editAvatar'])->name('avatar.edit');
     Route::post('/avatar/update', [DashboardController::class, 'updateAvatar'])->name('avatar.update');
 
