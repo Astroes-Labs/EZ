@@ -27,7 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', Index::class)->name('dashboard');
     Route::get('/dashboard/home', Index::class)->name('index'); 
     */
-
+    Route::post('/account/2fa/toggle', [UserController::class, 'toggle2FA'])->name('account.2fa.toggle');
     Route::get('/support', [SupportController::class, 'index'])->name('support.index');
 
     Route::post('/support/tickets', [SupportController::class, 'store'])->name('support.store');

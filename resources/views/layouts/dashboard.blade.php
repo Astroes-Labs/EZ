@@ -1532,7 +1532,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
-                                    <a href="{{ route('account.info.edit') }}" onclick="openCustom(event, this)"
+                                    <a href="{{ route('settings') }}" onclick="openCustom(event, this)"
                                         class="dropdown-item" type="button">
                                         <i class="anticon anticon-setting"></i>Settings
                                     </a>

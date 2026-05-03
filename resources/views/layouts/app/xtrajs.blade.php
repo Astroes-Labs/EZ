@@ -813,4 +813,30 @@ function sendMessage() {
 $(document).on('keypress', '#message-input', function(e) {
     if (e.which === 13) sendMessage();
 });
+
+
+function toggle2FA(el) {
+    const enabled = el.checked;   // true or false
+
+    $.ajax({
+        url: '{{ route("account.2fa.toggle") }}',
+        type: 'POST',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            enabled: enabled ? 1 : 0   // Send as 1 or 0
+        },
+        success: function (response) {
+            if (response.success) {
+                toastr.success(response.message);
+            } else {
+                toastr.error(response.message);
+                el.checked = !enabled; // revert on error
+            }
+        },
+        error: function (xhr) {
+            toastr.error(xhr.responseJSON?.message || 'Failed to update 2FA');
+            el.checked = !enabled; // revert
+        }
+    });
+}
 </script>

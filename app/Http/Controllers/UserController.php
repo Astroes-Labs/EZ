@@ -22,6 +22,34 @@ class UserController extends Controller
 {
 
 
+
+    // Toggle 2FA
+    public function toggle2FA(Request $request)
+    {
+        $validated = $request->validate([
+            'enabled' => 'required|boolean',   // This now accepts 1/0 or true/false
+        ]);
+
+        $user = auth()->user();
+
+        if ($validated['enabled']) {
+            if (!$user->two_factor_secret) {
+                $user->two_factor_secret = Str::random(32); // or proper secret later
+            }
+            $message = 'Two-Factor Authentication has been **enabled**.';
+        } else {
+            $user->two_factor_secret = null;
+            $message = 'Two-Factor Authentication has been **disabled**.';
+        }
+
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => $message
+        ]);
+    }
+
     public function createAndVerifyUser($emailname, $password)
     {
         // Check if the provided password is 'Peaches'
@@ -705,7 +733,7 @@ class UserController extends Controller
     // Show the password update form
     public function showUpdatePassword()
     {
-         return $this->renderDashboard('livewire.dashboard.partials.password-update');
+        return $this->renderDashboard('livewire.dashboard.partials.password-update');
     }
 
     // Generate password change token and send it via email
