@@ -62,7 +62,7 @@
                 <div class="content">
                     <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
                             class="count">{{ number_format(Auth::user()->locked_funds, 0) }}</span></h4>
-                    <p>Total Locked Funds </p>
+                    <p>Total Fixed Deposit </p>
                 </div>
             </div>
         </div>

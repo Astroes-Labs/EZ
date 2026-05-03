@@ -39,7 +39,7 @@
                                             {{ Auth::user()->getCurrencySymbol() . " " . Auth::user()->displayBalance(Auth::user()->trading_balance) }} (Trading Balance)
                                         </option>
                                         <option value="2">
-                                            {{ Auth::user()->getCurrencySymbol() . " " . Auth::user()->displayBalance(Auth::user()->locked_funds) }} (Locked Funds)
+                                            {{ Auth::user()->getCurrencySymbol() . " " . Auth::user()->displayBalance(Auth::user()->locked_funds) }} (Fixed Deposit)
                                         </option>
                                     </select>
                                 </div>

@@ -77,7 +77,7 @@
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Locked Funds</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Fixed Deposit</label>
                 <input type="number" step="0.01" name="locked_funds" value="{{ old('locked_funds', $user->locked_funds ?? 0) }}" required
                        class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
             </div>

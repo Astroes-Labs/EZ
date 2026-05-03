@@ -108,7 +108,7 @@
                 <div class="content">
                     <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
                             class="count">{{ number_format(Auth::user()->locked_funds, 0) }}</span></h4>
-                    <p>Total Locked Funds </p>
+                    <p>Total Fixed Deposit </p>
                 </div>
             </div>
         </div>
@@ -275,7 +275,7 @@
                         <span class="after-dot">
                         </span>
                     </div>
-                    <div class="wallet">Locked Funds</div>
+                    <div class="wallet">Fixed Deposit</div>
                 </div>
                 <div class="info">
                     <i icon-name="info"></i>You Earned 0 {{ Auth::user()->currency  }} This Week
@@ -394,7 +394,7 @@
                             <a href="{{ route('locked.funds') }}" onclick="openCustom(event, this)">
                                 <div class="icon"><img src="../assets/frontend/materials/transfer.png" alt="">
                                 </div>
-                                <div class="name">Locked Funds</div>
+                                <div class="name">Fixed Deposit</div>
                             </a>
                         </div>
                     </div>
@@ -508,7 +508,7 @@
                                                 <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
                                                         class="count">{{ number_format(Auth::user()->locked_funds, 0) }}</span>
                                                 </div>
-                                                <div class="name">Total Locked Funds</div>
+                                                <div class="name">Total Fixed Deposit</div>
                                             </div>
                                         </div>
                                     </div>
@@ -1749,7 +1749,7 @@
 
 <script>
 
-    //LOCKED FUNDS FEATURES AND FUNCTIONALITY
+    //Fixed Deposit FEATURES AND FUNCTIONALITY
     // Interest rates mapping
     const interestRates = {
         4: '10%',

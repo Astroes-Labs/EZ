@@ -168,7 +168,7 @@
                                 <p class="text-lg font-bold">{{ $user->currency ?? '$' }} {{ number_format($user->trading_balance ?? 0, 2) }}</p>
                             </div>
                             <div>
-                                <p class="text-sm font-medium text-gray-600 uppercase">Locked Funds</p>
+                                <p class="text-sm font-medium text-gray-600 uppercase">Fixed Deposit</p>
                                 <p class="text-lg">{{ $user->currency ?? '$' }} {{ number_format($user->locked_funds ?? 0, 2) }}</p>
                             </div>
                             <div>

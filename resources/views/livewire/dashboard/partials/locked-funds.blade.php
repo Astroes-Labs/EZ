@@ -3,7 +3,7 @@
         <div class="col-xl-12">
             <div class="site-card">
                 <div class="site-card-header">
-                    <h3 class="title">Top-Up Locked Funds</h3>
+                    <h3 class="title">Top-Up Fixed Deposit</h3>
                 </div>
                 <div class="site-card-body">
                     <div class="text-center mb-4">
@@ -16,7 +16,7 @@
                     <form action="{{ route('locked.funds.store') }}" method="post" id="lockFundsForm">
                         @csrf
                         <div class="row">
-                            <!-- Locked Funds Input -->
+                            <!-- Fixed Deposit Input -->
                             <div class="col-12 mb-3">
                                 <label for="locked_funds" class="form-label">Amount to Lock:</label>
                                 <div class="input-group">

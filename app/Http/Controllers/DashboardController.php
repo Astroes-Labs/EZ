@@ -174,7 +174,7 @@ class DashboardController extends Controller
         if ($from == 2 && $amount > $user->locked_funds) {
             return response()->json([
                 'status'  => 'error',
-                'message' => 'You have insufficient locked funds for this withdrawal request.',
+                'message' => 'You have insufficient Fixed Deposit for this withdrawal request.',
             ], 400);
         }
 
@@ -239,6 +239,11 @@ class DashboardController extends Controller
     public function editAccountInfo()
     {
         return $this->renderDashboard('livewire.dashboard.partials.account-info-edit');
+    }
+
+    public function editCurrency()
+    {
+        return $this->renderDashboard('livewire.dashboard.partials.account-currency-edit');
     }
 
     public function updateAccountInfo(Request $request)
@@ -338,7 +343,7 @@ class DashboardController extends Controller
 
     /*
     |--------------------------------------------------------------------------
-    | Locked Funds
+    | Fixed Deposit
     |--------------------------------------------------------------------------
     */
     public function previewLockedFunds()
@@ -390,7 +395,7 @@ class DashboardController extends Controller
         $trading_balance = Auth::user()->getCurrencySymbol() . " " . Auth::user()->displayBalance($totalProfit);
 
         return response()->json([
-            'message'         => 'Locked funds and duration updated successfully!',
+            'message'         => 'Fixed Deposit and duration updated successfully!',
             'locked_funds'    => $locked_funds,
             'trading_balance' => $trading_balance,
         ]);

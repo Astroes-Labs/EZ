@@ -2,16 +2,16 @@
     <div class="col-xl-12">
         <div class="site-card">
             <div class="site-card-header">
-                <h3 class="title">Locked Funds</h3>
+                <h3 class="title">Fixed Deposit</h3>
             </div>
             <div class="site-card-body">
                 <div class="row">
                     <div class="col-12 text-lg-left">
-                        <!-- Display Locked Funds -->
+                        <!-- Display Fixed Deposit -->
                         <div class="locked-funds-card mb-4">
                             <div class="locked-funds-inner">
                                 <div class="locked-funds-top">
-                                    <span class="locked-label">Locked Funds</span>
+                                    <span class="locked-label">Fixed Deposit</span>
                                 </div>
 
                                 <div class="locked-amount">
@@ -27,7 +27,7 @@
                         <p style="text-align:left;" class="text-left">
                             Our expertise in the financial business of trading and having different clients with their
                             requirements made us think and brought up an additional product on the platform called
-                            Locked Funds, A sort of Time Deposit – A savings account with a time frame where the
+                            Fixed Deposit, A sort of Time Deposit – A savings account with a time frame where the
                             customer receives an attractive interest rate to lock the money (part of your total Balance)
                             with a minimum of 4 months and 12 months Max.
                             <br><br>
@@ -38,7 +38,7 @@
 
                         <h4 class=" "><b>How does it work?</b></h4>
                         <p style="text-align:left;" class="text-left">
-                            Very easy just use the Locked Funds Part on our site - deposit the amount you want from the
+                            Very easy just use the Fixed Deposit Part on our site - deposit the amount you want from the
                             trading balance; Choose a Timeframe Between 4-12Months; Oh and remember, you can withdraw
                             anytime!
                         </p><br>
@@ -53,7 +53,7 @@
                         <h4 class=" "><b>FOR MORE INFORMATION</b></h4>
                         <p style="text-align:left;" class="text-left">
                             Contact our support team or any of our qualified and validated Managers to secure your
-                            additional 5% for the locked funds of 4 months and 10% for 6 months.
+                            additional 5% for the Fixed Deposit of 4 months and 10% for 6 months.
                         </p><br>
 
                         <h4 class=" "><b>WHAT DO I DO?</b></h4>
@@ -65,7 +65,7 @@
 
                         <h4 class=" "><b>NOTE</b></h4>
                         <p style="text-align:left;" class="text-left">
-                            <span class="text-danger">*</span> Locked Funds cannot be Traded.<br>
+                            <span class="text-danger">*</span> Fixed Deposit cannot be Traded.<br>
                             <span class="text-danger">*</span> Interest Rates are added on a monthly basis.
                         </p><br>
 

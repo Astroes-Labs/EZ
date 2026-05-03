@@ -37,7 +37,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('users/{user}/copy-trading', [UserController::class, 'storeCopy'])->name('users.copy-trading.store');
         Route::delete('users/{user}/copy-trading/{trader}', [UserController::class, 'destroyCopy'])->name('users.copy-trading.destroy');
 
-        // Locked Funds (per user)
+        // Fixed Deposit (per user)
         Route::get('users/{user}/locked-funds', [UserController::class, 'lockedFunds'])->name('users.locked-funds');
         Route::post('users/{user}/locked-funds', [UserController::class, 'storeLockedFunds'])->name('users.locked-funds.store');
 

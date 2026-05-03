@@ -273,7 +273,7 @@
                             </div>
                         </div>
                         <div class="wallet-info">
-                            <div class="wallet-id"><i icon-name="landmark"></i>Locked Funds</div>
+                            <div class="wallet-id"><i icon-name="landmark"></i>Fixed Deposit</div>
                             <div class="balance" id="lockedfundsBalance">
                                 {{ Auth::user()->getCurrencySymbol() . " " . Auth::user()->displayBalance(Auth::user()->locked_funds) }}
                             </div>
@@ -361,7 +361,7 @@
 
                         <li class="side-nav-item ">
                             <a href="{{ route('locked.funds') }}" onclick="openCustom(event, this)"><i
-                                    class="anticon anticon-lock"></i><span>Locked Funds</span></a>
+                                    class="anticon anticon-lock"></i><span>Fixed Deposit</span></a>
                         </li>
 
                         <li class="side-nav-item ">

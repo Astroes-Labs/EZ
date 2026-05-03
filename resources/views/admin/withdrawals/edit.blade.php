@@ -43,7 +43,7 @@
                 <label class="block text-sm font-medium mb-2">From Balance</label>
                 <select name="from" required class="w-full border rounded-lg px-4 py-3 focus:ring-indigo-500 focus:border-indigo-500">
                     <option value="trading" {{ $withdrawal->from === 'trading' ? 'selected' : '' }}>Trading Balance</option>
-                    <option value="locked" {{ $withdrawal->from === 'locked' ? 'selected' : '' }}>Locked Funds</option>
+                    <option value="locked" {{ $withdrawal->from === 'locked' ? 'selected' : '' }}>Fixed Deposit</option>
                 </select>
             </div>
 

@@ -39,7 +39,7 @@
 
                 <a href="{{ route('admin.users.locked-funds', $user) }}"
                    class="inline-flex items-center px-5 py-2.5 border border-purple-300 hover:bg-purple-50 text-purple-700 rounded-lg transition font-medium">
-                    <i class="fas fa-lock mr-2"></i> Locked Funds
+                    <i class="fas fa-lock mr-2"></i> Fixed Deposit
                 </a>
             </div>
         </div>
@@ -121,7 +121,7 @@
                         </div>
 
                         <div>
-                            <p class="text-gray-500">Locked Funds</p>
+                            <p class="text-gray-500">Fixed Deposit</p>
                             <p class="font-semibold text-purple-700 mt-1">
                                 {{ $user->currency ?? '$' }} {{ number_format($user->locked_funds ?? 0, 2) }}
                             </p>

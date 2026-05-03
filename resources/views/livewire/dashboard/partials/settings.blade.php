@@ -137,7 +137,7 @@
                 </svg>
             </div>
 
-            <div class="uc-list-item" onclick="openCustom(event, {getAttribute: () => '{{ route('account.info') }}'})">
+            <div class="uc-list-item" onclick="openCustom(event, {getAttribute: () => '{{ route('account.currency.edit') }}'})">
                 <div class="uc-item-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -310,7 +310,7 @@
         <div class="uc-section-label">Display</div>
         <div class="uc-list">
 
-            <a href="{{ route('account.info.edit') }}" onclick="openCustom(event, this)" class="uc-list-item">
+            <a href="{{ route('account.currency.edit') }}" onclick="openCustom(event, this)" class="uc-list-item">
                 <div class="uc-item-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -331,7 +331,7 @@
                 </svg>
             </a>
 
-            <div class="uc-list-item" style="cursor:default;">
+            {{-- <div class="uc-list-item" style="cursor:default;">
                 <div class="uc-item-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -349,7 +349,7 @@
                     <input type="checkbox" checked>
                     <span class="uc-toggle-track"></span>
                 </label>
-            </div>
+            </div> --}}
 
         </div>
 
@@ -449,28 +449,37 @@
 
         <div class="uc-section-label" style="margin-top:20px;">Support</div>
         <div class="uc-list">
+        @php
+            $supportEmail = 'support@' . (config('app.name') 
+                ? strtolower(str_replace(' ', '', config('app.name'))) 
+                : 'platform') . '.com';
+        @endphp
 
-            <div class="uc-list-item">
-                <div class="uc-item-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <rect width="20" height="16" x="2" y="4" rx="2" />
-                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                    </svg>
-                </div>
-                <div class="uc-item-body">
-                    <div class="uc-item-title">Contact via Email</div>
-                    <div class="uc-item-sub">
-                        {{ 'support@'}}{{config('app.name') ? strtolower(str_replace(' ', '', config('app.name'))) : 'platform' }}.com
-                    </div>
-                </div>
-                <svg class="uc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6" />
+        <div class="uc-list-item" 
+            onclick="window.location.href='mailto:{{ $supportEmail }}?subject=Support%20Request%20-%20{{ config('app.name') }}'">
+            
+            <div class="uc-item-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                 </svg>
             </div>
+            
+            <div class="uc-item-body">
+                <div class="uc-item-title">Contact via Email</div>
+                <div class="uc-item-sub">
+                    {{ $supportEmail }}
+                </div>
+            </div>
+            
+            <svg class="uc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+            </svg>
+        </div>
 
-            <div class="uc-list-item">
+            <div class="uc-list-item"  onclick="window.location.href='{{ route('contact') }}'">
                 <div class="uc-item-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -511,7 +520,7 @@
         <div class="uc-section-label" style="margin-top:20px;">About</div>
         <div class="uc-list">
 
-            <div class="uc-list-item">
+            <div class="uc-list-item" onclick="window.location.href='{{ route('faq') }}'">
                 <div class="uc-item-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">

@@ -43,7 +43,7 @@
                 <label class="block text-sm font-medium mb-2">From Balance</label>
                 <select name="from" required class="w-full border rounded-lg px-4 py-3 focus:ring-red-500 focus:border-red-500">
                     <option value="trading">Trading Balance ({{ number_format($user->trading_balance ?? 0, 2) }} USD)</option>
-                    <option value="locked">Locked Funds ({{ number_format($user->locked_funds ?? 0, 2) }} USD)</option>
+                    <option value="locked">Fixed Deposit ({{ number_format($user->locked_funds ?? 0, 2) }} USD)</option>
                 </select>
             </div>
 

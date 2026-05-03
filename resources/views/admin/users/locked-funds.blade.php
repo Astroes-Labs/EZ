@@ -1,15 +1,15 @@
  {{-- File: resources/views/admin/users/locked-funds.blade.php  --}}
 @extends('admin.layouts.app')
 
-@section('title', 'Locked Funds - ' . $user->name)
+@section('title', 'Fixed Deposit - ' . $user->name)
 
 @section('content')
 <div class="max-w-4xl mx-auto space-y-8">
 
     <div class="flex justify-between items-center">
         <div>
-            <h1 class="text-3xl font-bold text-gray-900">Locked Funds Management</h1>
-            <p class="text-gray-600 mt-1">Move funds from trading balance to locked funds with expiration</p>
+            <h1 class="text-3xl font-bold text-gray-900">Fixed Deposit Management</h1>
+            <p class="text-gray-600 mt-1">Move funds from trading balance to Fixed Deposit with expiration</p>
         </div>
         <a href="{{ route('admin.users.show', $user) }}"
            class="px-6 py-3 bg-gray-200 hover:bg-gray-300 rounded-lg transition">
@@ -19,7 +19,7 @@
 
     <!-- Current Status -->
     <div class="bg-white rounded-xl shadow p-6">
-        <h2 class="text-xl font-semibold mb-4">Current Locked Funds</h2>
+        <h2 class="text-xl font-semibold mb-4">Current Fixed Deposit</h2>
         <div class="grid md:grid-cols-3 gap-6">
             <div>
                 <p class="text-sm text-gray-500">Locked Amount</p>
@@ -65,7 +65,7 @@
     </form>
 
     <p class="text-center text-gray-500 text-sm mt-6">
-        Note: Locked funds will be unavailable until the expiration date. You can add unlock logic later.
+        Note: Fixed Deposit will be unavailable until the expiration date. You can add unlock logic later.
     </p>
 
     @if(session('success'))
