@@ -71,7 +71,7 @@
 
                         <a href="{{ route('locked.funds.show') }}" onclick="openCustom(event, this)"
                             class="site-btn blue-btn w-100 text-center">
-                            Proceed to Lock Funds
+                            Proceed to Deposit Funds
                         </a>
                     </div>
                 </div>
