@@ -60,7 +60,7 @@
         </div>
 
         <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-medium transition shadow">
-            Lock Funds
+            Deposit Funds
         </button>
     </form>
 
