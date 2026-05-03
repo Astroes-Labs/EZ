@@ -23,10 +23,6 @@ Route::middleware(['auth'])->group(function () {});
 // All protected routes (require login)
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    /*  
-    Route::get('/dashboard', Index::class)->name('dashboard');
-    Route::get('/dashboard/home', Index::class)->name('index'); 
-    */
     Route::post('/account/2fa/toggle', [UserController::class, 'toggle2FA'])->name('account.2fa.toggle');
     Route::get('/support', [SupportController::class, 'index'])->name('support.index');
 
@@ -37,7 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('index'); //sidebar or mobile menu dashboard route 
+    Route::get('/dashboard/home', [DashboardController::class, 'index'])->name('index'); //sidebar or mobile menu dashboard route 
 
 
     Route::get('/deposit', [DashboardController::class, 'showDeposit'])->name('deposit');
