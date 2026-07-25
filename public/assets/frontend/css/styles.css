@@ -379,6 +379,253 @@ h1, h2, h3, h4, h5, h6 {
 .wrap-custom-file label.file-ok .upload-icon { display: none; }
 .wrap-custom-file label .recomended { color: var(--success); font-size: 13px; position: absolute; transform: translate(-50%,-50%); bottom: 0; left: 50%; }
 
+
+
+/* =================================================================us
+   8. TACTILE CARDS & CONTAINERS
+   ================================================================ */
+
+.tactile-card {
+    background-color: var(--surface-base);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-tactile-raised);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.tactile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+    pointer-events: none;
+}
+
+.tactile-card:hover {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-tactile-hover);
+    transform: translateY(-2px);
+}
+
+.tactile-card-inset {
+    background-color: var(--surface-sunken);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-tactile-inset);
+}
+
+
+/* =================================================================
+   9. FORM CONTROLS & INPUTS
+   ================================================================ */
+
+.tactile-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.tactile-label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.tactile-input {
+    width: 100%;
+    background-color: var(--surface-sunken);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    box-shadow: var(--shadow-tactile-inset);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.tactile-input::placeholder {
+    color: var(--text-muted);
+}
+
+.tactile-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-tactile-inset), 0 0 0 2px rgba(139, 92, 246, 0.15);
+}
+
+
+/* =================================================================
+   10. BUTTONS & INTERACTIVE ELEMENTS
+   ================================================================ */
+
+.tactile-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.tactile-btn-primary {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-hover));
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: var(--shadow-tactile-raised), 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.tactile-btn-primary:hover {
+    background: linear-gradient(135deg, var(--accent-hover), #7c3aed);
+    box-shadow: var(--shadow-tactile-hover), 0 6px 16px rgba(139, 92, 246, 0.4);
+    transform: translateY(-1px);
+}
+
+.tactile-btn-primary:active {
+    background: var(--accent-primary);
+    box-shadow: var(--shadow-tactile-inset);
+    transform: translateY(1px);
+}
+
+.tactile-btn-secondary {
+    background-color: var(--surface-raised);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-tactile-raised);
+}
+
+.tactile-btn-secondary:hover {
+    background-color: var(--surface-base);
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-tactile-hover);
+    transform: translateY(-1px);
+}
+
+
+/* =================================================================
+   11. DATA DISPLAY & BADGES
+   ================================================================ */
+
+.tactile-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: var(--radius-pill);
+    background-color: var(--surface-sunken);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-tactile-inset);
+}
+
+.tactile-badge-accent {
+    background-color: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.3);
+    color: var(--accent-primary);
+}
+
+.tactile-table-container {
+    width: 100%;
+    overflow-x: auto;
+    background-color: var(--surface-base);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-tactile-raised);
+}
+
+.tactile-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9375rem;
+}
+
+.tactile-table th {
+    background-color: var(--surface-sunken);
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.tactile-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+}
+
+.tactile-table tr:last-child td {
+    border-bottom: none;
+}
+
+.tactile-table tbody tr {
+    transition: background-color var(--transition-fast);
+}
+
+.tactile-table tbody tr:hover {
+    background-color: var(--surface-raised);
+}
+
+
+/* =================================================================
+   12. UTILITY CLASSES & HELPERS
+   ================================================================ */
+
+.text-glow {
+    text-shadow: 0 0 12px rgba(139, 92, 246, 0.4);
+}
+
+.border-glow {
+    box-shadow: 0 0 0 1px var(--accent-primary), var(--shadow-tactile-raised);
+}
+
+.bg-void {
+    background-color: var(--bg-void);
+}
+
+.bg-surface {
+    background-color: var(--surface-base);
+}
+
+
+/* =================================================================
+   13. RESPONSIVE BREAKPOINTS & MEDIA QUERIES
+   ================================================================ */
+
+@media (max-width: 768px) {
+    .tactile-card {
+        border-radius: var(--radius-md);
+        padding: 1rem;
+    }
+    
+    .tactile-btn {
+        width: 100%;
+    }
+}
+
+
 /* ─────────────────────────────────────────────
    PANEL LAYOUT
 ───────────────────────────────────────────── */

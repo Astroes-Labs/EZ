@@ -22,7 +22,7 @@
         href="{{ url('../assets/vendor/mckenziearts/laravel-notify/css/notify.css') }}" />
     <link rel="stylesheet" href="{{ url('../assets/global/css/custom.css') }}" />
     <link rel="stylesheet" href="{{ url('../assets/frontend/css/magnific-popup.css') }}" />
-    <link rel="stylesheet" href="{{ url('../assets/frontend/css/styles.css?var=2.6') }}" />
+    <link rel="stylesheet" href="{{ url('../assets/frontend/css/styles.css?var=2.9') }}" />
     <link rel="stylesheet" href="{{ url('../assets/frontend/css/toastr.min.css') }}">
 
     {{-- Google Fonts for the premium design system --}}

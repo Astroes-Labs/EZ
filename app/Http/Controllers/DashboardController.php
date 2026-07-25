@@ -201,7 +201,7 @@ class DashboardController extends Controller
         );
 
         $checkout = view(
-            'partials.payment-checkout',
+            'livewire.dashboard.partials.payment-checkout',
             compact('header', 'url', 'message', 'buttonText', 'price')
         )->render();
 

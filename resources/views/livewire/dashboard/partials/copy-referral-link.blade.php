@@ -71,7 +71,7 @@
                                id="refLink"
                                readonly />
 
-                        <button type="submit" onclick="copyRef()">
+                        <button type="submit" onclick="copyRef()" class="px-2">
                             <i class="anticon anticon-copy"></i>
                             <span id="copy">Copy</span>
                         </button>
