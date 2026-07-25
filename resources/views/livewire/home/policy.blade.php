@@ -1,122 +1,146 @@
-<div class="min-h-screen bg-[#0a0f1c] text-gray-100 font-sans">
+<div class="min-h-screen bg-[#07070a] text-gray-100 font-sans">
 
-    {{-- Reusable Hero Banner --}}
-    <livewire:shared.hero-banner 
-        title="OUR <span class='text-[#eac46e]'>POLICY</span>" 
-        subtitle="Clear guidelines that govern our relationship with investors at {{ config('app.name') }}" />
+    <!-- Page Hero / Banner -->
+    <section class="relative min-h-[50vh] flex items-center justify-center bg-[#07070a] overflow-hidden pt-20" id="banner">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 pointer-events-none"></div>
+        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/40 to-transparent"></div>
 
-    {{-- Main Policy Content --}}
-    <section class="py-20 lg:py-28 bg-[#111827]">
+        <div class="container mx-auto px-6 lg:px-8 relative z-10 text-center py-20 lg:py-32">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase font-mono mb-4">
+                OUR <span class="text-[#8b5cf6]">POLICY</span>
+            </h1>
+            <p class="text-sm text-gray-400 font-light max-w-2xl mx-auto uppercase tracking-wide">
+                Clear guidelines that govern our relationship with investors at {{ config('app.name') }}
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Policy Content -->
+    <section class="py-20 lg:py-28 bg-[#07070a]">
         <div class="max-w-4xl mx-auto px-6 space-y-12">
 
-            {{-- Introduction --}}
-            <livewire:shared.content-card title="Introduction">
-                <p>This Policy document outlines the rules, guidelines, and expectations for all users and investors 
-                of {{ config('app.name') }}. By accessing or using our platform, you agree to comply with this policy 
-                in its entirety. Please read it carefully.</p>
-            </livewire:shared.content-card>
+            <!-- Introduction -->
+            <div class="bg-[#111116] border border-white/10 p-8 lg:p-10 relative group shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+                <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/30 to-transparent"></div>
+                <h3 class="text-base font-mono font-bold text-white uppercase tracking-widest mb-6">Introduction</h3>
+                <p class="text-sm font-light text-gray-300 leading-relaxed">
+                    This Policy document outlines the rules, guidelines, and expectations for all users and investors 
+                    of {{ config('app.name') }}. By accessing or using our platform, you agree to comply with this policy 
+                    in its entirety. Please read it carefully.
+                </p>
+            </div>
 
-            {{-- Investment Policy --}}
-            <livewire:shared.content-card title="Investment Policy">
-                <ul class="space-y-6 text-gray-300 text-lg">
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>All investments are subject to the chosen investment plan’s terms, including minimum and maximum amounts, ROI percentages, and duration.</p>
+            <!-- Investment Policy -->
+            <div class="bg-[#111116] border border-white/10 p-8 lg:p-10 relative group shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+                <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/30 to-transparent"></div>
+                <h3 class="text-base font-mono font-bold text-white uppercase tracking-widest mb-6">Investment Policy</h3>
+                <ul class="space-y-4 text-sm font-light text-gray-300">
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">All investments are subject to the chosen investment plan’s terms, including minimum and maximum amounts, ROI percentages, and duration.</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>{{ config('app.name') }} does not guarantee profits. Past performance is not indicative of future results.</p>
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">{{ config('app.name') }} does not guarantee profits. Past performance is not indicative of future results.</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>Investors are responsible for understanding the risks associated with cryptocurrency investments.</p>
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">Investors are responsible for understanding the risks associated with cryptocurrency investments.</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>Capital return is guaranteed upon successful completion of the investment cycle as per the selected plan.</p>
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">Capital return is guaranteed upon successful completion of the investment cycle as per the selected plan.</p>
                     </li>
                 </ul>
-            </livewire:shared.content-card>
+            </div>
 
-            {{-- Referral Policy --}}
-            <livewire:shared.content-card title="Referral Policy">
-                <ul class="space-y-6 text-gray-300 text-lg">
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>{{ config('app.name') }} offers a referral program allowing investors to earn up to 5% bonus on referred deposits.</p>
+            <!-- Referral Policy -->
+            <div class="bg-[#111116] border border-white/10 p-8 lg:p-10 relative group shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+                <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/30 to-transparent"></div>
+                <h3 class="text-base font-mono font-bold text-white uppercase tracking-widest mb-6">Referral Policy</h3>
+                <ul class="space-y-4 text-sm font-light text-gray-300">
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">{{ config('app.name') }} offers a referral program allowing investors to earn up to 5% bonus on referred deposits.</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>Referral bonuses are credited automatically upon successful deposit by the referred user.</p>
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">Referral bonuses are credited automatically upon successful deposit by the referred user.</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>Abuse of the referral system (including fake accounts or self-referral) may result in account suspension and forfeiture of bonuses.</p>
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">Abuse of the referral system (including fake accounts or self-referral) may result in account suspension and forfeiture of bonuses.</p>
                     </li>
                 </ul>
-            </livewire:shared.content-card>
+            </div>
 
-            {{-- Withdrawal Policy --}}
-            <livewire:shared.content-card title="Withdrawal Policy">
-                <ul class="space-y-6 text-gray-300 text-lg">
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>Withdrawal requests are processed instantly once approved, subject to verification and available balance.</p>
+            <!-- Withdrawal Policy -->
+            <div class="bg-[#111116] border border-white/10 p-8 lg:p-10 relative group shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+                <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/30 to-transparent"></div>
+                <h3 class="text-base font-mono font-bold text-white uppercase tracking-widest mb-6">Withdrawal Policy</h3>
+                <ul class="space-y-4 text-sm font-light text-gray-300">
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">Withdrawal requests are processed instantly once approved, subject to verification and available balance.</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>Minimum withdrawal amount is $200. Requests below this threshold will not be processed.</p>
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">Minimum withdrawal amount is $200. Requests below this threshold will not be processed.</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>All withdrawals are made in Bitcoin or supported cryptocurrency to the wallet address provided by the investor.</p>
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">All withdrawals are made in Bitcoin or supported cryptocurrency to the wallet address provided by the investor.</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>{{ config('app.name') }} reserves the right to request additional verification before processing large withdrawals.</p>
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">{{ config('app.name') }} reserves the right to request additional verification before processing large withdrawals.</p>
                     </li>
                 </ul>
-            </livewire:shared.content-card>
+            </div>
 
-            {{-- Commission & Fees Policy --}}
-            <livewire:shared.content-card title="Commission & Fees Policy">
-                <ul class="space-y-6 text-gray-300 text-lg">
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>A 20% commission fee is applied to profits generated through our services. This fee covers account management and profit maximization.</p>
+            <!-- Commission & Fees Policy -->
+            <div class="bg-[#111116] border border-white/10 p-8 lg:p-10 relative group shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+                <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/30 to-transparent"></div>
+                <h3 class="text-base font-mono font-bold text-white uppercase tracking-widest mb-6">Commission & Fees Policy</h3>
+                <ul class="space-y-4 text-sm font-light text-gray-300">
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">A 20% commission fee is applied to profits generated through our services. This fee covers account management and profit maximization.</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>The commission fee must be paid separately by the investor and will not be deducted automatically from your account balance or profits.</p>
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">The commission fee must be paid separately by the investor and will not be deducted automatically from your account balance or profits.</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>Failure to settle commission fees may result in temporary suspension of withdrawal privileges.</p>
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">Failure to settle commission fees may result in temporary suspension of withdrawal privileges.</p>
                     </li>
                 </ul>
-            </livewire:shared.content-card>
+            </div>
 
-            {{-- General Policy --}}
-            <livewire:shared.content-card title="General Policy">
-                <ul class="space-y-6 text-gray-300 text-lg">
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>{{ config('app.name') }} reserves the right to modify any policy at any time. Changes will be communicated via the website.</p>
+            <!-- General Policy -->
+            <div class="bg-[#111116] border border-white/10 p-8 lg:p-10 relative group shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+                <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/30 to-transparent"></div>
+                <h3 class="text-base font-mono font-bold text-white uppercase tracking-widest mb-6">General Policy</h3>
+                <ul class="space-y-4 text-sm font-light text-gray-300">
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">{{ config('app.name') }} reserves the right to modify any policy at any time. Changes will be communicated via the website.</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>Continued use of the platform after policy updates constitutes acceptance of the new terms.</p>
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">Continued use of the platform after policy updates constitutes acceptance of the new terms.</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>Any violation of these policies may result in account suspension or termination without prior notice.</p>
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">Any violation of these policies may result in account suspension or termination without prior notice.</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-[#eac46e] text-3xl mr-4 mt-1">•</span>
-                        <p>{{ config('app.name') }} is not responsible for any losses incurred due to market volatility or individual investment decisions.</p>
+                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                        <p class="leading-relaxed">{{ config('app.name') }} is not responsible for any losses incurred due to market volatility or individual investment decisions.</p>
                     </li>
                 </ul>
-            </livewire:shared.content-card>
+            </div>
 
         </div>
     </section>

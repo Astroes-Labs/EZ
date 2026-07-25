@@ -1,182 +1,99 @@
-<div class="min-h-screen bg-[#0a0f1c] text-gray-100 font-sans">
+@extends('layouts.home.layout')
 
-    <!-- Page Hero / Banner -->
-    <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20" id="banner">
-        <div class="absolute inset-0 bg-[#0a0f1c]">
-            <img src="{{ url('assets/images/banner-img.png') }}" 
-                 alt="About Banner"
-                 class="w-full h-full object-cover opacity-20">
-            <div class="absolute inset-0 bg-gradient-to-b from-[#0a0f1c]/90 via-[#222f53]/80 to-[#0a0f1c]"></div>
-        </div>
+@section('title', 'Testimonials | ' . config('app.name'))
 
-        <div class="max-w-screen-2xl mx-auto px-6 relative z-20 text-center">
-            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tighter leading-none">
-                ABOUT <span class="text-[#eac46e]">US</span>
+@section('content')
+
+    <!-- Page Banner / Hero -->
+    <section
+        class="relative min-h-[50vh] flex items-center justify-center bg-[#07070a] overflow-hidden pt-20"
+        id="banner">
+        <!-- Subtle dark/violet overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 pointer-events-none"></div>
+        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/40 to-transparent"></div>
+
+        <div class="container mx-auto px-6 lg:px-8 relative z-10 text-center py-20 lg:py-32">
+            <h1
+                class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase font-mono">
+                INVESTOR'S <span class="text-[#8b5cf6]">TESTIMONIALS</span>
             </h1>
-            <p class="mt-6 text-xl text-gray-400 max-w-md mx-auto">
-                Discover the story behind {{ config('app.name') }}
-            </p>
         </div>
     </section>
 
-    <!-- About Main Section 1 -->
-    <section class="py-20 lg:py-28 bg-[#111827]">
-        <div class="max-w-screen-2xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                
-                <!-- Left Image -->
-                <div class="text-center lg:text-left">
-                    <div class="relative inline-block">
-                        <img src="{{ url('assets/images/work-process.png') }}" 
-                             alt="Work Process" 
-                             class="w-80 lg:w-96 mx-auto lg:mx-0 rounded-3xl drop-shadow-2xl transition-transform duration-700 hover:scale-105">
-                    </div>
-                </div>
-
-                <!-- Right Text -->
-                <div class="space-y-8">
-                    <livewire:shared.section-heading title="ABOUT <span class='text-[#eac46e]'>{{ config('app.name') }}</span>" />
-
-                    <p class="text-lg text-gray-300 leading-relaxed">
-                        {{ config('app.name') }} is an algorithmic trading &amp; online investment company 
-                        established, licensed and headquartered in the United States. 
-                        Our goal is to increase our investors' capital with consistent profits at low risk. 
-                        Since inception, {{ config('app.name') }} has always achieved strong annual performances, 
-                        helping investors achieve the financial stability they desire.
-                    </p>
-                    <a href="{{ route('register') }}" wire:navigate
-                       class="inline-block px-8 py-4 bg-[#eac46e] text-[#111827] font-bold rounded-2xl hover:bg-amber-300 transition-all">
-                        JOIN NOW
-                    </a>
-                </div>
+    <!-- Testimonials Section -->
+    <section class="team-part py-20 lg:py-32 bg-[#07070a]">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16">
+                <p class="text-base lg:text-lg text-gray-400 font-light max-w-3xl mx-auto leading-relaxed">
+                    Here are a few words from our most trusted investors.
+                    These words are like guides to us, and they help weave our deep legal and technical experience into our
+                    financial and investments services.
+                </p>
             </div>
-        </div>
-    </section>
 
-    <!-- Revolutionizing Section -->
-    <section class="py-20 lg:py-28 bg-gradient-to-br from-[#0a0f1c] to-[#111827]">
-        <div class="max-w-screen-2xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                
-                <!-- Left Text -->
-                <div class="space-y-8 order-2 lg:order-1">
-                        <livewire:shared.section-heading title="We’re <span class='text-[#eac46e]'>Revolutionizing</span> the World of Crypto Investments" />
-                    <p class="text-lg text-gray-300 leading-relaxed">
-                        At {{ config('app.name') }}, we don't just pride ourselves as an investment company, but as a
-                        provider of an exclusive financial service to empower investors to earn without being engaged with 
-                        day-to-day investments process. 
-                        We have developed a proprietary investment software by our experts and professionals 
-                        to significantly reduce financial risks while increasing efficiency. 
-                        Our business model allows investors to receive high interest rates on a weekly or monthly basis, 
-                        regardless of market conditions.
-                    </p>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @php
+                    $appName = config('app.name');
+                @endphp
 
-                <!-- Right Image -->
-                <div class="text-center order-1 lg:order-2">
-                    <img src="{{ url('assets/images/mission.png') }}" 
-                         alt="Revolutionizing Crypto" 
-                         class="w-80 max-w-lg mx-auto rounded-3xl drop-shadow-2xl transition-transform duration-700 hover:scale-105">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 100% Stats -->
-    <section class="py-20 bg-[#111827]">
-        <div class="max-w-screen-2xl mx-auto px-6">
-            <div class="grid md:grid-cols-3 gap-10 text-center">
                 @foreach([
-                    ['icon' => 'eye', 'number' => '100%', 'label' => 'Transparency'],
-                    ['icon' => 'lock-closed', 'number' => '100%', 'label' => 'Secured Platform'],
-                    ['icon' => 'shield-check', 'number' => '100%', 'label' => 'Business Trust']
-                ] as $stat)
-                <div class="bg-[#1a2238] border border-[#222f53] hover:border-[#eac46e]/40 rounded-3xl p-10 group transition-all hover:-translate-y-1">
-                    <x-dynamic-component 
-                        :component="'heroicon-o-' . $stat['icon']" 
-                        class="mx-auto mb-6 h-16 w-16 text-[#eac46e] group-hover:scale-110 transition" />
-                    <h4 class="text-5xl font-black text-white mb-3">{{ $stat['number'] }}</h4>
-                    <p class="text-lg text-gray-400">{{ $stat['label'] }}</p>
-                </div>
+                        [
+                            'img' => 'S2yV3QjMr2uyTpA7K1qpO994sbfB6XH7gFzqYcvx.jpg',
+                            'name' => 'DAVID LEE',
+                            'text' => "Becoming wealthy is not achieved through saving alone, but rather through investing. It is essential to prioritize saving and investing, even from a young age, with the aim of securing sufficient funds for the post-retirement period. Personally, my investment ventures have yielded greater financial gains than my time spent working. Kudos to the world of cryptocurrency for this remarkable achievement!."
+                        ],
+                        [
+                            'img' => '3WiTifZXIAbbb6yVkJPAXEh6pa4JbULM1DsbPKNV.jpg',
+                            'name' => 'MICHAEL DYRE',
+                            'text' => "I began investing in cryptocurrency in 2017, and at that time, I would rate my knowledge level as a 4 out of 10. However, I have since acquired a solid understanding of the fundamentals, and thanks to my investments with $appName, I have already made over 11 million. This sets me apart from several of my friends who chose to invest their money elsewhere."
+                        ],
+                        [
+                            'img' => 'niisMgBnF7OKhgePR1aktjzRinZKtwDJYvRFAMpG.jpg',
+                            'name' => "SKYLAR O'CONNER",
+                            'text' => "I have never lost in cryptocurrency, and I attribute that success to $appName and its community. This group has created more millionaires than any other, including myself."
+                        ],
+                        [
+                            'img' => '1pw61oJzrC1LOyZXzwKBKkYSBPKMPhPt75BDTrAz.jpg',
+                            'name' => 'DENNIS SAHLSTROM',
+                            'text' => "A common myth about investing is that a big bank account is required just to get started. In reality, building a solid portfolio can begin with a few thousand or even a few hundred dollars. $appName has taught me all I need to know about the crypto space."
+                        ],
+                        [
+                            'img' => 'DJ5Lyg8ap7Ivq0BCcFWh7UoNb0gOSxzp5Jjbq4hx.jpg',
+                            'name' => 'HENRY COHEN',
+                            'text' => "In January, I ventured into bitcoin and crypto trading. After seeing the significant profits a friend had made through bitcoin trading with $appName, I decided to give it a try. The outcome was beyond my expectations."
+                        ],
+                    ] as $testimonial)
+
+                                            <div class="bg-[#111116] border border-white/10 rounded-none overflow-hidden transition-all duration-300 hover:border-[#8b5cf6]/60 shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative group">
+                                                <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/30 to-transparent"></div>
+                                                <div class="p-8 lg:p-10 flex flex-col justify-between h-full">
+                                            <!-- Avatar -->
+                                            <div class="relative inline-block mb-6">
+                                                <img src="{{ url('assets/images/' . $testimonial['img']) }}" 
+                                                           alt="{{ $testimonial['name'] }}" 
+                                                           class="w-20 h-20 rounded-none object-cover border border-white/20 filter grayscale contrast-125 transition-all duration-300 group-hover:scale-105 group-hover:border-[#8b5cf6]">
+                                            </div>
+
+                                                    <!-- Testimonial Text -->
+                                                    <p class="text-sm text-gray-300 font-light leading-relaxed italic mb-8 flex-grow">
+                                                        "{{ $testimonial['text'] }}"
+                                                    </p>
+
+                                                    <!-- Name -->
+                                                    <h6 class="text-xs font-mono font-bold tracking-widest text-[#8b5cf6] uppercase">
+                                                        {{ $testimonial['name'] }}
+                                                    </h6>
+                                                </div>
+                                            </div>
                 @endforeach
             </div>
         </div>
     </section>
 
-    <!-- All-in-one Platform -->
-    {{-- <section class="py-20 lg:py-28 bg-[#0a0f1c]"> --}}
-    <section class="py-20 lg:py-28 bg-[#262d42]">
-        <div class="max-w-screen-2xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                
-                <!-- Left Image -->
-                <div class="text-center order-2 lg:order-1">
-                    <img src="{{ url('assets/images/about-2xx.jpg') }}" 
-                         alt="Platform" 
-                         class="w-full max-w-lg mx-auto rounded-3xl drop-shadow-2xl transition-transform duration-700 hover:scale-105">
-                </div>
+@endsection
 
-                <!-- Right Text -->
-                <div class="space-y-8 order-1 lg:order-2">
-                    <h2 class="text-5xl font-bold tracking-tight">
-                        OUR <span class="text-[#eac46e]">PLATFORM</span>
-                    </h2>
-                    <h3 class="text-3xl font-semibold text-white">
-                        All-in-one investment platform
-                    </h3>
-                    <p class="text-lg text-gray-300 leading-relaxed">
-                        The {{ config('app.name') }} platform embodies the idea of a space where complex financial
-                        technologies operate under the simple and easy control of each user. 
-                        All you need is a few taps on your smartphone, and automatic trading systems start 
-                        rapidly increasing your invested assets right before your eyes.
-                    </p>
-                    <a href="{{ route('register') }}" wire:navigate
-                       class="inline-block px-8 py-4 bg-[#eac46e] text-[#111827] font-bold rounded-2xl hover:bg-amber-300 transition-all">
-                        Join Platform
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us -->
-    <section class="py-20 lg:py-28 bg-[#111827]">
-        <div class="max-w-screen-2xl mx-auto px-6">
-           <livewire:shared.section-heading title="100% Commitment" />
-
-            <div class="grid md:grid-cols-3 gap-8 mb-20">
-                @foreach([
-                    ['icon' => 'chart-bar', 'title' => 'Constant Weekly Profits', 'desc' => 'We pay out profits weekly and monthly for all our investors regardless of the capital size invested...'],
-                    ['icon' => 'briefcase', 'title' => 'Professionalism, Quality & Experience', 'desc' => 'Our team consists of professionals attentive to the investor\'s needs...'],
-                    ['icon' => 'shield-check', 'title' => 'Secure Investment', 'desc' => 'We can guarantee your deposits & investments are always safe with us...']
-                ] as $item)
-                <div class="bg-[#1a2238] border border-[#222f53] hover:border-[#eac46e]/40 p-10 rounded-3xl text-center group transition-all hover:-translate-y-1">
-                    <x-dynamic-component 
-                        :component="'heroicon-o-' . $item['icon']" 
-                        class="mx-auto mb-8 h-16 w-16 text-[#eac46e] group-hover:scale-110 transition" />
-                    <h4 class="text-2xl font-semibold mb-6">{{ $item['title'] }}</h4>
-                    <p class="text-gray-400">{{ $item['desc'] }}</p>
-                </div>
-                @endforeach
-            </div>
-
-            <!-- Second Row -->
-            <div class="grid md:grid-cols-3 gap-8">
-                @foreach([
-                    ['icon' => 'document-check', 'title' => 'Legally Licensed Firm', 'desc' => 'We are legally licensed in the United States of America...'],
-                    ['icon' => 'chat-bubble-bottom-center-text', 'title' => '24/7 Customer Support', 'desc' => 'Our support services are always available to respond to any complaint/inquiries...'],
-                    ['icon' => 'bolt', 'title' => 'Instant Withdrawals', 'desc' => 'All withdrawal requests are processed instantly once the request has been made...']
-                ] as $item)
-                <div class="bg-[#1a2238] border border-[#222f53] hover:border-[#eac46e]/40 p-10 rounded-3xl text-center group transition-all hover:-translate-y-1">
-                    <x-dynamic-component 
-                        :component="'heroicon-o-' . $item['icon']" 
-                        class="mx-auto mb-8 h-16 w-16 text-[#eac46e] group-hover:scale-110 transition" />
-                    <h4 class="text-2xl font-semibold mb-6">{{ $item['title'] }}</h4>
-                    <p class="text-gray-400">{{ $item['desc'] }}</p>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-</div>
+@section('xtraJs')
+    <script>
+        // Optional: smooth scroll or other JS if needed
+    </script>
+@endsection

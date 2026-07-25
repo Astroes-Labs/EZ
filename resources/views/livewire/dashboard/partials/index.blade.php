@@ -3,33 +3,33 @@
 @include('livewire.dashboard.partials.mobile-content') --}}
 
 <style>
-    /* ─── DESIGN TOKENS ─────────────────────────────── */
+    /* ─── DESIGN TOKENS (Matte Tactile Theme) ─────────────────────────────── */
     :root {
-        --bg-base: #0a0f1c;
-        --bg-layer: #111827;
-        --bg-card: #1a2238;
-        --bg-card-hover: #1f2a44;
-        --border: #222f53;
-        --accent: #eac46e;
-        --accent-dim: rgba(234, 196, 110, 0.12);
-        --accent-text: #0a0f1c;
-        --text-primary: #f1f5f9;
-        --text-muted: #8b9ec7;
-        --text-faint: #4a5a80;
+        --bg-base: #07070a;
+        --bg-layer: #111016;
+        --bg-card: #14121c;
+        --bg-card-hover: #1a1726;
+        --border: #231f33;
+        --accent: #8b5cf6;
+        --accent-dim: rgba(139, 92, 246, 0.12);
+        --accent-text: #ffffff;
+        --text-primary: #f8fafc;
+        --text-muted: #94a3b8;
+        --text-faint: #64748b;
         --success: #22c55e;
         --danger: #ef4444;
-        --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.35);
+        --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
         --radius-lg: 16px;
-        --radius-xl: 22px;
-        --transition: all 0.22s cubic-bezier(.4, 0, .2, 1);
+        --radius-xl: 24px;
+        --transition: all 0.25s cubic-bezier(.4, 0, .2, 1);
     }
 
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap');
 
     #dynamic-content {
         background: var(--bg-base);
         min-height: 100vh;
-        font-family: 'DM Sans', 'Segoe UI', sans-serif;
+        font-family: 'Plus Jakarta Sans', sans-serif;
         color: var(--text-primary);
     }
 
@@ -45,7 +45,7 @@
     }
 
     .site-card:hover {
-        border-color: rgba(234, 196, 110, 0.2) !important;
+        border-color: rgba(139, 92, 246, 0.3) !important;
     }
 
     .site-card-header {
@@ -55,11 +55,11 @@
     }
 
     .site-card-header .title {
-        font-family: 'DM Sans', sans-serif !important;
+        font-family: 'Space Grotesk', sans-serif !important;
         font-weight: 700 !important;
-        font-size: 1rem !important;
+        font-size: 1.05rem !important;
         color: var(--text-primary) !important;
-        letter-spacing: 0.02em !important;
+        letter-spacing: -0.01em !important;
         margin: 0 !important;
     }
 
@@ -69,7 +69,7 @@
 
     /* ─── USER RANKING CARD ──────────────────────────── */
     .user-ranking {
-        background: linear-gradient(135deg, #1a2238 0%, #162040 100%) !important;
+        background: linear-gradient(145deg, #14121c 0%, #0d0b12 100%) !important;
         border: 1px solid var(--border) !important;
         border-radius: var(--radius-xl) !important;
         box-shadow: var(--shadow-card) !important;
@@ -89,35 +89,34 @@
     .user-ranking::before {
         content: '';
         position: absolute;
-        top: -30px;
-        right: -30px;
-        width: 120px;
-        height: 120px;
-        background: radial-gradient(circle, rgba(234, 196, 110, 0.08) 0%, transparent 70%);
+        top: -40px;
+        right: -40px;
+        width: 140px;
+        height: 140px;
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
         border-radius: 50%;
         pointer-events: none;
     }
 
     .user-ranking h4 {
-        font-family: 'DM Sans', sans-serif !important;
-        font-weight: 800 !important;
-        font-size: 1.1rem !important;
+        font-family: 'Space Grotesk', sans-serif !important;
+        font-weight: 700 !important;
+        font-size: 1.15rem !important;
         color: var(--accent) !important;
         margin: 0 !important;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
+        letter-spacing: -0.01em;
     }
 
     .user-ranking .rank {
-        width: 56px;
-        height: 56px;
+        width: 60px;
+        height: 60px;
         background: var(--accent-dim);
         border: 1.5px solid var(--accent);
-        border-radius: 50%;
+        border-radius: 16px;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 6px;
+        padding: 8px;
     }
 
     /* ─── REFERRAL LINK ──────────────────────────────── */
@@ -128,18 +127,16 @@
     }
 
     .referral-link-form input[type="text"] {
-        background: rgba(255, 255, 255, 0.04) !important;
+        background: rgba(255, 255, 255, 0.02) !important;
         border: 1px solid var(--border) !important;
         border-radius: 12px !important;
         color: var(--text-muted) !important;
         padding: 0.75rem 1.1rem !important;
         font-size: 0.9rem !important;
         flex: 1;
-        /* Input takes most space */
         outline: none;
         transition: var(--transition);
         min-width: 0;
-        /* Prevents overflow issues */
     }
 
     .referral-link-form input[type="text"]:focus {
@@ -153,20 +150,19 @@
         border: none !important;
         border-radius: 12px !important;
         padding: 0.75rem 1.5rem !important;
-        font-weight: 700 !important;
+        font-weight: 600 !important;
         font-size: 0.9rem !important;
         white-space: nowrap;
         cursor: pointer;
         transition: var(--transition);
         flex-shrink: 0;
-        /* Button keeps its natural width */
         display: flex;
         align-items: center;
         gap: 8px;
     }
 
     .referral-link-form button:hover {
-        background: #f0d080 !important;
+        background: #7c3aed !important;
         transform: translateY(-1px);
     }
 
@@ -182,9 +178,9 @@
         color: var(--accent-text) !important;
         border: none !important;
         border-radius: 12px !important;
-        font-weight: 700 !important;
+        font-weight: 600 !important;
         font-size: 0.85rem !important;
-        letter-spacing: 0.06em !important;
+        letter-spacing: 0.02em !important;
         padding: 0.85rem 1.5rem !important;
         width: 100%;
         display: flex !important;
@@ -192,13 +188,13 @@
         justify-content: center !important;
         gap: 8px;
         transition: var(--transition) !important;
-        box-shadow: 0 4px 20px rgba(234, 196, 110, 0.25) !important;
+        box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3) !important;
     }
 
     .user-sidebar-btn.btn-primary:hover {
-        background: #f0d080 !important;
+        background: #7c3aed !important;
         transform: translateY(-2px) !important;
-        box-shadow: 0 8px 28px rgba(234, 196, 110, 0.35) !important;
+        box-shadow: 0 6px 24px rgba(139, 92, 246, 0.4) !important;
     }
 
     /* ─── STAT CARDS ─────────────────────────────────── */
@@ -230,7 +226,7 @@
 
     .user-cards .single:hover {
         background: var(--bg-card-hover) !important;
-        border-color: rgba(234, 196, 110, 0.3) !important;
+        border-color: rgba(139, 92, 246, 0.4) !important;
         transform: translateY(-3px);
     }
 
@@ -243,7 +239,7 @@
         height: 48px;
         min-width: 48px;
         background: var(--accent-dim);
-        border: 1px solid rgba(234, 196, 110, 0.2);
+        border: 1px solid rgba(139, 92, 246, 0.25);
         border-radius: 12px;
         display: flex;
         align-items: center;
@@ -256,7 +252,7 @@
     }
 
     .user-cards .single .content h4 {
-        font-family: 'DM Sans', sans-serif !important;
+        font-family: 'Space Grotesk', sans-serif !important;
         font-size: 1.15rem !important;
         font-weight: 700 !important;
         color: var(--text-primary) !important;
@@ -274,14 +270,14 @@
         color: var(--text-muted) !important;
         margin: 0 !important;
         text-transform: uppercase;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.05em;
     }
 
     /* ─── TABLE ──────────────────────────────────────── */
     .data-table {
         width: 100% !important;
         border-collapse: separate !important;
-        border-spacing: 0 4px !important;
+        border-spacing: 0 6px !important;
     }
 
     .data-table thead tr th {
@@ -289,24 +285,38 @@
         color: var(--text-faint) !important;
         font-size: 0.72rem !important;
         text-transform: uppercase !important;
-        letter-spacing: 0.1em !important;
+        letter-spacing: 0.08em !important;
         font-weight: 600 !important;
         padding: 0.5rem 1rem !important;
         border: none !important;
     }
 
     .data-table tbody tr td {
-        background: rgba(255, 255, 255, 0.02) !important;
+        background: rgba(255, 255, 255, 0.015) !important;
         color: var(--text-primary) !important;
         padding: 0.9rem 1rem !important;
         font-size: 0.85rem !important;
         border: none !important;
         border-top: 1px solid var(--border) !important;
+        border-bottom: 1px solid var(--border) !important;
         vertical-align: middle;
     }
 
+    .data-table tbody tr td:first-child {
+        border-left: 1px solid var(--border) !important;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .data-table tbody tr td:last-child {
+        border-right: 1px solid var(--border) !important;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
     .data-table tbody tr:hover td {
-        background: rgba(234, 196, 110, 0.04) !important;
+        background: rgba(139, 92, 246, 0.04) !important;
+        border-color: rgba(139, 92, 246, 0.2) !important;
     }
 
     .data-table .date {
@@ -329,38 +339,38 @@
     .site-badge {
         display: inline-flex;
         align-items: center;
-        padding: 3px 10px !important;
-        border-radius: 6px !important;
+        padding: 4px 10px !important;
+        border-radius: 8px !important;
         font-size: 0.72rem !important;
         font-weight: 600 !important;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.03em;
         text-transform: capitalize;
     }
 
     .site-badge.badge-success,
     .site-badge.bg-success {
-        background: rgba(34, 197, 94, 0.15) !important;
+        background: rgba(34, 197, 94, 0.12) !important;
         color: #22c55e !important;
-        border: 1px solid rgba(34, 197, 94, 0.3) !important;
+        border: 1px solid rgba(34, 197, 94, 0.25) !important;
     }
 
     .site-badge.badge-warning,
     .site-badge.bg-warning {
-        background: rgba(234, 196, 110, 0.15) !important;
+        background: rgba(139, 92, 246, 0.12) !important;
         color: var(--accent) !important;
-        border: 1px solid rgba(234, 196, 110, 0.3) !important;
+        border: 1px solid rgba(139, 92, 246, 0.25) !important;
     }
 
     .site-badge.badge-danger,
     .site-badge.bg-danger {
-        background: rgba(239, 68, 68, 0.15) !important;
+        background: rgba(239, 68, 68, 0.12) !important;
         color: #ef4444 !important;
-        border: 1px solid rgba(239, 68, 68, 0.3) !important;
+        border: 1px solid rgba(239, 68, 68, 0.25) !important;
     }
 
     .site-badge.badge-secondary,
     .site-badge.bg-secondary {
-        background: rgba(139, 158, 199, 0.12) !important;
+        background: rgba(148, 163, 184, 0.1) !important;
         color: var(--text-muted) !important;
         border: 1px solid var(--border) !important;
     }
@@ -378,7 +388,7 @@
     }
 
     .user-ranking-mobile .name h4 {
-        font-family: 'DM Sans', sans-serif !important;
+        font-family: 'Space Grotesk', sans-serif !important;
         font-weight: 700 !important;
         font-size: 1rem !important;
         color: var(--text-primary) !important;
@@ -393,7 +403,7 @@
 
     /* ─── MOBILE WALLET ──────────────────────────────── */
     .user-wallets-mobile {
-        background: linear-gradient(135deg, #162040 0%, #1a2238 100%) !important;
+        background: linear-gradient(145deg, #14121c 0%, #0d0b12 100%) !important;
         border: 1px solid var(--border) !important;
         border-radius: var(--radius-xl) !important;
         padding: 1.5rem !important;
@@ -411,9 +421,9 @@
     }
 
     .user-wallets-mobile .one .balance .symbol {
-        font-family: 'DM Sans', sans-serif !important;
+        font-family: 'Space Grotesk', sans-serif !important;
         font-size: 1.6rem !important;
-        font-weight: 800 !important;
+        font-weight: 700 !important;
         color: var(--text-primary) !important;
     }
 
@@ -421,7 +431,7 @@
         font-size: 0.75rem !important;
         color: var(--text-muted) !important;
         text-transform: uppercase;
-        letter-spacing: 0.07em;
+        letter-spacing: 0.06em;
         margin-top: 2px;
     }
 
@@ -447,7 +457,7 @@
     .mob-shortcut-btn a {
         flex: 1;
         background: var(--accent-dim) !important;
-        border: 1px solid rgba(234, 196, 110, 0.35) !important;
+        border: 1px solid rgba(139, 92, 246, 0.3) !important;
         border-radius: var(--radius-lg) !important;
         padding: 0.9rem 0.5rem !important;
         display: flex !important;
@@ -464,7 +474,6 @@
         letter-spacing: 0.04em;
     }
 
-    /* Hover becomes subtle */
     .mob-shortcut-btn a:hover {
         background: var(--bg-card) !important;
         border-color: var(--border) !important;
@@ -482,19 +491,19 @@
     }
 
     .all-feature-mobile .title {
-        font-family: 'DM Sans', sans-serif !important;
+        font-family: 'Space Grotesk', sans-serif !important;
         font-size: 0.8rem !important;
         font-weight: 700 !important;
         color: var(--text-faint) !important;
         text-transform: uppercase !important;
-        letter-spacing: 0.1em !important;
+        letter-spacing: 0.08em !important;
         margin-bottom: 1rem !important;
     }
 
     .all-feature-mobile .single .icon {
         width: 48px;
         height: 48px;
-        background: rgba(255, 255, 255, 0.04);
+        background: rgba(255, 255, 255, 0.02);
         border: 1px solid var(--border);
         border-radius: 12px;
         display: flex;
@@ -506,7 +515,7 @@
 
     .all-feature-mobile .single a:hover .icon {
         background: var(--accent-dim);
-        border-color: rgba(234, 196, 110, 0.3);
+        border-color: rgba(139, 92, 246, 0.3);
     }
 
     .all-feature-mobile .single a {
@@ -584,7 +593,7 @@
     .moreless-button-2 {
         background: transparent !important;
         color: var(--accent) !important;
-        border: 1px solid rgba(234, 196, 110, 0.35) !important;
+        border: 1px solid rgba(139, 92, 246, 0.3) !important;
         border-radius: 8px !important;
         padding: 0.45rem 1.25rem !important;
         font-size: 0.78rem !important;
@@ -608,7 +617,7 @@
 
     /* ─── SINGLE CARD MOBILE ─────────────────────────── */
     .single-card {
-        background: rgba(255, 255, 255, 0.025) !important;
+        background: rgba(255, 255, 255, 0.015) !important;
         border: 1px solid var(--border) !important;
         border-radius: 12px !important;
         padding: 0.9rem 1rem !important;
@@ -621,14 +630,14 @@
 
     .single-card:hover {
         background: var(--accent-dim) !important;
-        border-color: rgba(234, 196, 110, 0.25) !important;
+        border-color: rgba(139, 92, 246, 0.3) !important;
     }
 
     .single-card .icon {
         width: 38px;
         height: 38px;
         min-width: 38px;
-        background: rgba(234, 196, 110, 0.1);
+        background: rgba(139, 92, 246, 0.1);
         border-radius: 10px;
         display: flex;
         align-items: center;
@@ -636,7 +645,7 @@
     }
 
     .single-card .content .amount {
-        font-family: 'DM Sans', sans-serif !important;
+        font-family: 'Space Grotesk', sans-serif !important;
         font-size: 1rem !important;
         font-weight: 700 !important;
         color: var(--text-primary) !important;
@@ -646,7 +655,7 @@
         font-size: 0.72rem !important;
         color: var(--text-muted) !important;
         text-transform: uppercase;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.05em;
         margin-top: 2px;
     }
 
@@ -658,7 +667,7 @@
     }
 
     .mobile-referral-link-form input[type="text"] {
-        background: rgba(255, 255, 255, 0.04) !important;
+        background: rgba(255, 255, 255, 0.02) !important;
         border: 1px solid var(--border) !important;
         border-radius: 8px !important;
         color: var(--text-muted) !important;
@@ -675,18 +684,18 @@
         border-radius: 8px !important;
         padding: 0.55rem 1rem !important;
         font-size: 0.78rem !important;
-        font-weight: 700 !important;
+        font-weight: 600 !important;
         cursor: pointer;
         transition: var(--transition) !important;
     }
 
     .mobile-referral-link-form button:hover {
-        background: #f0d080 !important;
+        background: #7c3aed !important;
     }
 
     /* ─── DATATABLE OVERRIDES ────────────────────────── */
     .dataTables_wrapper .dataTables_filter input {
-        background: rgba(255, 255, 255, 0.04) !important;
+        background: rgba(255, 255, 255, 0.02) !important;
         border: 1px solid var(--border) !important;
         border-radius: 8px !important;
         color: var(--text-primary) !important;
@@ -735,156 +744,6 @@
     ::-webkit-scrollbar-thumb:hover {
         background: var(--accent);
     }
-
-    /* ─── REVIEW CARD ───────────────────────────── */
-    .review-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-xl);
-        padding: 1.4rem 1.5rem;
-        box-shadow: var(--shadow-card);
-    }
-
-    /* Title */
-    .review-card .user-panel-title h5 {
-        color: var(--accent);
-        font-weight: 700;
-        font-size: 0.95rem;
-        letter-spacing: 0.04em;
-    }
-
-    /* ─── TABLE RESET ───────────────────────────── */
-    .review-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    /* Rows */
-    .review-table tr {
-        border-bottom: 1px solid var(--border);
-    }
-
-    .review-table tr:last-child {
-        border-bottom: none;
-    }
-
-    /* Left labels */
-    .review-table td:first-child {
-        color: var(--text-faint);
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        padding: 0.85rem 0;
-    }
-
-    /* Right values */
-    .review-table td.value {
-        text-align: right;
-        color: var(--text-primary);
-        font-weight: 600;
-        font-size: 0.9rem;
-    }
-
-    /* Currency accent */
-    .review-table .currency,
-    .review-table .paymentCurrency {
-        color: var(--accent);
-        margin-left: 4px;
-    }
-
-    /* Payment logo */
-    .review-table .payment-method {
-        /* height: 30px; */
-        padding: 4px 6px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border);
-        border-radius: 6px;
-    }
-
-    /* Total row highlight */
-    .review-table .total-row td {
-        padding-top: 1rem;
-        font-weight: 700;
-    }
-
-    .review-table .total-row td:first-child {
-        color: var(--text-primary);
-    }
-
-    .review-table .total-row td.value {
-        color: var(--accent);
-        font-size: 1rem;
-    }
-
-    /* Optional hover (very subtle) */
-    .review-table tr:hover td {
-        background: rgba(234, 196, 110, 0.03);
-    }
-
-    /* ─── ENHANCED RANK CARD ───────────────────── */
-    .user-ranking.enhanced {
-        text-align: center;
-        gap: 0.6rem;
-    }
-
-    .user-ranking.enhanced .rank-badge {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 0.4rem;
-        background: var(--accent-dim);
-        border: 1px solid rgba(234, 196, 110, 0.3);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-    }
-
-    .user-ranking.enhanced .rank-badge img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-
-    .user-ranking.enhanced h4 {
-        color: var(--accent) !important;
-        font-size: 1rem !important;
-    }
-
-    .user-ranking.enhanced .rank-label {
-        font-size: 0.7rem;
-        color: var(--text-muted);
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-    }
-
-    /* ─── REFERRAL CARD POLISH ─────────────────── */
-    .referral-card {
-        position: relative;
-    }
-
-    .referral-card::after {
-        content: '';
-        position: absolute;
-        top: -40px;
-        right: -40px;
-        width: 140px;
-        height: 140px;
-        background: radial-gradient(circle, rgba(234, 196, 110, 0.08), transparent 70%);
-        border-radius: 50%;
-    }
-
-    /* Input improvement */
-    .referral-link-form input {
-        font-size: 0.85rem !important;
-    }
-
-    /* Button refinement */
-    .referral-link-form button {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-    }
 </style>
 
 <div class="desktop-screen-show" style="padding: 1.5rem;">
@@ -892,16 +751,11 @@
     <div class="row g-3 align-items-stretch">
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-12">
             <div class="user-ranking">
-
                 <h4>
                     {{ $userClass['class'] }}
                 </h4>
-                {{-- <p style="margin:0;">
-                    <img src="{{ $userClass['icon']  }}" alt=""
-                        style="height: 75px; width: 75px; filter: drop-shadow(0 4px 12px rgba(234,196,110,0.3));">
-                </p> --}}
                 <div class="rank" data-bs-toggle="tooltip" data-bs-placement="top" title="">
-                    <img src="{{ $userClass['icon']  }}" alt="" style="height: ; width: 36px;">
+                    <img src="{{ $userClass['icon'] }}" alt="" style="width: 36px;">
                 </div>
             </div>
         </div>
@@ -913,10 +767,8 @@
                 <div class="site-card-body">
                     <div class="referral-link">
                         <div class="referral-link-form">
-                            <input type="text" value="{{ route('register') . '?refid=' . Auth::id() }}" id="refLink"
-                                readonly />
-
-
+                            <input type="text" value="{{ route('register') . '?refid=' . Auth::id() }}"
+                                id="refLink" readonly />
                             <button type="submit" onclick="copyRef()">
                                 <i class="anticon anticon-copy"></i>
                                 <span id="copy">Copy</span>
@@ -926,27 +778,25 @@
                             {{ Auth::user()->referralCount() }} people have joined using this URL.
                         </p>
                     </div>
-
                 </div>
             </div>
         </div>
-
     </div>
+
     <div class="row user-cards g-3" style="margin-top:1.25rem;">
         <div class="col-12">
             <div class="referral-link">
                 <div class="referral-link-form">
-                    <a class="user-sidebar-btn btn btn-primary border-rounded  btn-lg btn-block"
+                    <a class="user-sidebar-btn btn btn-primary border-rounded btn-lg btn-block"
                         href="{{ route('deposit') }}" onclick="openCustom(event, this)">
                         <i class="anticon anticon-plus"></i>
                         <span class="text-uppercase">Fund account now</span>
                     </a>
                 </div>
-
             </div>
         </div>
-
     </div>
+
     <div class="row user-cards g-3" style="margin-top:1.25rem;">
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
             <div class="single">
@@ -961,7 +811,7 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-file-add"></i></div>
                 <div class="content">
-                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
+                    <h4><b>{{ Auth::user()->getCurrencySymbol() }}</b><span
                             class="count">{{ number_format($totalDeposited) }}</span></h4>
                     <p>Total Deposit</p>
                 </div>
@@ -971,7 +821,7 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-check-square"></i></div>
                 <div class="content">
-                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
+                    <h4><b>{{ Auth::user()->getCurrencySymbol() }}</b><span
                             class="count">{{ number_format($totalTrade) }}</span></h4>
                     <p>Total Investment</p>
                 </div>
@@ -981,7 +831,7 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-credit-card"></i></div>
                 <div class="content">
-                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
+                    <h4><b>{{ Auth::user()->getCurrencySymbol() }}</b><span
                             class="count">{{ number_format($totalTradeProfit) }}</span></h4>
                     <p>Total Profit</p>
                 </div>
@@ -991,9 +841,9 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-lock"></i></div>
                 <div class="content">
-                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
+                    <h4><b>{{ Auth::user()->getCurrencySymbol() }}</b><span
                             class="count">{{ number_format(Auth::user()->locked_funds, 0) }}</span></h4>
-                    <p>Total Fixed Deposit </p>
+                    <p>Total Fixed Deposit</p>
                 </div>
             </div>
         </div>
@@ -1001,7 +851,7 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-money-collect"></i></div>
                 <div class="content">
-                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
+                    <h4><b>{{ Auth::user()->getCurrencySymbol() }}</b><span
                             class="count">{{ number_format($totalWithdrawn) }}</span></h4>
                     <p>Total Withdrawal</p>
                 </div>
@@ -1011,7 +861,7 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-gift"></i></div>
                 <div class="content">
-                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span class="count">0</span></h4>
+                    <h4><b>{{ Auth::user()->getCurrencySymbol() }}</b><span class="count">0</span></h4>
                     <p>Referral Bonus</p>
                 </div>
             </div>
@@ -1020,7 +870,7 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-account-book"></i></div>
                 <div class="content">
-                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span class="count">0</span></h4>
+                    <h4><b>{{ Auth::user()->getCurrencySymbol() }}</b><span class="count">0</span></h4>
                     <p>Deposit Bonus</p>
                 </div>
             </div>
@@ -1029,7 +879,7 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-gold"></i></div>
                 <div class="content">
-                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span class="count">0</span></h4>
+                    <h4><b>{{ Auth::user()->getCurrencySymbol() }}</b><span class="count">0</span></h4>
                     <p>Investment Bonus</p>
                 </div>
             </div>
@@ -1047,8 +897,7 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-radar-chart"></i></div>
                 <div class="content">
-                    <h4 id="target"
-                        style="display: none; font-family:'DM Sans',sans-serif; font-size:0.95rem; color:var(--accent);">
+                    <h4 id="target" style="display: none;">
                         {{ Auth::user()->rankName() }}
                     </h4>
                     <p>Rank Achieved</p>
@@ -1065,7 +914,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="row" style="margin-top:1.5rem;">
         <div class="col-xl-12">
@@ -1099,7 +947,6 @@
                                                 {{ \Carbon\Carbon::parse($transaction['created_at'])->format('M d Y H:i') }}
                                             </div>
                                         </td>
-
                                         <td
                                             class="{{ $transaction['type'] === 'Withdrawal' ? 'text-danger' : 'text-success' }}">
                                             {{ $transaction['type'] === 'Withdrawal' ? '-' : '+' }}
@@ -1127,105 +974,85 @@
     <div class="row g-3">
         <div class="col-12">
             <div class="user-ranking-mobile">
-                <div class="icon"><img
-                        src="{{ Auth::user()->photo_profile ?? '../assets/global/materials/upload.svg' }}" alt=""
-                        height="45" width="45"
-                        style="border-radius: 50%; border: 2px solid var(--accent); object-fit:cover;" /></div>
+                <div class="icon">
+                    <img src="{{ Auth::user()->photo_profile ?? '../assets/global/materials/upload.svg' }}"
+                        alt="" height="45" width="45"
+                        style="border-radius: 50%; border: 2px solid var(--accent); object-fit:cover;" />
+                </div>
                 <div class="name">
-                    <h4>Hi, {{ Auth::user()->name  }}
-
-                    </h4>
+                    <h4>Hi, {{ Auth::user()->name }}</h4>
                     <p>
-                        <span> {{ $userClass['class']  }}
-
-                        </span>
+                        <span>{{ $userClass['class'] }}</span>
                     </p>
                 </div>
-                <div class="rank-badge" style="margin-left:auto;"><img src="{{ $userClass['icon']  }}" alt=""
-                        style="height:36px;width:36px;" />
+                <div class="rank-badge" style="margin-left:auto;">
+                    <img src="{{ $userClass['icon'] }}" alt="" style="height:36px;width:36px;" />
                 </div>
             </div>
             <div class="user-wallets-mobile">
-                <img src="../assets/frontend/materials/wallet-shadow.png" alt="" class="wallet-shadow"
-                    style="display:none;">
-                <div class="head">All Wallets in {{ Auth::user()->currency  }}</div>
+                <div class="head">All Wallets in {{ Auth::user()->currency }}</div>
                 <div class="one">
                     <div class="balance">
-
                         <span
                             class="symbol">{{ Auth::user()->getCurrencySymbol() . ' ' . Auth::user()->displayBalance(Auth::user()->trading_balance) }}</span>
-                        <span class="after-dot">
-                        </span>
                     </div>
                     <div class="wallet">Total Balance</div>
                 </div>
-
-
                 <div class="one p-wal">
                     <div class="balance">
                         <span class="symbol"
                             style="font-size:1.1rem !important; color:var(--text-muted) !important;">{{ Auth::user()->getCurrencySymbol() . ' ' . Auth::user()->displayBalance(Auth::user()->locked_funds) }}</span>
-                        <span class="after-dot">
-                        </span>
                     </div>
                     <div class="wallet">Fixed Deposit</div>
                 </div>
                 <div class="info">
-                    <i icon-name="info"></i>You Earned 0 {{ Auth::user()->currency  }} This Week
+                    You Earned 0 {{ Auth::user()->currency }} This Week
                 </div>
             </div>
         </div>
 
         <div class="col-12">
             <div class="mob-shortcut-btn">
-
                 <a href="{{ route('deposit') }}" onclick="openCustom(event, this)">
                     <div class="w-100" style="display:flex;justify-content:center;">
-                        <img src="{{ asset('assets\frontend\icons\layout-dashboard.svg')  }}" alt=""
+                        <img src="{{ asset('assets/frontend/icons/layout-dashboard.svg') }}" alt=""
                             style="height:22px;width:22px;opacity:0.7;">
                     </div>
-
                     Deposit
                 </a>
                 <a href="{{ route('trade.index') }}" onclick="openCustom(event, this)">
                     <div class="w-100" style="display:flex;justify-content:center;">
-                        <img src="{{ asset('assets\frontend\icons\home.svg')  }}" alt=""
+                        <img src="{{ asset('assets/frontend/icons/home.svg') }}" alt=""
                             style="height:22px;width:22px;opacity:0.7;">
                     </div> Trade Hub
                 </a>
                 <a href="{{ route('withdraw') }}" onclick="openCustom(event, this)">
                     <div class="w-100" style="display:flex;justify-content:center;">
-                        <img src="{{ asset('assets\frontend\icons\send.svg')  }}" alt=""
+                        <img src="{{ asset('assets/frontend/icons/send.svg') }}" alt=""
                             style="height:22px;width:22px;opacity:0.7;">
                     </div> Withdraw
                 </a>
             </div>
         </div>
 
-
         <div class="col-12">
-            <!-- all navigation -->
             <div class="all-feature-mobile mb-3 mobile-screen-show">
                 <div class="title">All Navigations</div>
-
                 <div class="contents row g-2">
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('plans') }}" onclick="openCustom(event, this)">
                                 <div class="icon"><img src="../assets/frontend/materials/schema.png" alt=""
-                                        style="height:22px;width:22px;">
-                                </div>
+                                        style="height:22px;width:22px;"></div>
                                 <div class="name">Pricing</div>
                             </a>
                         </div>
                     </div>
-
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('deposit') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/deposit.png" alt=""
-                                        style="height:22px;width:22px;">
-                                </div>
+                                <div class="icon"><img src="../assets/frontend/materials/deposit.png"
+                                        alt="" style="height:22px;width:22px;"></div>
                                 <div class="name">Fund Account</div>
                             </a>
                         </div>
@@ -1233,20 +1060,17 @@
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('deposit.history') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/deposit-log.png" alt=""
-                                        style="height:22px;width:22px;">
-                                </div>
+                                <div class="icon"><img src="../assets/frontend/materials/deposit-log.png"
+                                        alt="" style="height:22px;width:22px;"></div>
                                 <div class="name">Deposit History</div>
                             </a>
                         </div>
                     </div>
-
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('withdraw') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/withdraw.png" alt=""
-                                        style="height:22px;width:22px;">
-                                </div>
+                                <div class="icon"><img src="../assets/frontend/materials/withdraw.png"
+                                        alt="" style="height:22px;width:22px;"></div>
                                 <div class="name">Withdraw</div>
                             </a>
                         </div>
@@ -1254,9 +1078,8 @@
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('withdraw.history') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/withdraw-log.png" alt=""
-                                        style="height:22px;width:22px;">
-                                </div>
+                                <div class="icon"><img src="../assets/frontend/materials/withdraw-log.png"
+                                        alt="" style="height:22px;width:22px;"></div>
                                 <div class="name">Withdraw History</div>
                             </a>
                         </div>
@@ -1264,100 +1087,42 @@
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('account.info') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/schema-log.png" alt=""
-                                        style="height:22px;width:22px;">
-                                </div>
+                                <div class="icon"><img src="../assets/frontend/materials/schema-log.png"
+                                        alt="" style="height:22px;width:22px;"></div>
                                 <div class="name">Account Info</div>
                             </a>
                         </div>
                     </div>
-
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('traders.index') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/transactions.png" alt=""
-                                        style="height:22px;width:22px;">
-                                </div>
+                                <div class="icon"><img src="../assets/frontend/materials/transactions.png"
+                                        alt="" style="height:22px;width:22px;"></div>
                                 <div class="name">Copy Trading</div>
                             </a>
                         </div>
                     </div>
-
-                    {{-- <div class="col-4">
-                        <div class="single">
-                            <a href="{{ route('user.verify') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/transfer-log.png" alt=""
-                                        style="height:22px;width:22px;">
-                                </div>
-                                <div class="name">ID Verification </div>
-                            </a>
-                        </div>
-                    </div> --}}
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('locked.funds') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/transfer.png" alt=""
-                                        style="height:22px;width:22px;">
-                                </div>
+                                <div class="icon"><img src="../assets/frontend/materials/transfer.png"
+                                        alt="" style="height:22px;width:22px;"></div>
                                 <div class="name">Fixed Deposit</div>
                             </a>
                         </div>
                     </div>
-
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('referrals.rank.show') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/referral.png" alt=""
-                                        style="height:22px;width:22px;">
-                                </div>
+                                <div class="icon"><img src="../assets/frontend/materials/referral.png"
+                                        alt="" style="height:22px;width:22px;"></div>
                                 <div class="name">Referral/Rank</div>
                             </a>
                         </div>
                     </div>
                 </div>
-
-                <div class="moretext">
-                    <div class="row g-2 contents">
-
-                        {{-- <div class="col-4">
-                            <div class="single">
-                                <a href="{{ route('referrals.rank.show') }}" onclick="openCustom(event, this)">
-                                    <div class="icon"><img src="../assets/frontend/materials/referral.png" alt=""
-                                            style="height:22px;width:22px;">
-                                    </div>
-                                    <div class="name">Referral/Rank</div>
-                                </a>
-                            </div>
-                        </div> --}}
-                        {{-- <div class="col-4">
-                            <div class="single">
-                                <a href="{{ route('account.info.edit') }}" onclick="openCustom(event, this)">
-                                    <div class="icon"><img src="../assets/frontend/materials/settings.png" alt=""
-                                            style="height:22px;width:22px;">
-                                    </div>
-                                    <div class="name">Settings</div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="single">
-                                <a href="{{ route('notifications.index') }}" onclick="openCustom(event, this)">
-                                    <div class="icon"><img src="../assets/frontend/materials/profile.png" alt=""
-                                            style="height:22px;width:22px;">
-                                    </div>
-                                    <div class="name">Notifications</div>
-                                </a>
-                            </div>
-                        </div>--}}
-                    </div>
-                </div>
-
-                <div class="centered">
-                    {{-- <button class="moreless-button site-btn-sm grad-btn">Load more</button> --}}
-                </div>
             </div>
 
-            <!-- all Statistic -->
             <div class="all-feature-mobile mb-3 mobile-screen-show">
                 <div class="title">All Statistic</div>
                 <div class="row">
@@ -1367,12 +1132,11 @@
                                 <div class="col-12">
                                     <div class="single-card">
                                         <div class="icon">
-                                            <img src="{{ asset('assets\frontend\icons\home-white.svg')  }}" alt=""
-                                                style="height:18px;width:18px;">
+                                            <img src="{{ asset('assets/frontend/icons/home-white.svg') }}"
+                                                alt="" style="height:18px;width:18px;">
                                         </div>
                                         <div class="content">
-                                            <div class="amount count">{{ $allTransactionsCount }}
-                                            </div>
+                                            <div class="amount count">{{ $allTransactionsCount }}</div>
                                             <div class="name">All Transactions</div>
                                         </div>
                                     </div>
@@ -1380,11 +1144,11 @@
                                 <div class="col-12">
                                     <div class="single-card">
                                         <div class="icon">
-                                            <img src="{{ asset('assets\frontend\icons\download.svg')  }}" alt=""
-                                                style="height:18px;width:18px;">
+                                            <img src="{{ asset('assets/frontend/icons/download.svg') }}"
+                                                alt="" style="height:18px;width:18px;">
                                         </div>
                                         <div class="content">
-                                            <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
+                                            <div class="amount">{{ Auth::user()->getCurrencySymbol() }}<span
                                                     class="count">{{ number_format($totalDeposited) }}</span>
                                             </div>
                                             <div class="name">Total Deposit</div>
@@ -1394,11 +1158,11 @@
                                 <div class="col-12">
                                     <div class="single-card">
                                         <div class="icon">
-                                            <img src="{{ asset('assets\frontend\icons\box-white.svg')  }}" alt=""
-                                                style="height:18px;width:18px;">
+                                            <img src="{{ asset('assets/frontend/icons/box-white.svg') }}"
+                                                alt="" style="height:18px;width:18px;">
                                         </div>
                                         <div class="content">
-                                            <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
+                                            <div class="amount">{{ Auth::user()->getCurrencySymbol() }}<span
                                                     class="count">{{ number_format($totalTrade) }}</span>
                                             </div>
                                             <div class="name">Total Investment</div>
@@ -1411,11 +1175,11 @@
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets\frontend\icons\credit-card.svg')  }}" alt=""
-                                                    style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/credit-card.svg') }}"
+                                                    alt="" style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
-                                                <div class="amount"> {{ Auth::user()->getCurrencySymbol()}}<span
+                                                <div class="amount">{{ Auth::user()->getCurrencySymbol() }}<span
                                                         class="count">{{ number_format($totalTradeProfit) }}</span>
                                                 </div>
                                                 <div class="name">Total Profit</div>
@@ -1425,11 +1189,11 @@
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets\frontend\icons\log-in.svg')  }}" alt=""
-                                                    style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/log-in.svg') }}"
+                                                    alt="" style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
-                                                <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
+                                                <div class="amount">{{ Auth::user()->getCurrencySymbol() }}<span
                                                         class="count">{{ number_format(Auth::user()->locked_funds, 0) }}</span>
                                                 </div>
                                                 <div class="name">Total Fixed Deposit</div>
@@ -1439,11 +1203,11 @@
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets\frontend\icons\log-in.svg')  }}" alt=""
-                                                    style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/log-in.svg') }}"
+                                                    alt="" style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
-                                                <div class="amount"> {{ Auth::user()->getCurrencySymbol()}}<span
+                                                <div class="amount">{{ Auth::user()->getCurrencySymbol() }}<span
                                                         class="count">{{ number_format($totalWithdrawn) }}</span>
                                                 </div>
                                                 <div class="name">Total Withdraw</div>
@@ -1453,11 +1217,11 @@
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets\frontend\icons\users-2.svg')  }}" alt=""
-                                                    style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/users-2.svg') }}"
+                                                    alt="" style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
-                                                <div class="amount"> {{ Auth::user()->getCurrencySymbol()}}<span
+                                                <div class="amount">{{ Auth::user()->getCurrencySymbol() }}<span
                                                         class="count">0</span>
                                                 </div>
                                                 <div class="name">Referral Bonus</div>
@@ -1467,11 +1231,11 @@
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets\frontend\icons\anchor.svg')  }}" alt=""
-                                                    style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/anchor.svg') }}"
+                                                    alt="" style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
-                                                <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
+                                                <div class="amount">{{ Auth::user()->getCurrencySymbol() }}<span
                                                         class="count">0</span>
                                                 </div>
                                                 <div class="name">Deposit Bonus</div>
@@ -1481,41 +1245,37 @@
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets\frontend\icons\archive.svg')  }}" alt=""
-                                                    style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/archive.svg') }}"
+                                                    alt="" style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
-                                                <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
+                                                <div class="amount">{{ Auth::user()->getCurrencySymbol() }}<span
                                                         class="count">0</span>
                                                 </div>
-                                                <div class="name"> Investment Bonus</div>
+                                                <div class="name">Investment Bonus</div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets\frontend\icons\gift.svg')  }}" alt=""
-                                                    style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/gift.svg') }}"
+                                                    alt="" style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
-                                                <div class="amount count">
-                                                    {{ Auth::user()->referralCount() }}
-                                                </div>
-                                                <div class="name"> Total Referral</div>
+                                                <div class="amount count">{{ Auth::user()->referralCount() }}</div>
+                                                <div class="name">Total Referral</div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets\frontend\icons\award.svg')  }}" alt=""
-                                                    style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/award.svg') }}"
+                                                    alt="" style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
-                                                <div class="amount ">
-                                                    {{ Auth::user()->rankName() }}
-                                                </div>
+                                                <div class="amount">{{ Auth::user()->rankName() }}</div>
                                                 <div class="name">Rank Achieved</div>
                                             </div>
                                         </div>
@@ -1523,12 +1283,12 @@
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets\frontend\icons\alert-triangle.svg')  }}"
+                                                <img src="{{ asset('assets/frontend/icons/alert-triangle.svg') }}"
                                                     alt="" style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
                                                 <div class="amount count">0</div>
-                                                <div class="name"> Total Ticket</div>
+                                                <div class="name">Total Ticket</div>
                                             </div>
                                         </div>
                                     </div>
@@ -1570,9 +1330,8 @@
                                 <div
                                     class="transaction-amount {{ $transaction['type'] === 'Withdrawal' ? 'text-danger' : 'text-success' }}">
                                     {{ $transaction['type'] === 'Withdrawal' ? '-' : '+' }}
-                                    {{ number_format($transaction['amount'], 2) }} {{ $transaction['currency'] ?? '' }}
-                                </div>
-                                <div class="transaction-fee sub">
+                                    {{ number_format($transaction['amount'], 2) }}
+                                    {{ $transaction['currency'] ?? '' }}
                                 </div>
                                 <div class="transaction-gateway">
                                     {{ $transaction['gateway'] }}
@@ -1592,9 +1351,8 @@
                 <div class="all-feature-mobile">
                     <div class="title">Referral URL</div>
                     <div class="mobile-referral-link-form">
-
-                        <input type="text" value="{{ route('register') . '?refid=' . Auth::id() }}" id="refLink"
-                            readonly />
+                        <input type="text" value="{{ route('register') . '?refid=' . Auth::id() }}"
+                            id="refLink" readonly />
                         <button type="submit" onclick="copyRef()">
                             <span id="copy">Copy</span>
                         </button>

@@ -1,18 +1,27 @@
-<div class="min-h-screen bg-[#0a0f1c] text-gray-100 font-sans">
+<div class="min-h-screen bg-[#07070a] text-gray-100 font-sans">
 
     <!-- Page Hero / Banner -->
-    <livewire:shared.hero-banner 
-        title="FINANCIAL <span class='text-[#eac46e]'>MARKETS</span>" />
+    <section class="relative min-h-[50vh] flex items-center justify-center bg-[#07070a] overflow-hidden pt-20" id="banner">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 pointer-events-none"></div>
+        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/40 to-transparent"></div>
+
+        <div class="container mx-auto px-6 lg:px-8 relative z-10 text-center py-20 lg:py-32">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase font-mono">
+                FINANCIAL <span class="text-[#8b5cf6]">MARKETS</span>
+            </h1>
+        </div>
+    </section>
 
     <!-- Key Concepts Section -->
-    <section class="py-20 lg:py-28 bg-[#111827]">
-        <div class="max-w-screen-2xl mx-auto px-6">
+    <section class="py-20 lg:py-28 bg-[#07070a]">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-12">
             <!-- Section Heading -->
             <div class="text-center mb-16">
-                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
-                    Key Concepts in <span class="text-[#eac46e]">Financial Markets</span>
+                <p class="text-xs font-mono uppercase tracking-widest text-[#8b5cf6] mb-2">Knowledge Base</p>
+                <h2 class="text-3xl lg:text-4xl font-black text-white tracking-tight uppercase">
+                    Key Concepts in <span class="text-[#8b5cf6]">Financial Markets</span>
                 </h2>
-                <p class="mt-6 text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
+                <p class="text-sm text-gray-400 font-light mt-4 max-w-2xl mx-auto">
                     Explore fundamental concepts and approaches to navigating the diverse world of financial markets.
                 </p>
             </div>
@@ -48,30 +57,25 @@
                         ]
                     ]
                 ] as $concept)
-                <div class="bg-[#1a2238] border border-[#222f53] hover:border-[#eac46e]/40 rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 group">
-                    <div class="p-8 lg:p-10">
-                        <!-- Title -->
-                        <h3 class="text-3xl font-bold text-center mb-8 text-white group-hover:text-[#eac46e] transition-colors">
-                            {{ $concept['title'] }}
-                        </h3>
+                <div class="bg-[#111116] border border-white/10 hover:border-[#8b5cf6]/60 rounded-none overflow-hidden transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative group">
+                    <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/30 to-transparent"></div>
+                    <div class="p-8 lg:p-10 flex flex-col justify-between h-full">
+                        <div>
+                            <!-- Title -->
+                            <h3 class="text-base font-mono font-bold text-center mb-8 text-white group-hover:text-[#8b5cf6] transition-colors uppercase tracking-widest">
+                                {{ $concept['title'] }}
+                            </h3>
 
-                        <!-- Bullet Points -->
-                        <ul class="space-y-6 text-gray-300">
-                            @foreach($concept['points'] as $point)
-                                <li class="flex items-start text-base lg:text-lg">
-                                    <span class="text-[#eac46e] text-2xl mr-4 mt-1 leading-none">•</span>
-                                    <span>{{ $point }}</span>
-                                </li>
-                            @endforeach
-                        </ul>
-
-                        <!-- Learn More -->
-                        {{-- <div class="mt-10 text-center">
-                            <a href="#" 
-                               class="inline-block px-8 py-4 bg-[#222f53] hover:bg-[#2a3a6b] border border-[#eac46e]/70 rounded-2xl font-semibold transition-all">
-                                Learn More
-                            </a>
-                        </div> --}}
+                            <!-- Bullet Points -->
+                            <ul class="space-y-4 text-sm font-light text-gray-300">
+                                @foreach($concept['points'] as $point)
+                                    <li class="flex items-start border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                                        <span class="text-[#8b5cf6] font-mono mr-3 text-xs mt-0.5">▪</span>
+                                        <span class="leading-relaxed">{{ $point }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 @endforeach

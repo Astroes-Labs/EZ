@@ -1,45 +1,69 @@
-<div class="w-full max-w-md space-y-10">
+<div class="min-h-screen bg-[#07070a] text-gray-100 font-sans flex flex-col justify-between">
 
-    <div class="text-center">
-        <h1 class="text-4xl font-black tracking-tighter text-white">Reset Your Password</h1>
-        <p class="mt-4 text-gray-400">Enter your email address and we'll send you a link to reset your password.</p>
-    </div>
+    <!-- Header Section -->
+    <section class="relative py-12 px-6 lg:px-12 text-center overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 pointer-events-none"></div>
+        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/40 to-transparent"></div>
 
-    <form method="POST"   wire:submit="store"   class="space-y-6">
-        @csrf
-
-        <div>
-            <input type="email"  wire:model.debounce.500ms="email"  
-                   class="w-full px-6 py-4 bg-[#1a2238] border border-[#222f53] rounded-2xl focus:border-[#eac46e] text-white placeholder-gray-400 focus:outline-none"
-                   placeholder="Your Email Address" required autofocus>
-            @error('email')
-                <p class="mt-2 text-sm text-red-400">{{ $message }}</p>
-            @enderror
+        <div class="container mx-auto max-w-xl relative z-10 pt-10">
+            <h1 class="text-3xl sm:text-4xl font-black text-white tracking-tighter uppercase font-mono mb-2">
+                RESET YOUR <span class="text-[#8b5cf6]">PASSWORD</span>
+            </h1>
+            <p class="text-xs text-gray-400 font-light uppercase tracking-widest font-mono">
+                Enter your email address and we'll send you a link to reset your password.
+            </p>
         </div>
+    </section>
 
-       <button 
-            type="submit"
-            wire:loading.attr="disabled"
-            class="w-full py-4 bg-[#eac46e] hover:bg-amber-300 text-[#111827] font-bold rounded-2xl transition-all active:scale-95 disabled:opacity-70 flex items-center justify-center gap-3">
-            
-            <!-- Normal State -->
-            <span wire:loading.remove class="flex items-center justify-center">
-                Send Reset Link
-            </span>
+    <!-- Reset Section -->
+    <section class="pb-24 pt-2 bg-[#07070a] flex-grow flex items-center">
+        <div class="w-full max-w-xl mx-auto px-4 sm:px-6">
+            <div class="bg-[#111116] border border-white/10 p-6 sm:p-10 lg:p-12 relative group shadow-[0_20px_60px_rgba(0,0,0,0.9)]">
+                <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/40 to-transparent"></div>
 
-            <!-- Loading State -->
-            <span wire:loading class="flex items-center justify-center gap-3">
-                <svg class="animate-spin h-5 w-5 text-[#111827]" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-                </svg>
-                Sending...
-            </span>
-        </button>
-    </form>
+                <form method="POST" wire:submit="store" class="space-y-6">
+                    @csrf
 
-    <p class="text-center">
-        <a href="{{ route('login') }}" wire:navigate class="text-gray-400 hover:text-white transition">← Back to Login</a>
-    </p>
+                    <div>
+                        <label class="block text-xs font-mono text-gray-400 tracking-widest uppercase mb-2">Email Address *</label>
+                        <input type="email" wire:model.debounce.500ms="email"
+                            class="w-full px-5 py-4 bg-black border border-white/10 text-xs font-mono focus:outline-none focus:border-[#8b5cf6] text-gray-100 placeholder-gray-500 transition-all rounded-none"
+                            placeholder="Your Email Address" required autofocus>
+                        @error('email')
+                            <p class="mt-1 text-xs font-mono text-red-400">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit"
+                            wire:loading.attr="disabled"
+                            class="w-full py-5 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white font-mono text-xs uppercase tracking-widest font-bold transition-all active:scale-[0.99] shadow-[0_0_25px_rgba(139,92,246,0.4)] disabled:opacity-70 flex items-center justify-center gap-3">
+                            
+                            <!-- Normal State -->
+                            <span wire:loading.remove class="flex items-center justify-center">
+                                Send Reset Link
+                            </span>
+
+                            <!-- Loading State -->
+                            <span wire:loading class="flex items-center justify-center gap-3">
+                                <svg class="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                                </svg>
+                                Sending...
+                            </span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Back to Login Link -->
+                <div class="pt-6 mt-6 border-t border-white/10 text-center">
+                    <p class="text-xs font-mono text-gray-400 uppercase tracking-widest">
+                        <a href="{{ route('login') }}" wire:navigate class="text-[#8b5cf6] hover:underline font-semibold">← Back to Login</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </div>

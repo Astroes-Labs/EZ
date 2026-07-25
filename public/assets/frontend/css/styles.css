@@ -8,30 +8,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 /* ── Design Tokens ── */
-:root {
-    --bg-deep:        #0a0f1c;
-    --bg-layer1:      #111827;
-    --bg-layer2:      #1a2238;
-    --bg-layer3:      #1e2a42;
-    --accent:         #eac46e;
-    --accent-dim:     rgba(234, 196, 110, 0.12);
-    --accent-border:  rgba(234, 196, 110, 0.25);
-    --border:         #222f53;
-    --border-soft:    rgba(34, 47, 83, 0.6);
-    --text-primary:   #f0f4ff;
-    --text-secondary: #8fa0bf;
-    --text-muted:     #4e6085;
-    --success:        #3dd68c;
-    --danger:         #f87171;
-    --warning:        #fbbf24;
-    --radius-sm:      8px;
-    --radius-md:      14px;
-    --radius-lg:      20px;
-    --shadow-card:    0 4px 24px rgba(0,0,0,0.35);
-    --shadow-accent:  0 0 24px rgba(234,196,110,0.08);
-    --transition:     all 0.22s cubic-bezier(0.4,0,0.2,1);
-}
 
+:root {
+    --bg-deep: #07070a;
+    --bg-layer1: #0c0c10;
+    --bg-layer2: #111116;
+    --bg-layer3: #16161c;
+    --accent: #8b5cf6;
+    --accent-dim: rgba(139, 92, 246, 0.12);
+    --accent-border: rgba(139, 92, 246, 0.25);
+    --border: rgba(255, 255, 255, 0.1);
+    --border-soft: rgba(255, 255, 255, 0.05);
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+    --success: #3dd68c;
+    --danger: #f87171;
+    --warning: #fbbf24;
+    --radius-sm: 0px;
+    --radius-md: 0px;
+    --radius-lg: 0px;
+    --shadow-card: 0 30px 100px rgba(0, 0, 0, 0.9);
+    --shadow-accent: 0 0 30px rgba(139, 92, 246, 0.3);
+    --transition: all 0.2s ease;
+}
 /* ── Font Declarations (kept for anticon) ── */
 @font-face {
     font-family: sofia pro;

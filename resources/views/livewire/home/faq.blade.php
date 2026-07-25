@@ -1,27 +1,38 @@
-<div class="min-h-screen bg-[#0a0f1c] text-gray-100 font-sans">
+<div class="min-h-screen bg-[#07070a] text-gray-100 font-sans">
 
     <!-- Page Hero / Banner -->
-    <livewire:shared.hero-banner 
-        title="FREQUENTLY ASKED <span class='text-[#eac46e]'>QUESTIONS</span>" />
+    <section class="relative min-h-[50vh] flex items-center justify-center bg-[#07070a] overflow-hidden pt-20" id="banner">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 pointer-events-none"></div>
+        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/40 to-transparent"></div>
+
+        <div class="container mx-auto px-6 lg:px-8 relative z-10 text-center py-20 lg:py-32">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase font-mono">
+                FREQUENTLY ASKED <span class="text-[#8b5cf6]">QUESTIONS</span>
+            </h1>
+        </div>
+    </section>
 
     <!-- FAQ Section -->
-    <section class="py-20 lg:py-28 bg-[#111827]">
-        <div class="max-w-screen-2xl mx-auto px-6">
+    <section class="py-20 lg:py-28 bg-[#07070a]">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-12">
             <div class="max-w-4xl mx-auto">
                 <!-- Heading -->
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl lg:text-5xl font-bold tracking-tight mb-4">FAQs</h2>
-                    <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    <p class="text-xs font-mono uppercase tracking-widest text-[#8b5cf6] mb-2">Help Center</p>
+                    <h2 class="text-3xl lg:text-4xl font-black text-white tracking-tight uppercase">
+                        FAQs
+                    </h2>
+                    <p class="text-sm text-gray-400 font-light mt-4 max-w-2xl mx-auto">
                         Carefully curated most asked questions by investors and prospective investors on {{ config('app.name') }}.
                     </p>
                 </div>
 
                 <!-- FAQ Accordion -->
-                <div class="space-y-6">
+                <div class="space-y-4">
                     @foreach([
                         [
                             'question' => 'How can I open an account?',
-                            'answer' => 'To become an active investor, you must be signed up on our platform. Before signing up, we strongly recommend that you familiarize yourself with <a href="'.route('terms').'" class="text-[#eac46e] hover:underline">Terms & Conditions</a>. You will automatically accept all provisions of this document after finishing the sign up. In addition, we recommend you to read the <a href="'.route('how').'" class="text-[#eac46e] hover:underline">How It Works</a> section.'
+                            'answer' => 'To become an active investor, you must be signed up on our platform. Before signing up, we strongly recommend that you familiarize yourself with <a href="'.route('terms').'" class="text-[#8b5cf6] hover:underline font-mono">Terms & Conditions</a>. You will automatically accept all provisions of this document after finishing the sign up. In addition, we recommend you to read the <a href="'.route('how').'" class="text-[#8b5cf6] hover:underline font-mono">How It Works</a> section.'
                         ],
                         [
                             'question' => 'What does it cost to open an account?',
@@ -41,7 +52,7 @@
                         ],
                         [
                             'question' => 'How long does it take for deposit to be confirmed?',
-                            'answer' => 'Deposits are confirmed immediately funds are received. Deposits via some payment methods might take a little while. Please contact <a href="mailto:'.config('app.email').'" class="text-[#eac46e] hover:underline">'.config('app.email').'</a>, in case you have deposited funds but it is not showing in your account.'
+                            'answer' => 'Deposits are confirmed immediately funds are received. Deposits via some payment methods might take a little while. Please contact <a href="mailto:'.config('app.email').'" class="text-[#8b5cf6] hover:underline font-mono">'.config('app.email').'</a>, in case you have deposited funds but it is not showing in your account.'
                         ],
                         [
                             'question' => 'Can I invest in multiple plans?',
@@ -96,15 +107,16 @@
                             'answer' => 'Use support services like email, whatsapp, phone calls and text messages to contact us for any questions you may have. Do not duplicate your question on our support services, please use only one way for reaching us.'
                         ]
                     ] as $faq)
-                    <div class="bg-[#1a2238] border border-[#222f53] hover:border-[#eac46e]/40 rounded-3xl overflow-hidden transition-all group">
-                        <button onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('span').classList.toggle('rotate-180')"
-                                class="w-full text-left p-8 flex justify-between items-center focus:outline-none">
-                            <h4 class="text-xl font-semibold pr-8">
+                    <div class="bg-[#111116] border border-white/10 hover:border-[#8b5cf6]/60 rounded-none overflow-hidden transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative group">
+                        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/30 to-transparent"></div>
+                        <button onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('span').classList.toggle('rotate-45')"
+                                class="w-full text-left p-6 lg:p-8 flex justify-between items-center focus:outline-none">
+                            <h4 class="text-sm lg:text-base font-mono font-bold text-white tracking-wider pr-8 uppercase">
                                 {{ $faq['question'] }}
                             </h4>
-                            <span class="text-3xl text-[#eac46e] transition-transform duration-300">+</span>
+                            <span class="text-xl text-[#8b5cf6] font-mono transition-transform duration-300">+</span>
                         </button>
-                        <div class="hidden px-8 pb-8 lg:pb-10 text-gray-300 leading-relaxed">
+                        <div class="hidden px-6 lg:px-8 pb-6 lg:pb-8 text-sm font-light text-gray-300 leading-relaxed border-t border-white/5 pt-4">
                             {!! $faq['answer'] !!}
                         </div>
                     </div>

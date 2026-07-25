@@ -39,7 +39,7 @@
            Import your themed styles.css here if you replace the original.
         ============================================================ */
 
-        :root {
+        /*  :root {
             --bg-deep: #0a0f1c;
             --bg-layer1: #111827;
             --bg-layer2: #1a2238;
@@ -51,7 +51,7 @@
             --border-soft: rgba(34, 47, 83, 0.6);
             --text-primary: #f0f4ff;
             --text-secondary: #8fa0bf;
-            --text-muted: #4e6085;
+            --text-muted: #9ca3af;
             --success: #3dd68c;
             --danger: #f87171;
             --warning: #fbbf24;
@@ -61,6 +61,30 @@
             --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.35);
             --shadow-accent: 0 0 24px rgba(234, 196, 110, 0.08);
             --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+        } */
+
+        :root {
+            --bg-deep: #07070a;
+            --bg-layer1: #0c0c10;
+            --bg-layer2: #111116;
+            --bg-layer3: #16161c;
+            --accent: #8b5cf6;
+            --accent-dim: rgba(139, 92, 246, 0.12);
+            --accent-border: rgba(139, 92, 246, 0.25);
+            --border: rgba(255, 255, 255, 0.1);
+            --border-soft: rgba(255, 255, 255, 0.05);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --success: #3dd68c;
+            --danger: #f87171;
+            --warning: #fbbf24;
+            --radius-sm: 0px;
+            --radius-md: 0px;
+            --radius-lg: 0px;
+            --shadow-card: 0 30px 100px rgba(0, 0, 0, 0.9);
+            --shadow-accent: 0 0 30px rgba(139, 92, 246, 0.3);
+            --transition: all 0.2s ease;
         }
 
         /* ── Global base ── */
@@ -1457,9 +1481,9 @@
                             <div class="single-nav-right user-notifications">
                                 <button type="button" class="item notification-dot" data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
                                         <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
                                         <path d="M4 2C2.8 3.7 2 5.7 2 8"></path>
@@ -1479,16 +1503,22 @@
                                             <div class="single-noti">
                                                 <a href="{{ route('notifications.show', $notification->id) }}"
                                                     onclick="openCustom(event, this); loadNotifications(); updateUnreadCount();"
-                                                    class="{{ ($notification->read == 1) ? 'read' : '' }}">
+                                                    class="{{ $notification->read == 1 ? 'read' : '' }}">
                                                     <div class="icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <line x1="3" x2="21" y1="22" y2="22"></line>
-                                                            <line x1="6" x2="6" y1="18" y2="11"></line>
-                                                            <line x1="10" x2="10" y1="18" y2="11"></line>
-                                                            <line x1="14" x2="14" y1="18" y2="11"></line>
-                                                            <line x1="18" x2="18" y1="18" y2="11"></line>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <line x1="3" x2="21" y1="22"
+                                                                y2="22"></line>
+                                                            <line x1="6" x2="6" y1="18"
+                                                                y2="11"></line>
+                                                            <line x1="10" x2="10" y1="18"
+                                                                y2="11"></line>
+                                                            <line x1="14" x2="14" y1="18"
+                                                                y2="11"></line>
+                                                            <line x1="18" x2="18" y1="18"
+                                                                y2="11"></line>
                                                             <polygon points="12 2 20 7 4 7"></polygon>
                                                         </svg>
                                                     </div>
@@ -1497,13 +1527,15 @@
                                                             <span>{{ $notification->title ?? 'Notification' }}</span>
                                                             {{ \Illuminate\Support\Str::limit($notification->message, 20, '...') ?? 'You have a new notification.' }}
                                                         </div>
-                                                        <div class="time">{{ $notification->created_at->diffForHumans() }}
+                                                        <div class="time">
+                                                            {{ $notification->created_at->diffForHumans() }}
                                                         </div>
                                                     </div>
                                                 </a>
                                             </div>
                                         @empty
-                                            <p class="text-center my-3" style="color: var(--text-muted); font-size: 13px;">
+                                            <p class="text-center my-3"
+                                                style="color: var(--text-muted); font-size: 13px;">
                                                 No notifications found</p>
                                         @endforelse
                                     </div>
@@ -1591,13 +1623,13 @@
                         <div class="wallet-info">
                             <div class="wallet-id"><i icon-name="wallet"></i>Total Portfolio</div>
                             <div class="balance" id="mainBalance">
-                                {{ Auth::user()->getCurrencySymbol() . " " . Auth::user()->displayBalance($totalProfit) }}
+                                {{ Auth::user()->getCurrencySymbol() . ' ' . Auth::user()->displayBalance($totalProfit) }}
                             </div>
                         </div>
                         <div class="wallet-info">
                             <div class="wallet-id"><i icon-name="landmark"></i>Fixed Deposit</div>
                             <div class="balance" id="lockedfundsBalance">
-                                {{ Auth::user()->getCurrencySymbol() . " " . Auth::user()->displayBalance(Auth::user()->locked_funds) }}
+                                {{ Auth::user()->getCurrencySymbol() . ' ' . Auth::user()->displayBalance(Auth::user()->locked_funds) }}
                             </div>
                         </div>
                     </div>
@@ -1734,7 +1766,7 @@
 
                         <!-- ADD THIS WRAPPER -->
                         <div id="dynamic-content">
-                            @if(isset($content_view))
+                            @if (isset($content_view))
                                 @include($content_view)
                             @else
                                 @yield('content')

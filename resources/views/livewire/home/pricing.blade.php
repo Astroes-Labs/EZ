@@ -1,18 +1,30 @@
-<div class="min-h-screen bg-[#0a0f1c] text-gray-100 font-sans">
+<div class="min-h-screen bg-[#07070a] text-gray-100 font-sans">
 
     <!-- Page Hero / Banner -->
-    <livewire:shared.hero-banner 
-        title="INVESTMENT <span class='text-[#eac46e]'>PLANS</span>" 
-    />
+    <section class="relative min-h-[50vh] flex items-center justify-center bg-[#07070a] overflow-hidden pt-20" id="banner">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 pointer-events-none"></div>
+        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/40 to-transparent"></div>
+
+        <div class="container mx-auto px-6 lg:px-8 relative z-10 text-center py-20 lg:py-32">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase font-mono">
+                INVESTMENT <span class="text-[#8b5cf6]">PLANS</span>
+            </h1>
+        </div>
+    </section>
 
     <!-- Pricing Plans Section -->
-    <section id="plans" class="py-20 lg:py-28 bg-[#111827]">
-        <div class="max-w-screen-2xl mx-auto px-6">
+    <section id="plans" class="py-20 lg:py-28 bg-[#07070a]">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-12">
             <!-- Section Heading -->
-            <livewire:shared.section-heading 
-                title="Available <span class='text-[#eac46e]'>Investment Plans</span>" 
-                subtitle="Evaluate from a range of investment plans tailored to suit any capital size..." 
-            />
+            <div class="text-center mb-16">
+                <p class="text-xs font-mono uppercase tracking-widest text-[#8b5cf6] mb-2">Available Plans</p>
+                <h2 class="text-3xl lg:text-4xl font-black text-white tracking-tight uppercase">
+                    Investment <span class="text-[#8b5cf6]">Plans</span>
+                </h2>
+                <p class="text-sm text-gray-400 font-light mt-4 max-w-2xl mx-auto">
+                    Evaluate from a range of investment plans tailored to suit any capital size...
+                </p>
+            </div>
 
             <!-- Pricing Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
@@ -47,62 +59,64 @@
                     ]
                 ] as $plan)
                 <div class="relative {{ $plan['border'] ? 'scale-105 z-10' : '' }}">
-                    <div class="pricing-card bg-[#1a2238] border {{ $plan['border'] ? 'border-[#eac46e]' : 'border-[#222f53]' }} 
-                                rounded-3xl overflow-hidden hover:border-[#eac46e] transition-all duration-500 h-full group">
+                    <div class="pricing-card bg-[#111116] border {{ $plan['border'] ? 'border-[#8b5cf6]' : 'border-white/10' }} 
+                            rounded-none overflow-hidden hover:border-[#8b5cf6] transition-all duration-300 h-full group shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+                        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8b5cf6]/40 to-transparent"></div>
                         
                         <!-- Featured Badge -->
                         @if($plan['border'])
-                            <div class="bg-[#eac46e] text-[#111827] text-xs font-bold tracking-widest py-1.5 text-center">
+                            <div class="bg-[#8b5cf6] text-white text-xs font-mono font-bold tracking-widest py-1.5 text-center uppercase">
                                 MOST POPULAR
                             </div>
                         @endif
 
                         <!-- Header -->
-                        <div class="pricing-header bg-gradient-to-br from-[#222f53] to-[#1a2238] py-12 text-center relative overflow-hidden">
-                            <i class="fa fa-diamond text-6xl text-[#eac46e] opacity-80 absolute top-6 left-6"></i>
-                            <div class="price-value text-6xl font-black text-white drop-shadow-lg">
+                        <div class="pricing-header bg-[#111116] border-b border-white/5 py-10 text-center relative overflow-hidden">
+                            <i class="fa fa-diamond text-4xl text-[#8b5cf6] opacity-30 absolute top-4 left-4"></i>
+                            <div class="price-value text-5xl font-black text-white font-mono tracking-tight">
                                 {{ $plan['roi'] }}
-                                <span class="text-xl font-normal opacity-80">ROI</span>
+                                <span class="text-xs font-mono font-normal opacity-60">ROI</span>
                             </div>
-                            <div class="text-sm text-gray-400 mt-1">Weekly Return</div>
+                            <div class="text-xs font-mono uppercase tracking-widest text-gray-500 mt-2">Weekly Return</div>
                         </div>
 
                         <!-- Body -->
-                        <div class="p-8 lg:p-10">
-                            <h3 class="text-3xl font-bold text-center text-white mb-10 group-hover:text-[#eac46e] transition-colors">
-                                {{ $plan['title'] }}
-                            </h3>
+                        <div class="p-8 lg:p-10 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-lg font-mono font-bold text-center text-white mb-8 tracking-widest group-hover:text-[#8b5cf6] transition-colors uppercase">
+                                    {{ $plan['title'] }}
+                                </h3>
 
-                            <ul class="space-y-6 text-center text-gray-300">
-                                <li class="text-lg flex justify-between">
-                                    <span>Return</span> 
-                                    <span class="font-semibold text-[#eac46e]">{{ $plan['roi'] }}</span>
-                                </li>
-                                <li class="text-lg flex justify-between">
-                                    <span>Minimum</span> 
-                                    <span class="font-semibold">${{ number_format($plan['min']) }}</span>
-                                </li>
-                                <li class="text-lg flex justify-between">
-                                    <span>Maximum</span> 
-                                    <span class="font-semibold">${{ number_format($plan['max']) }}</span>
-                                </li>
-                                <li class="text-lg flex justify-between">
-                                    <span>Capital Return</span> 
-                                    <span class="font-semibold text-emerald-400">Yes</span>
-                                </li>
-                            </ul>
+                                <ul class="space-y-4 text-sm font-light text-gray-300">
+                                    <li class="flex justify-between border-b border-white/5 pb-3">
+                                        <span class="text-gray-500 font-mono text-xs uppercase">Return</span> 
+                                        <span class="font-bold text-[#8b5cf6] font-mono">{{ $plan['roi'] }}</span>
+                                    </li>
+                                    <li class="flex justify-between border-b border-white/5 pb-3">
+                                        <span class="text-gray-500 font-mono text-xs uppercase">Minimum</span> 
+                                        <span class="font-semibold font-mono">${{ number_format($plan['min']) }}</span>
+                                    </li>
+                                    <li class="flex justify-between border-b border-white/5 pb-3">
+                                        <span class="text-gray-500 font-mono text-xs uppercase">Maximum</span> 
+                                        <span class="font-semibold font-mono">${{ number_format($plan['max']) }}</span>
+                                    </li>
+                                    <li class="flex justify-between pb-3">
+                                        <span class="text-gray-500 font-mono text-xs uppercase">Capital Return</span> 
+                                        <span class="font-semibold text-emerald-400 font-mono">Yes</span>
+                                    </li>
+                                </ul>
+                            </div>
 
-                            <div class="mt-12 text-center">
+                            <div class="mt-10 text-center">
                                 <a href="{{ route('register') }}" wire:navigate
-                                   class="inline-block w-full py-4 bg-[#222f53] hover:bg-[#2a3a6b] border border-[#eac46e]/70 
-                                          rounded-2xl font-semibold text-white transition-all hover:border-[#eac46e]">
+                                   class="inline-block w-full py-3.5 bg-[#8b5cf6] hover:bg-[#7c3aed] text-white text-xs font-mono font-bold uppercase tracking-widest transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] border-b-2 border-black/40">
                                     Invest Now
                                 </a>
                             </div>
                         </div>
 
                         <!-- Shine Effect -->
-                        <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent 
+                        <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent 
                                     opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
                     </div>
                 </div>
