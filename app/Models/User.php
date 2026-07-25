@@ -49,6 +49,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'photo_profile',
         'trading_balance',
         'locked_funds',
+        'flash_message',
     ];
 
     protected $hidden = [

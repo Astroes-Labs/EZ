@@ -17,6 +17,9 @@ use App\Http\Controllers\SupportController;
 
 // use App\Livewire\Home\Index;
 
+// ALTER TABLE `users` ADD `flash_message` VARCHAR(255) NULL DEFAULT NULL;
+
+
 Route::middleware(['auth'])->group(function () {});
 
 
