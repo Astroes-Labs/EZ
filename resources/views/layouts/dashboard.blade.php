@@ -22,7 +22,7 @@
         href="{{ url('../assets/vendor/mckenziearts/laravel-notify/css/notify.css') }}" />
     <link rel="stylesheet" href="{{ url('../assets/global/css/custom.css') }}" />
     <link rel="stylesheet" href="{{ url('../assets/frontend/css/magnific-popup.css') }}" />
-    <link rel="stylesheet" href="{{ url('../assets/frontend/css/styles.css?var=2.1') }}" />
+    <link rel="stylesheet" href="{{ url('../assets/frontend/css/styles.css?var=2.6') }}" />
     <link rel="stylesheet" href="{{ url('../assets/frontend/css/toastr.min.css') }}">
 
     {{-- Google Fonts for the premium design system --}}
@@ -34,7 +34,7 @@
 
     <style>
         /* ============================================================
-           INLINE OVERRIDES — Premium Dark Fintech Theme
+           INLINE OVERRIDES
            These override styles.css without editing it directly.
            Import your themed styles.css here if you replace the original.
         ============================================================ */
@@ -596,29 +596,9 @@
 
         /* Account Info Btn */
         /* ============================================================
-        USER CENTER PAGE — Matches premium dark fintech theme
+        USER CENTER PAGE 
         ============================================================ */
-        :root {
-            --bg-deep: #0a0f1c;
-            --bg-layer1: #111827;
-            --bg-layer2: #1a2238;
-            --bg-layer3: #1e2a42;
-            --accent: #eac46e;
-            --accent-dim: rgba(234, 196, 110, 0.12);
-            --accent-border: rgba(234, 196, 110, 0.25);
-            --border: #222f53;
-            --border-soft: rgba(34, 47, 83, 0.5);
-            --text-primary: #f0f4ff;
-            --text-secondary: #8fa0bf;
-            --text-muted: #4e6085;
-            --success: #3dd68c;
-            --danger: #f87171;
-            --radius-sm: 8px;
-            --radius-md: 14px;
-            --radius-lg: 20px;
-            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.35);
-            --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+      
 
         .uc-page {
             /* max-width: 680px; */

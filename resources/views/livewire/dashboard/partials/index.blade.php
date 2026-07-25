@@ -748,6 +748,8 @@
 
 <div class="desktop-screen-show" style="padding: 1.5rem;">
 
+    @include('livewire.dashboard.partials.desktop-content')
+
     <div class="row g-3 align-items-stretch">
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-12">
             <div class="user-ranking">
@@ -767,8 +769,8 @@
                 <div class="site-card-body">
                     <div class="referral-link">
                         <div class="referral-link-form">
-                            <input type="text" value="{{ route('register') . '?refid=' . Auth::id() }}"
-                                id="refLink" readonly />
+                            <input type="text" value="{{ route('register') . '?refid=' . Auth::id() }}" id="refLink"
+                                readonly />
                             <button type="submit" onclick="copyRef()">
                                 <i class="anticon anticon-copy"></i>
                                 <span id="copy">Copy</span>
@@ -811,7 +813,7 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-file-add"></i></div>
                 <div class="content">
-                    <h4><b>{{ Auth::user()->getCurrencySymbol() }}</b><span
+                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
                             class="count">{{ number_format($totalDeposited) }}</span></h4>
                     <p>Total Deposit</p>
                 </div>
@@ -821,7 +823,7 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-check-square"></i></div>
                 <div class="content">
-                    <h4><b>{{ Auth::user()->getCurrencySymbol() }}</b><span
+                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
                             class="count">{{ number_format($totalTrade) }}</span></h4>
                     <p>Total Investment</p>
                 </div>
@@ -831,7 +833,7 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-credit-card"></i></div>
                 <div class="content">
-                    <h4><b>{{ Auth::user()->getCurrencySymbol() }}</b><span
+                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
                             class="count">{{ number_format($totalTradeProfit) }}</span></h4>
                     <p>Total Profit</p>
                 </div>
@@ -841,7 +843,7 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-lock"></i></div>
                 <div class="content">
-                    <h4><b>{{ Auth::user()->getCurrencySymbol() }}</b><span
+                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
                             class="count">{{ number_format(Auth::user()->locked_funds, 0) }}</span></h4>
                     <p>Total Fixed Deposit</p>
                 </div>
@@ -851,7 +853,7 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-money-collect"></i></div>
                 <div class="content">
-                    <h4><b>{{ Auth::user()->getCurrencySymbol() }}</b><span
+                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span
                             class="count">{{ number_format($totalWithdrawn) }}</span></h4>
                     <p>Total Withdrawal</p>
                 </div>
@@ -861,7 +863,7 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-gift"></i></div>
                 <div class="content">
-                    <h4><b>{{ Auth::user()->getCurrencySymbol() }}</b><span class="count">0</span></h4>
+                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span class="count">0</span></h4>
                     <p>Referral Bonus</p>
                 </div>
             </div>
@@ -870,7 +872,7 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-account-book"></i></div>
                 <div class="content">
-                    <h4><b>{{ Auth::user()->getCurrencySymbol() }}</b><span class="count">0</span></h4>
+                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span class="count">0</span></h4>
                     <p>Deposit Bonus</p>
                 </div>
             </div>
@@ -879,7 +881,7 @@
             <div class="single">
                 <div class="icon"><i class="anticon anticon-gold"></i></div>
                 <div class="content">
-                    <h4><b>{{ Auth::user()->getCurrencySymbol() }}</b><span class="count">0</span></h4>
+                    <h4><b>{{ Auth::user()->getCurrencySymbol()}}</b><span class="count">0</span></h4>
                     <p>Investment Bonus</p>
                 </div>
             </div>
@@ -971,12 +973,13 @@
 </div>
 
 <div class="mobile-screen-show" style="padding: 1rem;">
+
     <div class="row g-3">
         <div class="col-12">
             <div class="user-ranking-mobile">
                 <div class="icon">
-                    <img src="{{ Auth::user()->photo_profile ?? '../assets/global/materials/upload.svg' }}"
-                        alt="" height="45" width="45"
+                    <img src="{{ Auth::user()->photo_profile ?? '../assets/global/materials/upload.svg' }}" alt=""
+                        height="45" width="45"
                         style="border-radius: 50%; border: 2px solid var(--accent); object-fit:cover;" />
                 </div>
                 <div class="name">
@@ -993,15 +996,13 @@
                 <div class="head">All Wallets in {{ Auth::user()->currency }}</div>
                 <div class="one">
                     <div class="balance">
-                        <span
-                            class="symbol">{{ Auth::user()->getCurrencySymbol() . ' ' . Auth::user()->displayBalance(Auth::user()->trading_balance) }}</span>
+                        <span class="symbol">{{ Auth::user()->getCurrencySymbol() . ' ' . Auth::user()->displayBalance(Auth::user()->trading_balance) }}</span>
                     </div>
                     <div class="wallet">Total Balance</div>
                 </div>
                 <div class="one p-wal">
                     <div class="balance">
-                        <span class="symbol"
-                            style="font-size:1.1rem !important; color:var(--text-muted) !important;">{{ Auth::user()->getCurrencySymbol() . ' ' . Auth::user()->displayBalance(Auth::user()->locked_funds) }}</span>
+                        <span class="symbol" style="font-size:1.1rem !important; color:var(--text-muted) !important;">{{ Auth::user()->getCurrencySymbol() . ' ' . Auth::user()->displayBalance(Auth::user()->locked_funds) }}</span>
                     </div>
                     <div class="wallet">Fixed Deposit</div>
                 </div>
@@ -1051,8 +1052,8 @@
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('deposit') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/deposit.png"
-                                        alt="" style="height:22px;width:22px;"></div>
+                                <div class="icon"><img src="../assets/frontend/materials/deposit.png" alt=""
+                                        style="height:22px;width:22px;"></div>
                                 <div class="name">Fund Account</div>
                             </a>
                         </div>
@@ -1060,8 +1061,8 @@
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('deposit.history') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/deposit-log.png"
-                                        alt="" style="height:22px;width:22px;"></div>
+                                <div class="icon"><img src="../assets/frontend/materials/deposit-log.png" alt=""
+                                        style="height:22px;width:22px;"></div>
                                 <div class="name">Deposit History</div>
                             </a>
                         </div>
@@ -1069,8 +1070,8 @@
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('withdraw') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/withdraw.png"
-                                        alt="" style="height:22px;width:22px;"></div>
+                                <div class="icon"><img src="../assets/frontend/materials/withdraw.png" alt=""
+                                        style="height:22px;width:22px;"></div>
                                 <div class="name">Withdraw</div>
                             </a>
                         </div>
@@ -1078,8 +1079,8 @@
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('withdraw.history') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/withdraw-log.png"
-                                        alt="" style="height:22px;width:22px;"></div>
+                                <div class="icon"><img src="../assets/frontend/materials/withdraw-log.png" alt=""
+                                        style="height:22px;width:22px;"></div>
                                 <div class="name">Withdraw History</div>
                             </a>
                         </div>
@@ -1087,8 +1088,8 @@
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('account.info') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/schema-log.png"
-                                        alt="" style="height:22px;width:22px;"></div>
+                                <div class="icon"><img src="../assets/frontend/materials/schema-log.png" alt=""
+                                        style="height:22px;width:22px;"></div>
                                 <div class="name">Account Info</div>
                             </a>
                         </div>
@@ -1096,8 +1097,8 @@
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('traders.index') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/transactions.png"
-                                        alt="" style="height:22px;width:22px;"></div>
+                                <div class="icon"><img src="../assets/frontend/materials/transactions.png" alt=""
+                                        style="height:22px;width:22px;"></div>
                                 <div class="name">Copy Trading</div>
                             </a>
                         </div>
@@ -1105,8 +1106,8 @@
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('locked.funds') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/transfer.png"
-                                        alt="" style="height:22px;width:22px;"></div>
+                                <div class="icon"><img src="../assets/frontend/materials/transfer.png" alt=""
+                                        style="height:22px;width:22px;"></div>
                                 <div class="name">Fixed Deposit</div>
                             </a>
                         </div>
@@ -1114,8 +1115,8 @@
                     <div class="col-4">
                         <div class="single">
                             <a href="{{ route('referrals.rank.show') }}" onclick="openCustom(event, this)">
-                                <div class="icon"><img src="../assets/frontend/materials/referral.png"
-                                        alt="" style="height:22px;width:22px;"></div>
+                                <div class="icon"><img src="../assets/frontend/materials/referral.png" alt=""
+                                        style="height:22px;width:22px;"></div>
                                 <div class="name">Referral/Rank</div>
                             </a>
                         </div>
@@ -1132,8 +1133,8 @@
                                 <div class="col-12">
                                     <div class="single-card">
                                         <div class="icon">
-                                            <img src="{{ asset('assets/frontend/icons/home-white.svg') }}"
-                                                alt="" style="height:18px;width:18px;">
+                                            <img src="{{ asset('assets/frontend/icons/home-white.svg') }}" alt=""
+                                                style="height:18px;width:18px;">
                                         </div>
                                         <div class="content">
                                             <div class="amount count">{{ $allTransactionsCount }}</div>
@@ -1144,11 +1145,11 @@
                                 <div class="col-12">
                                     <div class="single-card">
                                         <div class="icon">
-                                            <img src="{{ asset('assets/frontend/icons/download.svg') }}"
-                                                alt="" style="height:18px;width:18px;">
+                                            <img src="{{ asset('assets/frontend/icons/download.svg') }}" alt=""
+                                                style="height:18px;width:18px;">
                                         </div>
                                         <div class="content">
-                                            <div class="amount">{{ Auth::user()->getCurrencySymbol() }}<span
+                                            <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
                                                     class="count">{{ number_format($totalDeposited) }}</span>
                                             </div>
                                             <div class="name">Total Deposit</div>
@@ -1158,11 +1159,11 @@
                                 <div class="col-12">
                                     <div class="single-card">
                                         <div class="icon">
-                                            <img src="{{ asset('assets/frontend/icons/box-white.svg') }}"
-                                                alt="" style="height:18px;width:18px;">
+                                            <img src="{{ asset('assets/frontend/icons/box-white.svg') }}" alt=""
+                                                style="height:18px;width:18px;">
                                         </div>
                                         <div class="content">
-                                            <div class="amount">{{ Auth::user()->getCurrencySymbol() }}<span
+                                            <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
                                                     class="count">{{ number_format($totalTrade) }}</span>
                                             </div>
                                             <div class="name">Total Investment</div>
@@ -1175,11 +1176,11 @@
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets/frontend/icons/credit-card.svg') }}"
-                                                    alt="" style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/credit-card.svg') }}" alt=""
+                                                    style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
-                                                <div class="amount">{{ Auth::user()->getCurrencySymbol() }}<span
+                                                <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
                                                         class="count">{{ number_format($totalTradeProfit) }}</span>
                                                 </div>
                                                 <div class="name">Total Profit</div>
@@ -1189,11 +1190,11 @@
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets/frontend/icons/log-in.svg') }}"
-                                                    alt="" style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/log-in.svg') }}" alt=""
+                                                    style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
-                                                <div class="amount">{{ Auth::user()->getCurrencySymbol() }}<span
+                                                <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
                                                         class="count">{{ number_format(Auth::user()->locked_funds, 0) }}</span>
                                                 </div>
                                                 <div class="name">Total Fixed Deposit</div>
@@ -1203,11 +1204,11 @@
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets/frontend/icons/log-in.svg') }}"
-                                                    alt="" style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/log-in.svg') }}" alt=""
+                                                    style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
-                                                <div class="amount">{{ Auth::user()->getCurrencySymbol() }}<span
+                                                <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
                                                         class="count">{{ number_format($totalWithdrawn) }}</span>
                                                 </div>
                                                 <div class="name">Total Withdraw</div>
@@ -1217,11 +1218,11 @@
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets/frontend/icons/users-2.svg') }}"
-                                                    alt="" style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/users-2.svg') }}" alt=""
+                                                    style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
-                                                <div class="amount">{{ Auth::user()->getCurrencySymbol() }}<span
+                                                <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
                                                         class="count">0</span>
                                                 </div>
                                                 <div class="name">Referral Bonus</div>
@@ -1231,11 +1232,11 @@
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets/frontend/icons/anchor.svg') }}"
-                                                    alt="" style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/anchor.svg') }}" alt=""
+                                                    style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
-                                                <div class="amount">{{ Auth::user()->getCurrencySymbol() }}<span
+                                                <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
                                                         class="count">0</span>
                                                 </div>
                                                 <div class="name">Deposit Bonus</div>
@@ -1245,11 +1246,11 @@
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets/frontend/icons/archive.svg') }}"
-                                                    alt="" style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/archive.svg') }}" alt=""
+                                                    style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
-                                                <div class="amount">{{ Auth::user()->getCurrencySymbol() }}<span
+                                                <div class="amount">{{ Auth::user()->getCurrencySymbol()}}<span
                                                         class="count">0</span>
                                                 </div>
                                                 <div class="name">Investment Bonus</div>
@@ -1259,8 +1260,8 @@
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets/frontend/icons/gift.svg') }}"
-                                                    alt="" style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/gift.svg') }}" alt=""
+                                                    style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
                                                 <div class="amount count">{{ Auth::user()->referralCount() }}</div>
@@ -1271,8 +1272,8 @@
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets/frontend/icons/award.svg') }}"
-                                                    alt="" style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/award.svg') }}" alt=""
+                                                    style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
                                                 <div class="amount">{{ Auth::user()->rankName() }}</div>
@@ -1283,8 +1284,8 @@
                                     <div class="col-12">
                                         <div class="single-card">
                                             <div class="icon">
-                                                <img src="{{ asset('assets/frontend/icons/alert-triangle.svg') }}"
-                                                    alt="" style="height:18px;width:18px;">
+                                                <img src="{{ asset('assets/frontend/icons/alert-triangle.svg') }}" alt=""
+                                                    style="height:18px;width:18px;">
                                             </div>
                                             <div class="content">
                                                 <div class="amount count">0</div>
@@ -1330,8 +1331,7 @@
                                 <div
                                     class="transaction-amount {{ $transaction['type'] === 'Withdrawal' ? 'text-danger' : 'text-success' }}">
                                     {{ $transaction['type'] === 'Withdrawal' ? '-' : '+' }}
-                                    {{ number_format($transaction['amount'], 2) }}
-                                    {{ $transaction['currency'] ?? '' }}
+                                    {{ number_format($transaction['amount'], 2) }} {{ $transaction['currency'] ?? '' }}
                                 </div>
                                 <div class="transaction-gateway">
                                     {{ $transaction['gateway'] }}
@@ -1351,8 +1351,8 @@
                 <div class="all-feature-mobile">
                     <div class="title">Referral URL</div>
                     <div class="mobile-referral-link-form">
-                        <input type="text" value="{{ route('register') . '?refid=' . Auth::id() }}"
-                            id="refLink" readonly />
+                        <input type="text" value="{{ route('register') . '?refid=' . Auth::id() }}" id="refLink"
+                            readonly />
                         <button type="submit" onclick="copyRef()">
                             <span id="copy">Copy</span>
                         </button>
