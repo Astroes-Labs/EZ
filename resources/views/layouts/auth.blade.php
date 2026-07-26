@@ -12,7 +12,7 @@
     @livewireStyles
 </head>
 {{-- <body class="min-h-screen bg-[#0a0f1c] text-gray-100 font-sans antialiased"> --}}
-<body x-data="{ mobileMenuOpen: false }" class="bg-slate-950 text-slate-200 font-sans antialiased trading-bg min-h-screen">
+<body x-data="{ mobileMenuOpen: false }" class="bg-[#0c0c10] text-slate-200 font-sans antialiased trading-bg min-h-screen">
 
 
     
