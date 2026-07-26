@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
@@ -34,7 +34,9 @@ class FinancialDataService
             $response = Http::withHeaders([
                 'Accepts' => 'application/json',
                 'X-CMC_PRO_API_KEY' => $key
-            ])->get($request);
+            ])
+            // ->withoutVerifying()
+            ->get($request);
 
             if ($response->successful()) {
                 $data = $response->json();
