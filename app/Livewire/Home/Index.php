@@ -10,6 +10,6 @@ class Index extends Component
     {
         return view('livewire.home.index')
             ->layout('layouts.app')
-            ->title('Welcome To ' . config('app.name') . ' - Cryptocurrency Investment | Trade with Velocity');
+            ->title('Welcome To ' . config('app.name') . ' - Trade on all Markets with ease');
     }
 }
