@@ -165,6 +165,41 @@
             </div>
         </div>
 
+        <!-- Send Flash Message Section -->
+        <div class="bg-white rounded-xl shadow-lg p-8 border-l-4 border-indigo-500">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-900">User Flash Message</h2>
+                    <p class="text-sm text-gray-500">Display a custom pop-up or notification message directly on the user's dashboard.</p>
+                </div>
+                <span class="p-3 bg-indigo-50 text-indigo-600 rounded-full">
+                    <i class="fas fa-bullhorn text-xl"></i>
+                </span>
+            </div>
+
+            <form action="{{ route('admin.users.flash-message', $user) }}" method="POST">
+                @csrf
+                <div class="mb-4">
+                    <textarea name="flash_message" rows="3" 
+                              class="w-full rounded-lg border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm p-3 text-sm border"
+                              placeholder="Type a notice or flash alert for this user...">{{ old('flash_message', $user->flash_message) }}</textarea>
+                    @error('flash_message')
+                        <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="flex justify-end gap-3">
+                    @if($user->flash_message)
+                        <!-- Optional: Form to clear message if needed -->
+                    @endif
+                    <button type="submit" 
+                            class="inline-flex items-center px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition font-medium shadow-sm text-sm">
+                        <i class="fas fa-paper-plane mr-2"></i> Update Flash Message
+                    </button>
+                </div>
+            </form>
+        </div>
+
         <!-- Danger Actions -->
         <div class="flex flex-wrap gap-4 bg-white rounded-xl shadow-lg p-6 border-t-4 border-red-500">
             <form action="{{ route('admin.users.toggle-verification', $user) }}" method="POST" class="inline">

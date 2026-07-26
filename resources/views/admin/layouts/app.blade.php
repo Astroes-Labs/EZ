@@ -48,7 +48,7 @@
             <div class="p-6 border-b flex items-center gap-4">
                 <div
                     class="w-11 h-11 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center text-white text-3xl font-bold shadow-inner">
-                    M
+                    P
                 </div>
                 <div>
                     <span class="text-2xl font-semibold tracking-tight text-gray-900">{{ config('app.name') }}</span>

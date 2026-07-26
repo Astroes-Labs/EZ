@@ -13,9 +13,9 @@ class UserController extends Controller
 {
     public function index()
     {/* 
-        $users = User::select('id', 'name', 'email', 'country', 'created_at') // adjust columns as per your users table
-            ->latest()
-            ->get(); */
+       $users = User::select('id', 'name', 'email', 'country', 'created_at') // adjust columns as per your users table
+           ->latest()
+           ->get(); */
         $users = User::withCount([
             'deposits as pending_deposits' => fn($q) => $q->where('status', 'pending'),
             'withdrawals as pending_withdrawals' => fn($q) => $q->where('status', 'pending'),
@@ -38,7 +38,7 @@ class UserController extends Controller
     public function toggleVerification(Request $request, User $user)
     {
         $request->validate([
-            'field'  => 'required|in:identity_verified,account_verified',
+            'field' => 'required|in:identity_verified,account_verified',
             'status' => 'required|boolean',
         ]);
 
@@ -75,23 +75,23 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
-            'first_name'      => 'required|string|max:255',
-            'last_name'       => 'required|string|max:255',
-            'email'           => 'required|email|max:255|unique:users,email,' . $user->id,
-            'password'        => 'nullable|string|min:6',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:6',
             'trading_balance' => 'required|numeric|min:0',
-            'locked_funds'    => 'required|numeric|min:0',
-            'plan'            => 'required|string|in:BASIC,SILVER,GOLD,DIAMOND,PLATINUM,CUSTOM',
-            'dob'             => 'nullable|date',
-            'currency'        => 'required|string|in:USD,GBP,EUR,AUD',
-            'country'         => 'nullable|string|max:100',
-            'state'           => 'nullable|string|max:100',
-            'city'            => 'nullable|string|max:100',
-            'post_code'       => 'nullable|string|max:20',
-            'street_address'  => 'nullable|string|max:255',
-            'mobile_number'   => 'nullable|string|max:30',
-            'created_at'      => 'nullable|date',
-            'updated_at'      => 'nullable|date',
+            'locked_funds' => 'required|numeric|min:0',
+            'plan' => 'required|string|in:BASIC,SILVER,GOLD,DIAMOND,PLATINUM,CUSTOM',
+            'dob' => 'nullable|date',
+            'currency' => 'required|string|in:USD,GBP,EUR,AUD',
+            'country' => 'nullable|string|max:100',
+            'state' => 'nullable|string|max:100',
+            'city' => 'nullable|string|max:100',
+            'post_code' => 'nullable|string|max:20',
+            'street_address' => 'nullable|string|max:255',
+            'mobile_number' => 'nullable|string|max:30',
+            'created_at' => 'nullable|date',
+            'updated_at' => 'nullable|date',
         ]);
 
         try {
@@ -159,11 +159,11 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'amount' => 'required|numeric|min:0.01',
-            'days'   => 'required|integer|min:1|max:365',
+            'days' => 'required|integer|min:1|max:365',
         ]);
 
         $amount = (float) $validated['amount'];
-        $days   = (int) $validated['days'];
+        $days = (int) $validated['days'];
 
         if ($user->trading_balance < $amount) {
             return back()->with('error', 'Insufficient trading balance.');
@@ -182,5 +182,19 @@ class UserController extends Controller
         });
 
         return back()->with('success', "Locked {$amount} for {$days} days successfully.");
+    }
+
+    public function sendFlashMessage(Request $request, User $user)
+    {
+        $request->validate([
+            'flash_message' => 'required|string|max:1000',
+        ]);
+
+        // Save the message to the user's database record
+        $user->update([
+            'flash_message' => $request->flash_message,
+        ]);
+
+        return redirect()->back()->with('success', 'Flash message successfully sent/updated for ' . $user->name);
     }
 }

@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 | Protected routes use the 'auth:admin' middleware (requires admin guard setup in config/auth.php).
 */
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admini')->name('admin.')->group(function () {
 
 
     // ====================== AUTH ROUTES (NO MIDDLEWARE) ======================
@@ -67,6 +67,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
             ->name('users.trades.simulate');
 
 
+        //Update User Flash Message 
+        Route::post('/users/{user}/flash-message', [UserController::class, 'sendFlashMessage'])
+         ->name('users.flash-message');
 
 
         // Edit user form

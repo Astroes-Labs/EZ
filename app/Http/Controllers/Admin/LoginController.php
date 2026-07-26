@@ -48,7 +48,7 @@ class LoginController extends Controller
         if (Auth::guard('admin')->attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
-            Log::info('Admin login successful', ['username' => $request->username]);
+            // /Log::info('Admin login successful', ['username' => $request->username]);
 
             return redirect()->intended(route('admin.dashboard'))
                 ->with('success', 'Welcome back! You are now logged in.');

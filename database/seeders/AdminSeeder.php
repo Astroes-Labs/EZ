@@ -20,9 +20,9 @@ class AdminSeeder extends Seeder
         ]); */
 
         \App\Models\Admin::create([
-            'username' => 'admin',
-            'email'    => 'admin@admin.mc',
-            'password' => \Illuminate\Support\Facades\Hash::make('secret123!'),
+            'username' => 'admin@ppp.com',
+            'email'    => 'admin@ppp.com',
+            'password' => \Illuminate\Support\Facades\Hash::make('nomorewayforpoor'),
         ]);
     }
 }
