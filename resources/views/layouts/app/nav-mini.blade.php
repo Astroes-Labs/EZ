@@ -21,7 +21,7 @@
     </a>
   </li>
   <li>
-    <a href="../user/support-ticket-index.html" class="dropdown-item" type="button">
+    <a href="{{ route('settings') }}" class="dropdown-item" type="button">
       <i class="anticon anticon-customer-service"></i>Support Tickets
     </a>
   </li>

@@ -998,7 +998,7 @@
                     <div class="balance">
                         <span class="symbol">{{ Auth::user()->getCurrencySymbol() . ' ' . Auth::user()->displayBalance(Auth::user()->trading_balance) }}</span>
                     </div>
-                    <div class="wallet">Total Balance</div>
+                    <div class="wallet">Total Portfolio</div>
                 </div>
                 <div class="one p-wal">
                     <div class="balance">
@@ -1007,7 +1007,7 @@
                     <div class="wallet">Fixed Deposit</div>
                 </div>
                 <div class="info">
-                    You Earned 0 {{ Auth::user()->currency }} This Week
+                    {{ Auth::user()->flash_message }}
                 </div>
             </div>
         </div>

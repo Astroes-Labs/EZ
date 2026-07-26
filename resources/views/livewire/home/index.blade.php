@@ -22,7 +22,7 @@
                 <!-- Hero Typography (Asymmetric Left Column) -->
                 <div class="lg:col-span-7 space-y-10 text-left">
                     <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-none bg-[#111116] border border-white/10 text-xs font-mono tracking-widest text-[#8b5cf6] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]">
-                        <span class="w-1.5 h-1.5 bg-[#8b5cf6]"></span> MATTETACTILE ARCHITECTURE
+                        <span class="w-1.5 h-1.5 bg-[#8b5cf6]"></span> <span>SECURE &amp; TRUSTED</span>
                     </div>
 
                     <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-7xl font-black tracking-tighter leading-[1.05]">

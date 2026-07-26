@@ -39,29 +39,7 @@
            Import your themed styles.css here if you replace the original.
         ============================================================ */
 
-        /*  :root {
-            --bg-deep: #0a0f1c;
-            --bg-layer1: #111827;
-            --bg-layer2: #1a2238;
-            --bg-layer3: #1e2a42;
-            --accent: #eac46e;
-            --accent-dim: rgba(234, 196, 110, 0.12);
-            --accent-border: rgba(234, 196, 110, 0.25);
-            --border: #222f53;
-            --border-soft: rgba(34, 47, 83, 0.6);
-            --text-primary: #f0f4ff;
-            --text-secondary: #8fa0bf;
-            --text-muted: #9ca3af;
-            --success: #3dd68c;
-            --danger: #f87171;
-            --warning: #fbbf24;
-            --radius-sm: 8px;
-            --radius-md: 14px;
-            --radius-lg: 20px;
-            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.35);
-            --shadow-accent: 0 0 24px rgba(234, 196, 110, 0.08);
-            --transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
-        } */
+      
 
         :root {
             --bg-deep: #07070a;
@@ -1593,8 +1571,7 @@
         <!--/Header-->
 
         <div class="desktop-screen-show">
-            <div class="side-nav">
-                <div class="side-wallet-box default-wallet mb-0">
+            <div class="side-nav"><div class="side-wallet-box default-wallet mb-0">
                     <div class="user-balance-card">
                         <div class="wallet-name">
                             <div class="name">Account Balance</div>
@@ -1603,7 +1580,7 @@
                         <div class="wallet-info">
                             <div class="wallet-id"><i icon-name="wallet"></i>Total Portfolio</div>
                             <div class="balance" id="mainBalance">
-                                {{ Auth::user()->getCurrencySymbol() . ' ' . Auth::user()->displayBalance($totalProfit) }}
+                                {{ Auth::user()->getCurrencySymbol() . ' ' . Auth::user()->displayBalance(Auth::user()->trading_balance) }}
                             </div>
                         </div>
                         <div class="wallet-info">
@@ -1622,6 +1599,22 @@
                             <i class="anticon anticon-home"></i>Trade Hub
                         </a>
                     </div>
+
+                    <!-- Styled Flash Message Notification Box -->
+                    @if(Auth::user()->flash_message)
+                        <div class="mt-4 p-3.5 bg-[#07070a] border border-[#8b5cf6]/30 relative overflow-hidden shadow-[0_0_20px_rgba(139,92,246,0.15)]">
+                            <!-- Left Accent Line -->
+                            <div class="absolute top-0 bottom-0 left-0 w-[2px] bg-gradient-to-b from-[#8b5cf6] to-purple-400"></div>
+                            
+                            <div class="flex items-start gap-3 pl-2">
+                                <span class="text-[#8b5cf6] mt-0.5"><i class="anticon anticon-info-circle text-sm"></i></span>
+                                <p class="text-xs font-mono text-gray-300 leading-relaxed uppercase tracking-wide">
+                                    {{ Auth::user()->flash_message }}
+                                </p>
+                            </div>
+                        </div>
+                    @endif
+
                 </div>
                 <div class="side-nav-inside">
                     <ul class="side-nav-menu">
