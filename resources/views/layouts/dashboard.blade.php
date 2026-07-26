@@ -39,7 +39,7 @@
            Import your themed styles.css here if you replace the original.
         ============================================================ */
 
-      
+
 
         :root {
             --bg-deep: #07070a;
@@ -574,9 +574,9 @@
 
         /* Account Info Btn */
         /* ============================================================
-        USER CENTER PAGE 
+        USER CENTER PAGE
         ============================================================ */
-      
+
 
         .uc-page {
             /* max-width: 680px; */
@@ -1383,7 +1383,43 @@
         .ticket-list-item:hover {
             background: var(--accent-dim);
         }
+
+
+        /* custom alert*/
+        .custom-alert {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 1rem;
+            margin-bottom: 0;
+            padding: 1rem;
+            background-color: var(--bg-layer1);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            color: var(--text-primary);
+            font-family: monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .custom-alert-icon {
+            color: var(--accent);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .custom-alert-content {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
     </style>
+
+
     <title>
         {{ config('app.name') }} - Dashboard
     </title>
@@ -1571,7 +1607,8 @@
         <!--/Header-->
 
         <div class="desktop-screen-show">
-            <div class="side-nav"><div class="side-wallet-box default-wallet mb-0">
+            <div class="side-nav">
+                <div class="side-wallet-box default-wallet mb-0">
                     <div class="user-balance-card">
                         <div class="wallet-name">
                             <div class="name">Account Balance</div>
@@ -1600,20 +1637,17 @@
                         </a>
                     </div>
 
-                    <!-- Styled Flash Message Notification Box -->
-                    @if(Auth::user()->flash_message)
-                        <div class="mt-4 p-3.5 bg-[#07070a] border border-[#8b5cf6]/30 relative overflow-hidden shadow-[0_0_20px_rgba(139,92,246,0.15)]">
-                            <!-- Left Accent Line -->
-                            <div class="absolute top-0 bottom-0 left-0 w-[2px] bg-gradient-to-b from-[#8b5cf6] to-purple-400"></div>
-                            
-                            <div class="flex items-start gap-3 pl-2">
-                                <span class="text-[#8b5cf6] mt-0.5"><i class="anticon anticon-info-circle text-sm"></i></span>
-                                <p class="text-xs font-mono text-gray-300 leading-relaxed uppercase tracking-wide">
-                                    {{ Auth::user()->flash_message }}
-                                </p>
-                            </div>
+
+                    <!-- Custom Alert Component using CSS Variables -->
+                    <div class="custom-alert" role="alert">
+                        <span class="custom-alert-icon"><i class="anticon anticon-info-circle"></i></span>
+                        <div class="custom-alert-content">
+                            {{ Auth::user()->flash_message }}
                         </div>
-                    @endif
+                    </div>
+
+                    
+
 
                 </div>
                 <div class="side-nav-inside">
