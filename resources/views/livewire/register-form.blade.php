@@ -34,7 +34,7 @@
 
                     <!-- Section Header: Personal Info -->
                     <div class="border-b border-white/10 pb-3 pt-2">
-                        <h3 class="text-sm font-mono text-[#8b5cf6] uppercase tracking-widest font-semibold">01.
+                        <h3 class="text-sm font-mono text-[#8b5cf6] uppercase tracking-widest font-semibold">
                             Personal Information</h3>
                     </div>
 

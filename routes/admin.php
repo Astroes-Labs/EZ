@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\WithdrawalController;
 use App\Http\Controllers\Admin\DepositController;
 use App\Http\Controllers\Admin\TradeController;
 use App\Http\Controllers\Admin\TraderController;
+use App\Http\Controllers\Admin\SiteSettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,14 +63,14 @@ Route::prefix('admini')->name('admin.')->group(function () {
         Route::put('users/{user}/trades/{trade}', [TradeController::class, 'update'])->name('users.trades.update');
         Route::post('users/{user}/trades/{trade}/close', [TradeController::class, 'close'])->name('users.trades.close');
 
-            // Simulate Trades 
+        // Simulate Trades 
         Route::post('users/{user}/trades/simulate', [TradeController::class, 'simulate'])
             ->name('users.trades.simulate');
 
 
         //Update User Flash Message 
         Route::post('/users/{user}/flash-message', [UserController::class, 'sendFlashMessage'])
-         ->name('users.flash-message');
+            ->name('users.flash-message');
 
 
         // Edit user form
@@ -104,6 +105,16 @@ Route::prefix('admini')->name('admin.')->group(function () {
         Route::get('/users/{user}/withdrawals/{withdrawal}/edit', [WithdrawalController::class, 'edit'])->name('users.withdrawals.edit');
         Route::put('/users/{user}/withdrawals/{withdrawal}', [WithdrawalController::class, 'update'])->name('users.withdrawals.update');
         Route::delete('/users/{user}/withdrawals/{withdrawal}', [WithdrawalController::class, 'destroy'])->name('users.withdrawals.destroy');
+
+
+        //All site settings 
+
+        Route::put('/settings/showcase/{setting}', [SiteSettingController::class, 'update'])->name('settings.update');
+
+        Route::get('/settings/showcase', [SiteSettingController::class, 'index'])->name('settings.showcase');
+        Route::post('/settings/showcase', [SiteSettingController::class, 'store'])->name('settings.store');
+        Route::put('/settings/showcase/update-all', [SiteSettingController::class, 'updateAll'])->name('settings.update-all');
+        Route::delete('/settings/showcase/{setting}', [SiteSettingController::class, 'destroy'])->name('settings.destroy');
 
         // All withdrawals (global view)
         Route::get('/withdrawals', [WithdrawalController::class, 'allWithdrawals'])->name('withdrawals.index');
