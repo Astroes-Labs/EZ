@@ -1683,7 +1683,7 @@
                             </a>
                         </li>
                         <li class="side-nav-item">
-                            <a href="{{ route('admin.settings.showcase') }}" onclick="openCustom(event, this)">
+                            <a href="{{ route('settings') }}" onclick="openCustom(event, this)">
                                 <i class="anticon anticon-setting"></i><span>Settings</span>
                             </a>
                         </li>
