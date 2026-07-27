@@ -748,7 +748,7 @@
 
 <div class="desktop-screen-show" style="padding: 1.5rem;">
 
-    @include('livewire.dashboard.partials.desktop-content')
+    {{-- @include('livewire.dashboard.partials.desktop-content') --}}
 
     <div class="row g-3 align-items-stretch">
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-12">
