@@ -131,13 +131,11 @@ class User extends Authenticatable implements MustVerifyEmail
             ['min_referrals' => 231, 'max_referrals' => 1000, 'name' => 'Major General', 'icon' => 'major-general.png', 'interest' => '12']
         ];
     }
-    public function userClassArray()
+    public function userClassArray($totalValue = 0)
     {
-        $user = auth()->user();
-        $totalValue = $user->trading_balance ?? 0;
-
+        // Find the highest tier where min is less than or equal to the total deposit
         $matchedTier = \App\Models\TradingPlan::where('min', '<=', $totalValue)
-            ->where('max', '>=', $totalValue)
+            ->orderBy('min', 'desc')
             ->first();
 
         if ($matchedTier) {
