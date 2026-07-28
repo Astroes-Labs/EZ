@@ -157,7 +157,8 @@ class User extends Authenticatable implements MustVerifyEmail
         $user = auth()->user();
 
         // Calculate the total value by adding locked_funds and trading_balance
-        $totalValue = $user->locked_funds + $user->trading_balance;
+        // $totalValue = $user->locked_funds + $user->trading_balance;
+        $totalValue = $user->trading_balance;
 
         // Determine the user class based on the total value
         foreach ($userclass as $class => $details) {

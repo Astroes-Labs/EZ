@@ -32,7 +32,11 @@ Route::prefix('admini')->name('admin.')->group(function () {
     // All PROTECTED admin routes
     // ────────────────────────────────────────────────
     Route::middleware('auth.admin')->group(function () {
+        // User Impersonation Routes
+        Route::post('/users/{user}/impersonate', [UserController::class, 'impersonate'])->name('users.impersonate');
+        Route::post('/users/stop-impersonating', [UserController::class, 'stopImpersonating'])->name('users.stop-impersonating');
 
+        
         // Copy Trading Management (per user)
         Route::get('users/{user}/copy-trading', [UserController::class, 'copyTrading'])->name('users.copy-trading');
         Route::post('users/{user}/copy-trading', [UserController::class, 'storeCopy'])->name('users.copy-trading.store');

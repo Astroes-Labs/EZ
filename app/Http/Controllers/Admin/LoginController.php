@@ -16,7 +16,8 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         if (Auth::guard('admin')->check()) {
-            return redirect()->intended(route('admin.dashboard'));
+           return redirect()->route('admin.dashboard')  
+                ->with('info', 'You are already logged in as admin.');
         }
 
         return view('admin.login');

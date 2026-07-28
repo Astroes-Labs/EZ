@@ -8,14 +8,15 @@ use App\Models\Trader;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function index()
     {/* 
-       $users = User::select('id', 'name', 'email', 'country', 'created_at') // adjust columns as per your users table
-           ->latest()
-           ->get(); */
+      $users = User::select('id', 'name', 'email', 'country', 'created_at') // adjust columns as per your users table
+          ->latest()
+          ->get(); */
         $users = User::withCount([
             'deposits as pending_deposits' => fn($q) => $q->where('status', 'pending'),
             'withdrawals as pending_withdrawals' => fn($q) => $q->where('status', 'pending'),
@@ -196,5 +197,49 @@ class UserController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Flash message successfully sent/updated for ' . $user->name);
+    }
+
+    //Impersonate a User
+
+    public function impersonate(User $user)
+    {
+        $admin = Auth::guard('admin')->user();
+
+        if (!$admin || !$admin->canImpersonate()) {
+            abort(403, 'Unauthorized to Impersonate');
+        }
+
+        // Remember who the admin is impersonating
+        session([
+            'impersonator_id' => $admin->id,
+            'impersonator_guard' => 'admin',
+            'user_id' => $user->id,
+        ]);
+
+        // Log in as the user (default guard is 'web')
+        Auth::guard('web')->login($user);
+
+        return redirect()->intended('/dashboard')->with('info', 'Now Viewing as ' . $user->name);
+    }
+
+    //Switch back to main account 
+    public function stopImpersonating()
+    {
+        $adminId = session('impersonator_id');
+
+        if (!$adminId) {
+            return redirect()->route('dashboard');
+        }
+
+        // Log out the user guard
+        Auth::guard('web')->logout();
+
+        // Clear impersonation session data
+        session()->forget(['impersonator_id', 'impersonator_guard']);
+
+        // Re-authenticate the admin using the admin guard
+        Auth::guard('admin')->loginUsingId($adminId);
+    
+        return redirect()->route('admin.users.show', ['user' => session('user_id')])->with('success', 'Returned to admin account.');
     }
 }

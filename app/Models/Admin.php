@@ -30,6 +30,10 @@ class Admin extends Authenticatable
         return "{$this->first_name} {$this->last_name}";
     } */
    use Notifiable;
+
+   public function canImpersonate(): bool {
+        return true;
+   }
     
     protected $table = 'admins'; // Define the table name
     protected $guard = 'admin';           // important

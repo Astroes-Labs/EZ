@@ -1587,15 +1587,30 @@
                                     </a>
                                 </li> --}}
                                 <li class="logout">
-                                    <form id="logout-form" method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <input type="hidden" name="logout" value="logout">
-                                        <a href="javascript:void(0);"
-                                            onclick="document.getElementById('logout-form').submit();"
-                                            class="dropdown-item">
-                                            <i class="anticon anticon-logout text-danger"></i>Logout
-                                        </a>
-                                    </form>
+                                    @if (session()->has('impersonator_id'))
+                                        <!-- Admin is Impersonating: Show "Exit Impersonation" Button -->
+                                        <form id="stop-impersonation-form" method="POST"
+                                            action="{{ route('admin.users.stop-impersonating') }}">
+                                            @csrf
+                                            <a href="javascript:void(0);"
+                                                onclick="document.getElementById('stop-impersonation-form').submit();"
+                                                class="dropdown-item text-warning font-weight-bold">
+                                                <i class="anticon anticon-rollback text-warning"></i> Exit
+                                                Impersonation
+                                            </a>
+                                        </form>
+                                    @else
+                                        <!-- Regular User: Show Standard Logout -->
+                                        <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <input type="hidden" name="logout" value="logout">
+                                            <a href="javascript:void(0);"
+                                                onclick="document.getElementById('logout-form').submit();"
+                                                class="dropdown-item">
+                                                <i class="anticon anticon-logout text-danger"></i> Logout
+                                            </a>
+                                        </form>
+                                    @endif
                                 </li>
                             </ul>
                         </div>
@@ -1646,7 +1661,7 @@
                         </div>
                     </div>
 
-                    
+
 
 
                 </div>
