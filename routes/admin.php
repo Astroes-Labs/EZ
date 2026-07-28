@@ -112,8 +112,9 @@ Route::prefix('admini')->name('admin.')->group(function () {
 
 
         //All site settings 
-
         Route::put('/settings/showcase/{setting}', [SiteSettingController::class, 'update'])->name('settings.update');
+        // Trading Plans Management
+        Route::put('/settings/plans/update-all', [SiteSettingController::class, 'updatePlans'])->name('settings.plans.update-all');
 
         Route::get('/settings/showcase', [SiteSettingController::class, 'index'])->name('settings.showcase');
         Route::post('/settings/showcase', [SiteSettingController::class, 'store'])->name('settings.store');

@@ -65,4 +65,29 @@ class SiteSettingController extends Controller
         $setting->delete();
         return redirect()->back()->with('success', 'Metric removed successfully.');
     }
+
+    public function updatePlans(Request $request)
+    {
+        // Update sub-tier minimums and maximums
+        if ($request->has('tiers')) {
+            foreach ($request->tiers as $id => $data) {
+                \App\Models\TradingPlan::where('id', $id)->update([
+                    'min' => $data['min'],
+                    'max' => $data['max'],
+                ]);
+            }
+        }
+
+        // Update shared plan metadata (ratings and reviews grouped by plan_name)
+        if ($request->has('meta')) {
+            foreach ($request->meta as $planName => $data) {
+                \App\Models\TradingPlan::where('plan_name', $planName)->update([
+                    'rating' => $data['rating'],
+                    'reviews' => $data['reviews'],
+                ]);
+            }
+        }
+
+        return back()->with('success', 'Trading plans updated successfully.');
+    }
 }

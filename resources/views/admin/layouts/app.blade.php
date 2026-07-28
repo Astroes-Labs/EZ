@@ -77,7 +77,7 @@
                     ['route' => 'admin.coming.soon', 'icon' => 'fas fa-wallet', 'label' => 'Wallets', 'pattern' => 'admin.wallets.*'],
                     ['route' => 'admin.coming.soon', 'icon' => 'fas fa-bell', 'label' => 'Notifications', 'pattern' => 'admin.notifications.*'],
                     ['route' => 'admin.coming.soon', 'icon' => 'fas fa-user-shield', 'label' => 'Admins', 'pattern' => 'admin.admins.*'],
-                    ['route' => 'admin.coming.soon', 'icon' => 'fas fa-cogs', 'label' => 'Settings', 'pattern' => 'admin.settings.*'],
+                    ['route' => 'admin.settings.showcase', 'icon' => 'fas fa-cogs', 'label' => 'Settings', 'pattern' => 'admin.settings.*'],
                 ];
             @endphp
 

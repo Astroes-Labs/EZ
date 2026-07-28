@@ -55,13 +55,16 @@
                             class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-white/5 text-sm text-gray-400 font-mono">
                             <div
                                 class="flex items-center gap-3 bg-[#111116] p-4 border border-white/5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]">
-                                <i class="fa fa-shield-alt text-[#8b5cf6]"></i><span>Licensed &amp; Secure</span></div>
+                                <i class="fa fa-shield-alt text-[#8b5cf6]"></i><span>Licensed &amp; Secure</span>
+                            </div>
                             <div
                                 class="flex items-center gap-3 bg-[#111116] p-4 border border-white/5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]">
-                                <i class="fa fa-clock text-[#8b5cf6]"></i><span>Instant Withdrawals</span></div>
+                                <i class="fa fa-clock text-[#8b5cf6]"></i><span>Instant Withdrawals</span>
+                            </div>
                             <div
                                 class="flex items-center gap-3 bg-[#111116] p-4 border border-white/5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]">
-                                <i class="fa fa-users text-[#8b5cf6]"></i><span>49,000+ Investors</span></div>
+                                <i class="fa fa-users text-[#8b5cf6]"></i><span>49,000+ Investors</span>
+                            </div>
                         </div>
                     </div>
 
@@ -342,8 +345,52 @@
                     </p>
                 </div>
 
+
+                @php
+                    $plans = \App\Models\TradingPlan::all()->groupBy('plan_name');
+                    $userCurrency = auth()->user()->currency ?? '$';
+
+                    // Map plans to your required template structure with dynamic totals
+                    $dynamicPlans = [];
+                    $planOrder = ['Basic', 'Silver', 'Gold', 'Diamond', 'Platinum'];
+
+                    foreach ($planOrder as $name) {
+                        // Skip the Silver plan
+                        if ($name === 'Silver') {
+                            continue;
+                        }
+
+                        if (!isset($plans[$name])) {
+                            continue;
+                        }
+
+                        $tiers = $plans[$name];
+                        $min = $tiers->min('min');
+                        $max = $tiers->max('max');
+                        $first = $tiers->first();
+
+                        // Assign sample ROI/percentage based on plan name or structure as needed
+                        $roiMap = [
+                            'Basic' => '12%',
+                            'Silver' => '15%',
+                            'Gold' => '18%',
+                            'Diamond' => '25%',
+                            'Platinum' => '30%',
+                        ];
+
+                        $dynamicPlans[] = [
+                            'title' => strtoupper($name) . ' PLAN',
+                            'roi' => $roiMap[$name] ?? '15%',
+                            'min' => $min,
+                            'max' => $max,
+                            'rating' => $first->rating ?? '5.00',
+                            'reviews' => $first->reviews ?? '0',
+                            'border' => $name === 'Platinum',
+                        ];
+                    }
+                @endphp
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-                    @foreach ([['title' => 'BASIC PLAN', 'roi' => '12%', 'min' => '1,000', 'max' => '49,900'], ['title' => 'GOLD PLAN', 'roi' => '15%', 'min' => '50,000', 'max' => '199,000'], ['title' => 'DIAMOND PLAN', 'roi' => '25%', 'min' => '200,000', 'max' => '499,000'], ['title' => 'PLATINUM PLAN', 'roi' => '30%', 'min' => '500,000', 'max' => '1,000,000', 'featured' => true]] as $plan)
+                    @foreach ($dynamicPlans as $plan)
                         <div class="relative flex flex-col {{ isset($plan['featured']) ? 'lg:-translate-y-2' : '' }}">
                             <div
                                 class="bg-[#111116] border {{ isset($plan['featured']) ? 'border-[#8b5cf6]' : 'border-white/10' }} overflow-hidden transition-all h-full flex flex-col shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] relative">
@@ -368,10 +415,10 @@
                                             class="space-y-4 text-left mb-8 font-mono text-xs border-t border-b border-white/5 py-6">
                                             <li class="flex justify-between pb-2"><span
                                                     class="text-gray-500">Minimum</span><span
-                                                    class="font-bold text-gray-200">${{ $plan['min'] }}</span></li>
+                                                    class="font-bold text-gray-200">${{ number_format($plan['min'], 2) }}</span></li>
                                             <li class="flex justify-between pb-2"><span
                                                     class="text-gray-500">Maximum</span><span
-                                                    class="font-bold text-gray-200">${{ $plan['max'] }}</span></li>
+                                                    class="font-bold text-gray-200">${{ number_format($plan['max'], 2) }}</span></li>
                                             <li class="flex justify-between"><span class="text-gray-500">Capital
                                                     Return</span><span class="text-emerald-400 font-bold">YES</span>
                                             </li>

@@ -120,60 +120,38 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return [
 
-            ['min_referrals' => 0,   'max_referrals' => 0,    'name' => 'Recruit', 'icon' => 'recruit.png', 'interest' => '2'],
-            ['min_referrals' => 1,   'max_referrals' => 5,    'name' => 'Private', 'icon' => 'private.png', 'interest' => '3'],
-            ['min_referrals' => 6,   'max_referrals' => 10,   'name' => 'Corporal', 'icon' => 'corporal.png', 'interest' => '4'],
-            ['min_referrals' => 11,  'max_referrals' => 20,   'name' => 'Sergeant', 'icon' => 'sergeant.png', 'interest' => '8'],
-            ['min_referrals' => 21,  'max_referrals' => 40,   'name' => 'Lieutenant', 'icon' => 'first-lieutenant.png', 'interest' => '10'],
-            ['min_referrals' => 41,  'max_referrals' => 75,   'name' => 'Captain', 'icon' => 'captain.png', 'interest' => '10'],
-            ['min_referrals' => 76,  'max_referrals' => 100,  'name' => 'Colonel', 'icon' => 'colonel.png', 'interest' => '10'],
-            ['min_referrals' => 101, 'max_referrals' => 150,  'name' => 'Brigadier', 'icon' => 'brigadier-general.png', 'interest' => '10'],
+            ['min_referrals' => 0, 'max_referrals' => 0, 'name' => 'Recruit', 'icon' => 'recruit.png', 'interest' => '2'],
+            ['min_referrals' => 1, 'max_referrals' => 5, 'name' => 'Private', 'icon' => 'private.png', 'interest' => '3'],
+            ['min_referrals' => 6, 'max_referrals' => 10, 'name' => 'Corporal', 'icon' => 'corporal.png', 'interest' => '4'],
+            ['min_referrals' => 11, 'max_referrals' => 20, 'name' => 'Sergeant', 'icon' => 'sergeant.png', 'interest' => '8'],
+            ['min_referrals' => 21, 'max_referrals' => 40, 'name' => 'Lieutenant', 'icon' => 'first-lieutenant.png', 'interest' => '10'],
+            ['min_referrals' => 41, 'max_referrals' => 75, 'name' => 'Captain', 'icon' => 'captain.png', 'interest' => '10'],
+            ['min_referrals' => 76, 'max_referrals' => 100, 'name' => 'Colonel', 'icon' => 'colonel.png', 'interest' => '10'],
+            ['min_referrals' => 101, 'max_referrals' => 150, 'name' => 'Brigadier', 'icon' => 'brigadier-general.png', 'interest' => '10'],
             ['min_referrals' => 231, 'max_referrals' => 1000, 'name' => 'Major General', 'icon' => 'major-general.png', 'interest' => '12']
         ];
     }
     public function userClassArray()
     {
-        // Define the user classes with their respective ranges and icons
-        $userclass = [
-            'Basic' => [
-                'range' => [1000, 50000],
-                'icon' => 'assets/frontend/images/default-icon.png', // Replace with the actual icon file name
-            ],
-            'Gold' => [
-                'range' => [51000, 100000],
-                'icon' => 'assets/frontend/images/plans/gold.png', // Replace with the actual icon file name
-            ],
-            'Diamond' => [
-                'range' => [101000, 250000],
-                'icon' => 'assets/frontend/images/plans/diamond.png', // Replace with the actual icon file name
-            ],
-            'Platinum' => [
-                'range' => [251000, PHP_FLOAT_MAX], // PHP_FLOAT_MAX represents "unlimited"
-                'icon' => 'assets/frontend/images/plans/platinum.png', // Replace with the actual icon file name
-            ],
-        ];
-
-        // Get the authenticated user and calculate the total value
         $user = auth()->user();
+        $totalValue = $user->trading_balance ?? 0;
 
-        // Calculate the total value by adding locked_funds and trading_balance
-        // $totalValue = $user->locked_funds + $user->trading_balance;
-        $totalValue = $user->trading_balance;
+        $matchedTier = \App\Models\TradingPlan::where('min', '<=', $totalValue)
+            ->where('max', '>=', $totalValue)
+            ->first();
 
-        // Determine the user class based on the total value
-        foreach ($userclass as $class => $details) {
-            if ($totalValue >= $details['range'][0] && $totalValue <= $details['range'][1]) {
-                return [
-                    'class' => $class,
-                    'icon' => $details['icon'],
-                ];
-            }
+        if ($matchedTier) {
+            return [
+                'class' => $matchedTier->plan_name,
+                'sub_tier' => $matchedTier->sub_tier_name,
+                'icon' => $matchedTier->icon,
+            ];
         }
 
-        // Default return if no class is matched (e.g., for values less than 1000)
         return [
             'class' => 'Unclassified',
-            'icon' => 'assets/frontend/images/default-icon.png', // Replace with the actual icon file name
+            'sub_tier' => 'N/A',
+            'icon' => 'assets/frontend/images/default-icon.png',
         ];
     }
 
@@ -888,12 +866,12 @@ class User extends Authenticatable implements MustVerifyEmail
             'verification.verify',
             now()->addMinutes(60),   // Same as your register method
             [
-                'id'   => $this->getKey(),
+                'id' => $this->getKey(),
                 'hash' => sha1($this->getEmailForVerification()),  // Better than sha1($this->email)
             ]
         );
 
         Mail::to($this->email)->send(new VerifyEmailMail($verificationUrl));
     }
-    
+
 }
