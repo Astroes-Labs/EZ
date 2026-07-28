@@ -1754,13 +1754,27 @@
                             </a>
                         </li>
                         <li class="side-nav-item">
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="site-btn grad-btn w-100">
-                                    <i class="anticon anticon-logout"></i><span>Logout</span>
-                                </button>
-                            </form>
+                            @if (session()->has('impersonator_id'))
+                                <!-- Admin is Impersonating: Show "Exit Impersonation" Button styled to match logout -->
+                                <form id="stop-impersonation-form" method="POST" action="{{ route('admin.users.stop-impersonating') }}">
+                                    @csrf
+                                    <button type="button" onclick="document.getElementById('stop-impersonation-form').submit();" class="site-btn grad-btn w-100">
+                                        <i class="anticon anticon-rollback"></i><span>Exit Impersonation</span>
+                                    </button>
+                                </form>
+                            @else
+                                <!-- Regular User: Show Standard Logout -->
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="site-btn grad-btn w-100">
+                                        <i class="anticon anticon-logout"></i><span>Logout</span>
+                                    </button>
+                                </form>
+                            @endif
+                            
                         </li>
+
+                        
                     </ul>
                 </div>
             </div>
