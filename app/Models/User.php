@@ -147,7 +147,7 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return [
-            'class' => 'Unclassified',
+            'class' => 'Beginner',
             'sub_tier' => 'N/A',
             'icon' => 'assets/frontend/images/default-icon.png',
         ];
