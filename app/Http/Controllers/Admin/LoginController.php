@@ -51,7 +51,7 @@ class LoginController extends Controller
 
             // /Log::info('Admin login successful', ['username' => $request->username]);
 
-            return redirect()->intended(route('admin.dashboard'))
+            return redirect()->route('admin.dashboard')
                 ->with('success', 'Welcome back! You are now logged in.');
         }
 
